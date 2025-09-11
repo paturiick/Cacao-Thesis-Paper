@@ -5,6 +5,15 @@ This repository contains the materials and documentation for the thesis:
 
 ---
 
+## 👩‍🔬 Authors
+- Novem Kate B. Barbosa  
+- Jason T. Daohog  
+- John Patrick L. Rautraut  
+- Jeushian Ritz A. Reblando  
+- Joel F. Sabuero Jr.  
+
+---
+
 ## 📌 Overview
 Black pod disease caused by *Phytophthora palmivora* is one of the major threats to cacao production in the Philippines. Traditional manual inspection is slow, error-prone, and often detects infections too late.  
 
