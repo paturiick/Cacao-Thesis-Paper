@@ -1,10 +1,28 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\astroncite{Alam et~al.}{2022}]{Alam2022}
+Alam, A., Chauhan, A., Khan, M.~T., and Jaffery, Z.~A. (2022).
+\newblock Drone-based crop product quality monitoring system: An application of
+  smart agriculture.
+\newblock In {\em Agri-food 4.0}, pages 97--110.
+
+\bibitem[\protect\astroncite{Alvarado et~al.}{2023}]{Alvarado2023}
+Alvarado, M.~C., Sanchez, P. D.~C., and Polongasa, S. G.~N. (2023).
+\newblock Emerging rapid and nondestructive techniques for quality and safety
+  evaluation of cacao: Recent advances, challenges, and future trends.
+\newblock {\em Food Production, Processing and Nutrition}, 5:40.
+
 \bibitem[\protect\astroncite{Avila-Quezada et~al.}{2023}]{Avila2023}
 Avila-Quezada, G.~D. et~al. (2023).
 \newblock Novel nanotechnological approaches for managing phytophthora diseases
   of plants.
 \newblock {\em Trends in Plant Science}, 28(9):1070--1080.
+
+\bibitem[\protect\astroncite{Babin}{2018}]{Babin2018}
+Babin, R. (2018).
+\newblock Pest management in organic cacao.
+\newblock In Vacante, V. and Kreiter, S., editors, {\em Handbook of pest
+  management in organic farming}, pages 502--518. CAB International.
 
 \bibitem[\protect\astroncite{Choudhary et~al.}{2024}]{Yadav2024}
 Choudhary, P., Shinde, B., Yadav, A., Kumayu, A., Parmar, A., Upadhyay, A., and
@@ -22,12 +40,71 @@ Choudhary, P., Shinde, B., Yadav, A., Kumayu, A., Parmar, A., Upadhyay, A., and
 \newblock \url{https://www.da.gov.ph/philippine-cacao-industry-roadmap/}.
 \newblock Accessed: 2025-09-11.
 
+\bibitem[\protect\astroncite{{Forest Phytophthoras of the
+  World}}{}]{ForestPhytophthora}
+{Forest Phytophthoras of the World}.
+\newblock Disease in phytophthora palmivora.
+\newblock Retrieved March 4, 2025, from
+  \url{https://forestphytophthoras.org/species/palmivora-0/disease}.
+
+\bibitem[\protect\astroncite{Mazzia et~al.}{2020}]{Mazzia2020}
+Mazzia, V., Comba, L., Khaliq, A., Chiaberge, M., and Gay, P. (2020).
+\newblock Uav and machine learning based refinement of a satellite-driven
+  vegetation index for precision agriculture.
+\newblock {\em Sensors}, 20(9):2530.
+
+\bibitem[\protect\astroncite{Merga}{2022}]{Merga2022}
+Merga, J. (2022).
+\newblock Epidemiology and management strategies of cocoa black pod
+  (phytophthora spp.).
+\newblock {\em Plant Pathology \& Quarantine}, 12(1):34--39.
+
+\bibitem[\protect\astroncite{{Ministry of Agriculture, Land and
+  Fisheries}}{}]{MinistryAgri}
+{Ministry of Agriculture, Land and Fisheries}.
+\newblock Black pod disease of cocoa.
+\newblock [n.d.].
+
+\bibitem[\protect\astroncite{Nguyen et~al.}{2022}]{Nguyen2022}
+Nguyen, D.~T., Pissard, A., Fern{\'a}ndez~Pierna, J.~A., Rogez, H., Souza, J.,
+  Dortu, F., Goel, S., Hernandez, Y., and Baeten, V. (2022).
+\newblock A method for nondestructive determination of cocoa bean fermentation
+  levels based on terahertz hyperspectral imaging.
+\newblock {\em International Journal of Food Microbiology}, 365:109537.
+
 \bibitem[\protect\astroncite{{Philippine Council for Agriculture and Fisheries
   (PCAF)}}{2021}]{PCAF2021}
 {Philippine Council for Agriculture and Fisheries (PCAF)} (2021).
 \newblock Pcaf recognizes davao region as the cacao capital of the philippines.
 \newblock \url{https://pcaf.da.gov.ph}.
 \newblock Accessed: 2025-09-11.
+
+\bibitem[\protect\astroncite{Quelal-V{\'a}sconez et~al.}{2020}]{Quelal2020}
+Quelal-V{\'a}sconez, M.~A., Lerma-Garc{\'i}a, M.~J., P{\'e}rez-Esteve, E.,
+  Talens, P., and Barat, J.~M. (2020).
+\newblock Roadmap of cocoa quality and authenticity control in the industry: A
+  review of conventional and alternative methods.
+\newblock {\em Comprehensive Reviews in Food Science and Food Safety},
+  19(2):448--478.
+
+\bibitem[\protect\astroncite{Rahman}{2021}]{Rahman2021}
+Rahman, M.~I. (2021).
+\newblock Durian plantation management using aerial imagery and gis
+  application.
+\newblock Unpublished. Retrieved May 19, 2025, from
+  \url{https://www.researchgate.net/profile/Nur-AdibahMohidem/publication/357333940}.
+
+\bibitem[\protect\astroncite{Silva and Almeida}{2024}]{Silva2024}
+Silva, P. E.~C. and Almeida, J. (2024).
+\newblock An edge computing-based solution for real-time leaf disease
+  classification using thermal imaging.
+\newblock {\em IEEE Geoscience and Remote Sensing Letters}, pages 1--5.
+
+\bibitem[\protect\astroncite{Solpot}{2020}]{Solpot2020}
+Solpot, T. (2020).
+\newblock Cacao (theobroma cacao) diseases: Threats to the philippine cocoa
+  industry.
+\newblock {\em ResearchGate}, 1(1):2--4.
 
 \bibitem[\protect\astroncite{Taesiri et~al.}{2023}]{Taesiri2023}
 Taesiri, M.~R., Nguyen, G., Habchi, S., Bezemer, C.-P., and Nguyen, A. (2023).
@@ -51,5 +128,16 @@ Upadhyay, A., Chandel, N.~S., Singh, K.~P., et~al. (2025).
   comprehensive review of techniques, models, and trends in precision
   agriculture.
 \newblock {\em Artificial Intelligence Review}, 58:92.
+
+\bibitem[\protect\astroncite{Vardhan and Swetha}{2023}]{Vardhan2023}
+Vardhan, J. and Swetha, K.~S. (2023).
+\newblock Detection of healthy and diseased crops in drone captured images
+  using deep learning.
+
+\bibitem[\protect\astroncite{Wang et~al.}{2023}]{Wang2023}
+Wang, G., Chen, Y., An, P., Hu, H., Hu, J., and Huang, T. (2023).
+\newblock Uav-yolov8: A small-object detection model based on improved yolov8
+  for uav aerial photography scenarios.
+\newblock {\em Sensors}, 23(16):7190.
 
 \end{thebibliography}

@@ -15,19 +15,25 @@
 \contentsline {section}{\numberline {1.5}Scope and Limitations}{7}{section.1.5}%
 \contentsline {section}{\numberline {1.6}Definition of Terms}{8}{section.1.6}%
 \contentsline {chapter}{\numberline {2}REVIEW OF RELATED LITERATURE}{11}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Preliminary Concepts and Results}{11}{section.2.1}%
-\contentsline {chapter}{\numberline {3}METHODOLOGY}{12}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Research Design}{12}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Formula}{13}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Tables}{13}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Images}{13}{section.3.4}%
-\contentsline {chapter}{\numberline {4}RESULTS AND DISCUSSION}{15}{chapter.4}%
-\contentsline {chapter}{\numberline {5}CONCLUSIONS AND RECOMMENDATIONS}{16}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Summary of Findings}{16}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Conclusion}{18}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Recommendations}{20}{section.5.3}%
-\contentsline {chapter}{APPENDICES}{21}{chapter*.10}%
-\contentsline {chapter}{REFERENCES}{22}{chapter*.10}%
-\contentsline {chapter}{CURRICULUM VITAE}{23}{chapter*.11}%
-\contentsline {chapter}{CERTIFICATE OF AUTHENTIC AUTHORSHIP}{25}{chapter*.11}%
+\contentsline {section}{\numberline {2.1}Cacao Diseases and Diagnosis}{11}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Current Approaches to Cacao Disease Detection and Quality Control}{12}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Pre-harvest Disease Detection}{14}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Computer-aided Cacao Disease Detection Technology in Agriculture}{14}{section.2.4}%
+\contentsline {section}{\numberline {2.5}You Only Look Once version 8 (YOLO) for Object Detection}{15}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Geotagging using QGIS in Agriculture}{15}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Synthesis}{16}{section.2.7}%
+\contentsline {chapter}{\numberline {3}METHODOLOGY}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Research Design}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Formula}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Tables}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Images}{18}{section.3.4}%
+\contentsline {chapter}{\numberline {4}RESULTS AND DISCUSSION}{20}{chapter.4}%
+\contentsline {chapter}{\numberline {5}CONCLUSIONS AND RECOMMENDATIONS}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Summary of Findings}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Conclusion}{23}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Recommendations}{25}{section.5.3}%
+\contentsline {chapter}{APPENDICES}{26}{chapter*.10}%
+\contentsline {chapter}{REFERENCES}{27}{chapter*.10}%
+\contentsline {chapter}{CURRICULUM VITAE}{30}{chapter*.11}%
+\contentsline {chapter}{CERTIFICATE OF AUTHENTIC AUTHORSHIP}{32}{chapter*.11}%
 \contentsfinish 

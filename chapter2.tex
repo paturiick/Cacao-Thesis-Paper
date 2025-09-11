@@ -1,9 +1,44 @@
 \chapter{REVIEW OF RELATED LITERATURE}
-{\baselineskip=2\baselineskip
-This chapter presents some preliminary concepts and known results that are needed in this study.
+%-----------------------------------------------------------------------------------------------------------------------
+\section{Cacao Diseases and Diagnosis}
+Cacao (\textit{Theobroma cacao}) is highly vulnerable to various diseases that threaten yield and production quality. One of the most aggressive fungal pathogens is \textit{Phytophthora megakarya}, responsible for black pod disease. This disease affects all parts of the cacao plant, including pods, leaves, and stems, particularly in humid conditions. 
+
+While \textit{P. megakarya} is a major threat in West Africa, a different variant of this species, \textit{Phytophthora palmivora}, is the primary cause of pod rot in the Philippines, as mentioned by \cite{Solpot2020}. This pathogen was first documented in Luzon in 1918 by Reinking and remains a significant challenge for local farmers. According to \cite{MinistryAgri}, \textit{P. palmivora} can cause annual losses of 20--30\%, with severe cases reaching up to 90\% under high humidity.
+
+Studies suggest that infected cacao plants can contribute to the spread of the disease to neighboring trees. Field experiments demonstrated that pod removal reduces black pod incidence, confirming the role of contaminated pods in disease transmission. However, research by \cite{Babin2018} later revealed that insect pests, particularly \textit{Helopeltis bakeri}, a mirid bug, also facilitate the spread of fungal pathogens. These insects feed on pods and shoots, causing severe damage and creating potential entry points for fungal infections.
+
+Other notable diseases affecting cacao include Cacao Swollen Shoot Virus (CSSV), Vascular-Streak Dieback (VSD), Witches' Broom Disease caused by \textit{Moniliophthora perniciosa}, and Frosty Pod Rot (\textit{Moniliophthora roreri}). Farmers and researchers typically distinguish between healthy and diseased cacao plants by observing specific visual symptoms on leaves, pods, stems, and roots. Initial signs include small, circular brown spots on the pod surface, as described by \cite{MinistryAgri}, which expand rapidly and often emit a characteristic fishy odor if untreated.
 
 %-----------------------------------------------------------------------------------------------------------------------
-\section{Preliminary Concepts and Results}
-This section contains some basic definitions and results.
+\section{Current Approaches to Cacao Disease Detection and Quality Control}
+The Philippine Cacao Industry Roadmap \cite{PhilCacaoRoadmap2021} highlighted that most cacao farms in the country are smallholdings, managed using ancestral knowledge or experience. This includes manually identifying black pod rot and separating diseased pods post-harvest. However, this is limited in effectiveness. According to \cite{ForestPhytophthora}, healthy pods exposed to pathogens can develop internal infections within 15 days, making early detection and intervention crucial. 
 
-}
+To mitigate diseases, farmers employ cultural and chemical control methods. Sanitation and pruning, as described by \cite{Merga2022}, reduce humidity and fungal inoculum sources. Similarly, frequent harvesting minimizes pathogen load. Fungicides such as copper-based compounds and metalaxyl were also developed and remain essential when combined with crop sanitation.
+
+In cacao classification, traditional destructive methods like the cut-test are common, though labor-intensive and less precise \cite{Nguyen2022}. Advanced but complex alternatives, such as chromatographic analysis, were proposed by \cite{Quelal2020}. Non-destructive techniques have since emerged: imaging sensors, spectroscopy, and thermal imaging \cite{Alvarado2023}, with promising applications in detecting root diseases and leaf infections. For instance, \cite{Silva2024} demonstrated edge computing with thermal imaging for real-time leaf disease classification. Hyperspectral Imaging (HSI) and Near-Infrared (NIR) spectroscopy also help assess cacao’s internal attributes like moisture, fat, and fermentation.
+
+%-----------------------------------------------------------------------------------------------------------------------
+\section{Pre-harvest Disease Detection}
+Manual inspection remains the most common pre-harvest disease detection method, though it is time-consuming and prone to errors in large-scale farms. According to \cite{Tan2018}, delays in detection increase the spread of diseases like \textit{Phytophthora palmivora}. UAVs with high-resolution cameras and multispectral sensors provide a scalable solution. \cite{Yadav2024} demonstrated UAV-based early disease detection, capturing subtle symptoms such as pod discoloration or texture changes, often missed by manual inspection. Similarly, \cite{Upadhyay2025} highlighted UAV integration with deep learning for more robust monitoring.
+
+UAV integration in precision agriculture improves accuracy and timeliness. UAVs cover vast areas quickly, generating large-scale datasets. \cite{Taesiri2023} emphasized that advanced image processing and geotagging enhance precision, detecting even atypical or subtle symptoms. This proactive approach ensures early intervention and reduces crop loss.
+
+%-----------------------------------------------------------------------------------------------------------------------
+\section{Computer-aided Cacao Disease Detection Technology in Agriculture}
+\cite{Alam2022} developed a drone-based monitoring system using Gaussian kernel SVM to classify vegetables into rotten and non-rotten categories, achieving 97.9\% true positive rate. Similarly, \cite{Mazzia2020} refined satellite-driven NDVI indices using UAV data and CNNs for vineyard vigor maps. \cite{Vardhan2023} further introduced CNN-based plant disease detection using drone imagery, showing scalability even under challenging imaging conditions. These studies highlight UAVs combined with deep learning as promising tools for precision agriculture.
+
+%-----------------------------------------------------------------------------------------------------------------------
+\section{You Only Look Once version 8 (YOLO) for Object Detection}
+Deep learning, especially YOLO, has enhanced UAV-based crop monitoring. UAV-YOLO, developed by \cite{Wang2023}, integrates Wise-IoU v3, BiFormer, and FFNB to optimize aerial imagery detection. Likewise, custom YOLO variants improve detection accuracy at the expense of processing speed. YOLO also excels in plant disease diagnosis: several studies have achieved over 90\% accuracy on benchmark datasets, outperforming traditional ML models.
+
+%-----------------------------------------------------------------------------------------------------------------------
+\section{Geotagging using QGIS in Agriculture}
+Geotagging links crop data with precise locations, aiding decision-making in precision agriculture. \cite{Rahman2021} used QGIS to geotag durian trees in Malaysia, integrating ground data (e.g., tree height, canopy size, soil pH) with coordinates for improved monitoring. Such methods enable more organized, spatially-aware farm management.
+
+%-----------------------------------------------------------------------------------------------------------------------
+\section{Synthesis}
+Traditional cacao disease management relied on visual inspection, pruning, sanitation, and fungicides \cite{Merga2022}. While effective to some degree, these methods depend heavily on farmer expertise and are limited by risks of misdiagnosis and environmental impact. Laboratory-based methods like PCR and chromatographic analysis \cite{Nguyen2022,Quelal2020} improve accuracy but are impractical for large-scale field use.
+
+Non-destructive imaging and AI-based approaches \cite{Alvarado2023,Silva2024} have become viable alternatives, enabling early detection via spectral, thermal, and hyperspectral methods. Meanwhile, mobile applications such as AuToDiDAC \cite{Tan2018} and UAV-based CNNs \cite{Tovurawa2025} showcase the power of deep learning in crop disease management.
+
+Nonetheless, reliance on static images risks missing subtle pod-level symptoms. Integrating UAVs with YOLO-based real-time detection ensures scalability, precision, and efficiency, making it a promising solution for modern cacao disease detection and smart agriculture.
