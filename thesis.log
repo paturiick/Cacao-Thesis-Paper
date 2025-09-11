@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.10)  11 SEP 2025 14:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.10)  11 SEP 2025 17:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -696,12 +696,22 @@ Chapter 1.
 [1
 
 
-] [2] [3] [4]) [5]
+]
+
+Package natbib Warning: Citation `Vyas2023' on page 2 undefined on input line 1
+1.
+
+[2] [3] [4] [5] [6] [7] [8] [9]
+Overfull \hbox (5.24908pt too wide) in paragraph at lines 79--80
+[]\OT1/cmr/m/n/12 - Aerial de-vices, typ-i-cally drones, that
+ []
+
+) [10]
 \openout2 = `chapter2.aux'.
 
  (chapter2.tex
 Chapter 2.
-) [6
+) [11
 
 
 
@@ -711,27 +721,29 @@ Chapter 2.
 
  (chapter3.tex
 Chapter 3.
-<figures/sinegraph.jpg, id=251, 713.66624pt x 471.7625pt>
+<figures/sinegraph.jpg, id=287, 713.66624pt x 471.7625pt>
 File: figures/sinegraph.jpg Graphic file (type jpg)
 <use figures/sinegraph.jpg>
 Package pdftex.def Info: figures/sinegraph.jpg  used on input line 34.
 (pdftex.def)             Requested size: 278.2383pt x 183.92184pt.
-<figures/cosinegraph.jpg, id=252, 713.66624pt x 471.7625pt>
+[12
+
+
+
+
+]
+<figures/cosinegraph.jpg, id=292, 713.66624pt x 471.7625pt>
 File: figures/cosinegraph.jpg Graphic file (type jpg)
 <use figures/cosinegraph.jpg>
 Package pdftex.def Info: figures/cosinegraph.jpg  used on input line 41.
 (pdftex.def)             Requested size: 260.7528pt x 172.36563pt.
-) [7
-
-
-
-
-] [8 <./figures/sinegraph.jpg> <./figures/cosinegraph.jpg>]
+) [13 <./figures/sinegraph.jpg>] [14 <./figures/cosinegraph.jpg>]
 \openout2 = `chapter4.aux'.
 
- (chapter4.tex
+
+(chapter4.tex
 Chapter 4.
-) [9
+) [15
 
 
 
@@ -741,15 +753,15 @@ Chapter 4.
 
  (chapter5.tex
 Chapter 5.
-[10
+[16
 
 
 
 
-] [11]) [12]
+] [17] [18] [19]) [20]
 \openout2 = `appendix.aux'.
 
- (appendix.tex) [13
+ (appendix.tex) [21
 
 
 
@@ -757,7 +769,8 @@ Chapter 5.
 ]
 \openout2 = `bibliography.aux'.
 
- (bibliography.tex (thesis.bbl)) [14
+ (bibliography.tex (thesis.bbl))
+[22
 
 
 
@@ -765,12 +778,11 @@ Chapter 5.
 ]
 \openout2 = `cv.aux'.
 
-
-(cv.tex) [15
-
+ (cv.tex [23
 
 
-]
+
+]) [24]
 \openout2 = `caa.aux'.
 
  (caa.tex
@@ -783,11 +795,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-) [16
+[25
 
 
 
-] (thesis.aux (chapter1.aux) (chapter2.aux) (chapter3.aux) (chapter4.aux)
+]) [26]
+
+Package natbib Warning: There were undefined citations.
+
+(thesis.aux (chapter1.aux) (chapter2.aux) (chapter3.aux) (chapter4.aux)
 (chapter5.aux) (appendix.aux) (bibliography.aux) (cv.aux) (caa.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -795,27 +811,31 @@ L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: A424F3F77CA6783A96F8AFE45F744A8F;4258.
- ) 
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 3 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 14927 strings out of 474486
- 240239 string characters out of 5744227
+ 14958 strings out of 474486
+ 240664 string characters out of 5744227
  1936542 words of memory out of 5000000
- 36824 multiletter control sequences out of 15000+600000
+ 36839 multiletter control sequences out of 15000+600000
  570090 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 80i,10n,82p,1122b,614s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcbx1
-200.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmbxti10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/User/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (27 pages, 248690 bytes).
+ 80i,10n,82p,1122b,741s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/e
+c/dpi600\tcbx1200.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmbx10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/User/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Users/User/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/User/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/
+User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on thesis.pdf (37 pages, 268491 bytes).
 PDF statistics:
- 347 PDF objects out of 1000 (max. 8388607)
- 64 named destinations out of 1000 (max. 500000)
+ 413 PDF objects out of 1000 (max. 8388607)
+ 80 named destinations out of 1000 (max. 500000)
  259 words of extra memory for PDF output out of 10000 (max. 10000000)
 

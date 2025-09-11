@@ -1,23 +1,55 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\astroncite{Bhattacharya and Raj}{2004}]{Bhattacharya2004}
-Bhattacharya, S. and Raj, R.~A. (2004).
-\newblock Performance evaluation of multi-sensor data fusion technique for test
-  range application.
-\newblock {\em Sadhana - Academy Proceedings in Engineering Sciences},
-  29:237--247.
+\bibitem[\protect\astroncite{Avila-Quezada et~al.}{2023}]{Avila2023}
+Avila-Quezada, G.~D. et~al. (2023).
+\newblock Novel nanotechnological approaches for managing phytophthora diseases
+  of plants.
+\newblock {\em Trends in Plant Science}, 28(9):1070--1080.
 
-\bibitem[\protect\astroncite{Butcher and Stewart}{2014}]{Butcher2014}
-Butcher, N. and Stewart, A. (2014).
-\newblock Securing the mavlink communication protocol for unmanned aircraft
-  systems.
-\newblock pages 1--9.
+\bibitem[\protect\astroncite{Choudhary et~al.}{2024}]{Yadav2024}
+Choudhary, P., Shinde, B., Yadav, A., Kumayu, A., Parmar, A., Upadhyay, A., and
+  Joshi, A. (2024).
+\newblock Potato disease classification: An attempt to detect the diseases in
+  the early stages.
+\newblock {\em International Journal of Emerging Technologies and Innovative
+  Research}, 5(6):262--272.
+\newblock Received: 18-09-2024; Accepted: 21-10-2024.
 
-\bibitem[\protect\astroncite{Fuller et~al.}{2014}]{Fuller2014}
-Fuller, B., Kok, J., Kelson, N., and Gonzalez, F. (2014).
-\newblock Hardware design and implementation of a mavlink interface for an
-  fpga-based autonomous uav flight control system.
-\newblock {\em Australasian Conference on Robotics and Automation, ACRA},
-  02-04-Dece.
+\bibitem[\protect\astroncite{{Department of
+  Agriculture}}{2021}]{PhilCacaoRoadmap2021}
+{Department of Agriculture} (2021).
+\newblock Philippine cacao industry roadmap 2021--2025.
+\newblock \url{https://www.da.gov.ph/philippine-cacao-industry-roadmap/}.
+\newblock Accessed: 2025-09-11.
+
+\bibitem[\protect\astroncite{{Philippine Council for Agriculture and Fisheries
+  (PCAF)}}{2021}]{PCAF2021}
+{Philippine Council for Agriculture and Fisheries (PCAF)} (2021).
+\newblock Pcaf recognizes davao region as the cacao capital of the philippines.
+\newblock \url{https://pcaf.da.gov.ph}.
+\newblock Accessed: 2025-09-11.
+
+\bibitem[\protect\astroncite{Taesiri et~al.}{2023}]{Taesiri2023}
+Taesiri, M.~R., Nguyen, G., Habchi, S., Bezemer, C.-P., and Nguyen, A. (2023).
+\newblock Imagenet-hard: The hardest images remaining from a study of the power
+  of zoom and spatial biases in image classification.
+
+\bibitem[\protect\astroncite{Tan et~al.}{2018}]{Tan2018}
+Tan, D.~S., Leong, R.~N., Laguna, A.~F., Ngo, C.~A., Lao, A., Amalin, D.~M.,
+  and Alvindia, D.~G. (2018).
+\newblock Autodidac: Automated tool for disease detection and assessment for
+  cacao black pod rot.
+\newblock {\em Crop Protection}, 103:98--102.
+
+\bibitem[\protect\astroncite{Tovurawa et~al.}{}]{Tovurawa2025}
+Tovurawa, E., Dlamini, B., Moore, S.~E., and Marivate, V.
+\newblock Cacao plant disease detection and classification.
+
+\bibitem[\protect\astroncite{Upadhyay et~al.}{2025}]{Upadhyay2025}
+Upadhyay, A., Chandel, N.~S., Singh, K.~P., et~al. (2025).
+\newblock Deep learning and computer vision in plant disease detection: A
+  comprehensive review of techniques, models, and trends in precision
+  agriculture.
+\newblock {\em Artificial Intelligence Review}, 58:92.
 
 \end{thebibliography}

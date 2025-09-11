@@ -23,46 +23,57 @@ A level-1 auxiliary file: cv.aux
 Reallocating 'name_of_file' (item size: 1) to 8 items.
 A level-1 auxiliary file: caa.aux
 Database file #1: telemetry.bib
-Warning--empty journal in Butcher2014
-You've used 3 entries,
+I was expecting a `,' or a `}'---line 457 of file telemetry.bib
+ :  
+ :  journal   = {Research Square},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 473 of file telemetry.bib
+ : @article{Taesiri2023
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Vyas2023"
+Warning--empty year in Tovurawa2025
+Warning--empty journal in Tovurawa2025
+You've used 8 entries,
             1940 wiz_defined-function locations,
-            502 strings with 4412 characters,
-and the built_in function-call counts, 1194 in all, are:
-= -- 113
-> -- 49
+            539 strings with 5628 characters,
+and the built_in function-call counts, 3184 in all, are:
+= -- 303
+> -- 177
 < -- 3
-+ -- 16
-- -- 16
-* -- 100
-:= -- 211
-add.period$ -- 9
-call.type$ -- 3
-change.case$ -- 23
-chr.to.int$ -- 3
-cite$ -- 4
-duplicate$ -- 46
-empty$ -- 79
-format.name$ -- 23
-if$ -- 234
++ -- 62
+- -- 62
+* -- 291
+:= -- 588
+add.period$ -- 25
+call.type$ -- 8
+change.case$ -- 69
+chr.to.int$ -- 8
+cite$ -- 10
+duplicate$ -- 99
+empty$ -- 180
+format.name$ -- 71
+if$ -- 584
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 3
-newline$ -- 18
-num.names$ -- 9
-pop$ -- 19
+missing$ -- 5
+newline$ -- 44
+num.names$ -- 24
+pop$ -- 54
 preamble$ -- 1
-purify$ -- 23
+purify$ -- 69
 quote$ -- 0
-skip$ -- 40
+skip$ -- 78
 stack$ -- 0
-substring$ -- 69
-swap$ -- 10
-text.length$ -- 1
+substring$ -- 180
+swap$ -- 12
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
-warning$ -- 1
-while$ -- 9
+type$ -- 48
+warning$ -- 2
+while$ -- 23
 width$ -- 0
-write$ -- 40
-(There was 1 warning)
+write$ -- 103
+(There were 2 error messages)
