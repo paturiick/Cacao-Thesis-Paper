@@ -1,0 +1,15 @@
+# LaTeX intermediate & build files
+*.aux
+*.log
+*.blg
+*.bbl
+*.toc
+*.lof
+*.lot
+*.out
+*.synctex.gz
+*.dvi
+*.fdb_latexmk
+*.fls
+*.pdf
+*.exp
