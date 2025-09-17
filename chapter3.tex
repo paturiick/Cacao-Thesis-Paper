@@ -3,23 +3,7 @@
 	In this chapter, we detail the methodology employed to conduct the study, providing a comprehensive overview of the research design, data collection, and analytical procedures.
 	
 	\section{Research Design}
-	
-	\begin{figure}[h!]
-		\raggedright
-		\textbf{Figure 1} \\ % Figure number left-aligned
-		\textit{Modified Waterfall Model of SDLC} % Title left-aligned
-		
-		\vspace{0.5em}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/waterfall.pdf} % image
-		
-		\vspace{0.5em}
-		\raggedright
-		
-		\label{fig:waterfall}
-	\end{figure}
 	The methodology has been adopted from the Modified Waterfall Model of the Systems Development Life Cycle (SDLC). The methodology is selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This is particularly important in agricultural technology development, where both technical precision and field validation are critical. For this study, it enables the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase is thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure 2 shows the stages necessary for development.
-	
 	
 	\section{Data Gathering}
 	To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
@@ -60,81 +44,60 @@
 	Following the requirements gathering process, the primary user of the system has been identified. 
 	
 	\textit{Farmers} - The primary user of the system, responsible for utilizing UAVs to detect early signs of cacao pod diseases and making informed decisions for crop management.
-	\newpage
-	\subsection{System Requirements}
 	
-	\begin{table}[h!]
-		\centering
-		\caption{System Requirements}
-		\label{tab:sysreq}
-		\begin{tabular}{ll}
-			\toprule
-			\textbf{Category} & \textbf{System Requirements} \\ 
-			\midrule
-			Input Requirements & The system shall collect images of cacao pods captured by UAVs for disease detection. \\
-			 & The system shall allow users to initiate UAV image capture and review sessions through a simple interface. \\
-			 & The system shall utilize annotated image datasets for training the AI model, specifically focusing on black pod disease. \\
-			 & The system shall use GPS metadata from UAVs as input to geo-tag disease detection results. \\
-			 & The system shall accept feedback from farmers regarding detection accuracy and system usability. \\
-			\midrule
-			Process Requirements & The system shall process captured images using the YOLO model to identify and classify diseased cacao pods. \\
-			 & The system shall preprocess input images for consistency. \\
-			 & The system shall utilize a labeled image dataset of cacao pods. \\
-			 & The system shall include a manual annotation process where images are labeled with infection presence and location. \\
-			\midrule
-			Output Requirements & The system shall display detection results, highlighting infected areas on cacao pods in real-time or after processing. \\
-			  & The system shall classify each detected pod as either healthy or infected. \\
-			  & The system shall provide GPS coordinates alongside detection results for mapping infected areas. \\
-			  & The system shall generate summary reports including: total number of pods detected, number and percentage of infected pods, detection time and location.\\
-			\midrule
-			Control Requirements & The system shall implement secure access with user authentication to ensure that only authorized users (farmers) can access the system. \\
-			  & The system shall maintain logs of image captures, analysis sessions, and user feedback for audit and traceability. \\
-			  & The system shall validate all image inputs and user entries to ensure accurate and usable data is processed. \\
-			 \midrule
-			 Performance Requirements & The system shall be capable of processing high resolution images in real-time or near real-time with minimal latency. \\
-			  & The system shall efficiently manage and store large datasets of images and detection results, supporting scalable usage over time. \\
-			  & The system shall maintain uptime and availability to ensure uninterrupted use during farming operations. \\
-			\bottomrule
-		\end{tabular}
-	\end{table}
+	\subsection{System Requirements}
+  \begin{table}[H]
+    \centering
+    \caption{System Requirements}
+    \label{tab:sysreq1}
+    \begin{tabular}{p{4cm} p{8cm}}
+      \toprule
+      \textbf{Category} & \textbf{System Requirements} \\
+      \midrule
+      Input Requirements & - The system shall collect images of cacao pods captured by UAVs for disease detection. \\
+       & - The system shall allow users to initiate UAV image capture and review sessions through a simple interface. \\
+        & - The system shall utilize annotated image datasets for training the AI model, specifically focusing on black pod disease. \\
+         & - The system shall use GPS metadata from UAVs as input to geo-tag disease detection results. \\
+         \midrule
+      Process Requirements & - The system shall process captured images using the YOLO model to identify and classify diseased cacao pods. \\
+       & - The system shall preprocess input images for consistency. \\
+        & - The system shall utilize a labeled image dataset of cacao pods. \\
+         & - The system shall include a manual annotation process where images are labeled with infection presence and location. \\
+         \bottomrule
+    \end{tabular}
+  \end{table}
 
-	\newpage
+  \begin{table}[H]
+    \centering
+    \label{tab:sysreq2}
+    \begin{tabular}{p{4cm} p{8cm}}
+      \toprule
+      \textbf{Category} & \textbf{System Requirements} \\
+      \midrule
+      Output Requirements & - The system shall display detection results, highlighting infected areas on cacao pods in real-time or after processing. \\
+       & - The system shall classify each detected pod as either healthy or infected. \\
+        & - The system shall provide GPS coordinates alongside detection results for mapping infected areas. \\
+         & - The system shall generate summary reports including: total number of pods detected, number and percentage of infected pods, detection time and location. \\
+         \midrule
+      Control Requirements & - The system shall implement secure access with user authentication to ensure that only authorized users (farmers) can access the system. \\
+       & - The system shall maintain logs of image captures, analysis sessions, and user feedback for audit and traceability. \\
+        & - The system shall validate all image inputs and user entries to ensure accurate and usable data is processed. \\
+        \midrule
+      Performance Requirements & - The system shall be capable of processing high resolution images in real-time or near real-time with minimal latency. \\
+       & - The system shall efficiently manage and store large datasets of images and detection results, supporting scalable usage over time. \\
+        & - The system shall maintain uptime and availability to ensure uninterrupted use during farming operations. \\
+        \bottomrule
+    \end{tabular}
+  \end{table}
+
+
 	\section{Design and Implementation} 
+	
 	\subsection{Context Level Diagram}
-	\begin{figure}[h!]
-		\raggedright
-		\textbf{Figure 2} \\ % Figure number left-aligned
-		\textit{Context Level Diagram of the Study} % Title left-aligned
-		
-		\vspace{0.5em}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/Context-Level.pdf} % image
-		
-		\vspace{0.5em}
-		\raggedright
-		
-		\label{fig:context-level}
-	\end{figure}
 	
 	Figure 2 illustrates the context-level diagram of the cacao disease detection system. This diagram provides a high-level overview of the interactions. As a context-level diagram, it abstracts away internal processing to focus solely on how external entities interact with the system as a whole. The system integrates an Unmanned Aerial Vehicle (UAV), which is responsible for capturing and transmitting aerial imagery of cacao pods. These images serve as critical input for the system’s disease detection processes. The Web Application functions as the user interface, facilitating communication between the system and its users. Through this platform, cacao farmers can input relevant field data and observations, while also receiving timely detection results. Cacao farmers contribute to the system by using the web app, submitting field data, and providing feedback for continuous improvement.
 	
 	\subsection{System Architecture}
-	
-	\begin{figure}[h!]
-		\raggedright
-		\textbf{Figure 3} \\ % Figure number left-aligned
-		\textit{System Architecture of the Study} % Title left-aligned
-		
-		\vspace{0.5em}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/SysArch.pdf} % image
-		
-		\vspace{0.5em}
-		\raggedright
-		
-		\label{fig:SysArch}
-	\end{figure}
-	
 	Figure 3 illustrates the system architecture of the study. The process begins with the cacao trees, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with cameras and sensors that collect input data—primarily images and environmental readings—from the trees as it flies at the same level as them. The data captured by the drone is transmitted to an open-source controller with a camera module, which acts as the drone’s mini computer. This device processes the incoming images and sensor data. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with accurate coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground systems. The telemetry module sends the data wirelessly via RF to the web-based system, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs back to the system using the system. All this information can be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
 	
 	\subsection{Graphical User Interface (GUI)}
@@ -142,7 +105,7 @@
 	
 	\subsection{Hardware and Software Requirements}
 	
-	\begin{table}[h!]
+	\begin{table}[H]
 		\centering
 		\caption{Hardware Requirements}
 		\label{tab:hardreq}
@@ -157,7 +120,7 @@
 	
 	The hardware setup, summarized in Table 2, is composed of essential components that enable efficient data acquisition and geospatial referencing. The DJI RoboMaster TT (Tello Talent) drone is employed to capture aerial images of cacao pods, providing a stable and programmable platform for image collection. To ensure accurate geolocation tagging of each captured image, a NEO-M8N GPS module is integrated into the system. This GPS module delivers high-precision positional data, which enhances the reliability of spatial mapping and supports the alignment of imagery with corresponding field coordinates.
 	
-	\begin{table}[h!]
+	\begin{table}[H]
 		\centering
 		\caption{Software Requirements}
 		\label{tab:softreq}
@@ -193,39 +156,8 @@
 	Software Development Kit will be utilized in this study to implement command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone can execute scripted flight commands such as takeoff, forward(x), back(x), cw(angle), and land, enabling it to follow predefined flight paths across cacao rows. During these missions, the drone will capture images of cacao pods at specific intervals, which are then paired with location data provided by the integrated NEO-M8N GPS module. Unlike real-time processing systems, this study adopts an offline detection approach, where the collected images and GPS coordinates are stored and later processed using the YOLO algorithm. The results of the detection are then mapped in QGIS to identify and visualize areas affected by Phytophthora palmivora. This method allows the researchers to demonstrate a functional mission planning workflow that synchronizes drone navigation, image acquisition, and geotagging, while accounting for the RoboMaster TT’s hardware limitations.
 	
 	\subsection{Flowchart of Hardware and Software}
-
-	\begin{figure}[h!]
-		\raggedright
-		\textbf{Figure 5} \\ % Figure number left-aligned
-		\textit{Hardware Flowchart} % Title left-aligned
-		
-		\vspace{0.5em}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/HardFlow.pdf} % image
-		
-		\vspace{0.5em}
-		\raggedright
-		
-		\label{fig:HardFlow}
-	\end{figure}
-	
 	
 	Figure 5 illustrates the operational workflow of the UAV system; it begins with powering on the UAV, followed by the initialization of its key sensors, including the camera, GPS module, and obstacle detection system. Once the sensors are active, the system checks for telemetry connectivity with the ground station; if the connection fails, the drone retries until successful. After establishing a link, the mission plan is loaded from the ground station, and the UAV proceeds to takeoff. During flight, two processes run in parallel: the drone continuously captures images and videos with GPS geotags for later processing, while simultaneously monitoring its environment for obstacles and adjusting its path when necessary. The system then checks whether the mission plan has been completed. If it is complete, the UAV proceeds to land; if not, it continues executing the remaining tasks until completion. Only after landing are the stored image and location data transmitted to the ground station for processing. The operation then concludes with system power down.
-	
-	\begin{figure}[h!]
-		\raggedright
-		\textbf{Figure 6} \\ % Figure number left-aligned
-		\textit{Software FlowChart} % Title left-aligned
-		
-		\vspace{0.5em}
-		\centering
-		\includegraphics[width=0.9\textwidth]{figures/SoftFlow.pdf} % image
-		
-		\vspace{0.5em}
-		\raggedright
-		
-		\label{fig:SoftFlow}
-	\end{figure}
 	
 	Figure 6 shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals. This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
 	
