@@ -1,0 +1,84 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: chapter1.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: chapter2.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: chapter3.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: chapter4.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: chapter5.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: appendix.aux
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+A level-1 auxiliary file: bibliography.aux
+Reallocating 'name_of_file' (item size: 1) to 4 items.
+The style file: apa.bst
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+A level-1 auxiliary file: cv.aux
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+A level-1 auxiliary file: caa.aux
+Database file #1: telemetry.bib
+Warning--entry type for "Rahman2021" isn't style-file defined
+--line 241 of file telemetry.bib
+I was expecting a `,' or a `}'---line 457 of file telemetry.bib
+ :  
+ :  journal   = {Research Square},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 473 of file telemetry.bib
+ : @article{Taesiri2023
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Vyas2023"
+Warning--empty publisher in Alam2022
+Warning--empty year in ForestPhytophthora
+Warning--empty year in MinistryAgri
+Warning--empty year in Tovurawa2025
+Warning--empty journal in Tovurawa2025
+You've used 22 entries,
+            1940 wiz_defined-function locations,
+            629 strings with 8442 characters,
+and the built_in function-call counts, 8808 in all, are:
+= -- 847
+> -- 431
+< -- 14
++ -- 152
+- -- 148
+* -- 782
+:= -- 1572
+add.period$ -- 67
+call.type$ -- 22
+change.case$ -- 181
+chr.to.int$ -- 22
+cite$ -- 27
+duplicate$ -- 308
+empty$ -- 546
+format.name$ -- 175
+if$ -- 1669
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 15
+newline$ -- 113
+num.names$ -- 68
+pop$ -- 148
+preamble$ -- 1
+purify$ -- 181
+quote$ -- 0
+skip$ -- 240
+stack$ -- 0
+substring$ -- 532
+swap$ -- 57
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 132
+warning$ -- 5
+while$ -- 71
+width$ -- 0
+write$ -- 278
+(There were 2 error messages)
