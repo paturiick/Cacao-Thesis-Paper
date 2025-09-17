@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+ # LaTeX intermediate & build files
+  2 *.aux
+  3 *.log
+  4 *.blg
+  5 *.bbl
+  6 *.toc
+  7 *.lof
+  8 *.lot
+  9 *.out
+ 10 *.synctex.gz
+ 11 *.dvi
+ 12 *.fdb_latexmk
+ 13 *.fls
+ 14 *.pdf
+ 15 *.exp
+~
+=======
 # LaTeX intermediate & build files
 *.aux
 *.log
@@ -13,3 +31,4 @@
 *.fls
 *.pdf
 *.exp
+>>>>>>> main
