@@ -231,6 +231,27 @@ Figure 5 illustrates the operational workflow of the UAV system; it begins with 
 
 Figure 6 shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals. This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
 
+\section{Hardware Drone??}
+
+\subsection{Materials and Cost}
+
+\begin{table}[H]
+	\centering
+	\caption{Components and Cost}
+	\label{tab:components}
+	\begin{tabular}{ll}
+		\toprule
+		Component                 & Price      \\
+		\midrule
+		Drone (DJI RoboMaster TT) & ₱20,000.00 \\
+		\midrule
+		NEO-M8N GPS module        & ₱300.00    \\
+		\midrule
+		Total Cost                & ₱20,300.00 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
 \section{Testing}
 Testing was conducted to ensure that the system operates accurately, efficiently, and is suitable for real-world use in cacao farm management. The process involved functional testing, usability testing, and performance testing. Functional testing verified whether key features—such as UAV image capture, detection of Phytophthora palmivora-infected cacao pods using the YOLO, and geotagging of infected trees—performed as intended, with each function tested through defined inputs and expected outputs. Usability testing assessed how easily end users, particularly cacao farmers, could navigate and interact with the system by performing essential tasks such as logging in, accessing detection results, and interpreting geotagged maps. Feedback was collected using the System Usability Scale (SUS) to evaluate the overall user experience. Performance testing measured the system’s responsiveness and accuracy, focusing on the time taken from image capture to the display of results, as well as the efficiency in processing high-resolution images and managing data. Together, these tests validated the system’s reliability, user-friendliness, and effectiveness in supporting early disease detection and timely intervention.
 
