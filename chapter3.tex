@@ -1,5 +1,6 @@
 \chapter{METHODOLOGY}
 
+
 	In this chapter, we detail the methodology employed to conduct the study, providing a comprehensive overview of the research design, data collection, and analytical procedures.
 	
 	\section{Research Design}
@@ -368,6 +369,26 @@
 	and analysis. This workflow ensured that raw images and geospatial metadata were securely 
 	stored and easily accessible for the YOLO-based detection system and subsequent 
 	spatial visualization in QGIS.
+  
+  
+\subsection{Materials and Cost}
+
+\begin{table}[H]
+	\centering
+	\caption{Components and Cost}
+	\label{tab:components}
+	\begin{tabular}{ll}
+		\toprule
+		Component                 & Price      \\
+		\midrule
+		Drone (DJI RoboMaster TT) & ₱20,000.00 \\
+		\midrule
+		NEO-M8N GPS module        & ₱300.00    \\
+		\midrule
+		Total Cost                & ₱20,300.00 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 	
 	\section{Testing} 
 	Testing was conducted to ensure that the system operates accurately, efficiently, and is suitable for real-world use in cacao farm management. The process involved functional testing, usability testing, and performance testing. Functional testing verified whether key features—such as UAV image capture, detection of Phytophthora palmivora-infected cacao pods using the YOLO, and geotagging of infected trees—performed as intended, with each function tested through defined inputs and expected outputs. Usability testing assessed how easily end users, particularly cacao farmers, could navigate and interact with the system by performing essential tasks such as logging in, accessing detection results, and interpreting geotagged maps. Feedback was collected using the System Usability Scale (SUS) to evaluate the overall user experience. Performance testing measured the system’s responsiveness and accuracy, focusing on the time taken from image capture to the display of results, as well as the efficiency in processing high-resolution images and managing data. Together, these tests validated the system’s reliability, user-friendliness, and effectiveness in supporting early disease detection and timely intervention.
@@ -381,4 +402,3 @@
 	\subsection{Performance Testing}
 	
 	Performance testing is conducted to evaluate the system’s responsiveness, accuracy, and overall reliability based on its core functionalities. This includes measuring the accuracy of detecting Phytophthora palmivora-infected cacao pods using the YOLO, assessing the precision of geolocation through GPS module and QGIS, and recording the system’s response time from image capture to the display of results on the dashboard. The test is carried out under standard operating conditions to determine whether the system can process high-resolution images efficiently and deliver real-time outputs. The results of this evaluation are essential in verifying that the system meets its intended performance criteria and is capable of supporting timely and informed decision-making in cacao disease management.
-	
