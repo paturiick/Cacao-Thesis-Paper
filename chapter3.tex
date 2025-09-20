@@ -215,34 +215,7 @@
 	\end{figure}
 	
 	Figure 3 illustrates the system architecture of the study. The process begins with the cacao trees, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with cameras and sensors that collect input data—primarily images and environmental readings—from the trees as it flies at the same level as them. The data captured by the drone is transmitted to an open-source controller with a camera module, which acts as the drone’s mini computer. This device processes the incoming images and sensor data. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with accurate coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground systems. The telemetry module sends the data wirelessly via RF to the web-based system, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs back to the system using the system. All this information can be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
-	
-	\subsection{Ground Station Architecture}
-	
-	\begin{figure}[H]
-		\raggedright
-		\textbf{Figure 4} \\ % Figure number left-aligned
-		\textit{Ground Station System Design and Workflow} % Title left-aligned
 		
-		\vspace{0.5em}
-		\centering
-		\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf} % image
-		
-		\vspace{0.5em}
-		\raggedright
-		
-		\label{fig:GroundStation}
-	\end{figure}
-	
-	Figure 4 presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
-	
-	The web application, developed in Vue.js, serves as the main interface for users. It provides modules for user authentication, drone mission control, and the visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time. Through this interface, farmers are able to easily monitor the health of their crops and make informed decisions.
-	
-	The server side of the Ground Station integrates several core technologies. Nginx acts as the web server and reverse proxy, handling HTTPS traffic and routing requests. Django functions as the application server, implementing the system’s logic, managing authentication, and exposing a REST API for the web application. The detection process is carried out by the YOLO module, which receives aerial images and returns bounding boxes, labels, and confidence scores. Finally, PostgreSQL, extended with geospatial capabilities, stores the detection results along with their associated GPS coordinates. This allows the system to perform spatial queries and display disease distribution on a map.
-	
-	The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display on the dashboard and history pages.
-	
-	By combining the web interface with the server-side services, the Ground Station forms a modular and scalable system. This design not only supports efficient processing of aerial images but also ensures that future improvements, such as new detection models or additional analytic features, can be integrated without major changes to the overall architecture.
-	
 	
 	\subsection{Hardware and Software Requirements}
 	
@@ -284,20 +257,11 @@
 	
 	The software requirements, summarized in Table 3, specify the technologies utilized for interface development, system management, data storage, and disease detection. The front-end interface is built with Vue.js to enable user interaction and data visualization, while the back-end is powered by the Django framework, which manages system logic, workflows, and API integration. PostgreSQL functions as the primary database, storing user information, detection outputs, and geospatial metadata. Geospatial analysis and visualization of infected areas are facilitated through QGIS integration. The application is deployed using the Nginx web server to ensure efficient and reliable performance. For image-based disease detection, YOLO is implemented to process aerial imagery and identify signs of infection in cacao pods.
 	
-	\section{Prototype} 
-	The prototype phase will follow a structured approach focused on dataset collection, geotagging and mapping, tree clustering, sequence diagram, and system prototype.
-	
-	\subsection{Data Collection}
-	A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes further enhances the dataset’s comprehensiveness and reliability. To ensure the model performs well in diverse real-world conditions, the dataset will include a broad range of images representing both healthy and diseased cacao pods. Data will be gathered under varying lighting conditions, weather scenarios, and backgrounds to promote generalizability and robustness in the detection process. Special attention will be given to capturing stages of infection, and degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for supervised training of the YOLO model. The quality and accuracy of these annotations directly impact the model’s ability to detect and classify diseases reliably. Image preprocessing techniques such as resizing, normalization, and data augmentation may also be applied to enhance the dataset and prevent overfitting. Once prepared, the dataset will be used to train the YOLO detection model, forming the core component of the disease recognition system.
-	
-	\subsection{Geotagging and Mapping}
-	To support spatial accuracy and enhance the traceability of captured data, geotagging and mapping functionalities are incorporated into the system architecture. A GPS module (NEO-M8N) is integrated with DJI RoboMaster TT open-source controller, enabling the synchronous acquisition of geographic coordinates during drone operations. As images are captured by the drone’s onboard camera, corresponding latitude and longitude values are simultaneously recorded and transmitted to the database. This ensures that each image can be accurately associated with its physical location within the cacao plantation. For spatial data visualization, the system employs the QGIS API, an open-source geographic information system that facilitates the rendering of geospatial information. Through this integration, users are able to interact with an intuitive map interface displaying drone flight paths, image capture points, and disease detection zones.
-	
 	\subsection{Flowchart of Hardware and Software}
 	
 	\begin{figure}[H]
 		\raggedright
-		\textbf{Figure 5} \\ % Figure number left-aligned
+		\textbf{Figure 4} \\ % Figure number left-aligned
 		\textit{Hardware Flowchart} % Title left-aligned
 		
 		\vspace{0.5em}
@@ -310,11 +274,11 @@
 		\label{fig:HardFlow}
 	\end{figure}
 	
-	Figure 5 illustrates the operational workflow of the UAV system; it begins with powering on the UAV, followed by the initialization of its key sensors, including the camera, GPS module, and obstacle detection system. Once the sensors are active, the system checks for telemetry connectivity with the ground station; if the connection fails, the drone retries until successful. After establishing a link, the mission plan is loaded from the ground station, and the UAV proceeds to takeoff. During flight, two processes run in parallel: the drone continuously captures images and videos with GPS geotags for later processing, while simultaneously monitoring its environment for obstacles and adjusting its path when necessary. The system then checks whether the mission plan has been completed. If it is complete, the UAV proceeds to land; if not, it continues executing the remaining tasks until completion. Only after landing are the stored image and location data transmitted to the ground station for processing. The operation then concludes with system power down.
+	Figure 4 illustrates the operational workflow of the UAV system; it begins with powering on the UAV, followed by the initialization of its key sensors, including the camera, GPS module, and obstacle detection system. Once the sensors are active, the system checks for telemetry connectivity with the ground station; if the connection fails, the drone retries until successful. After establishing a link, the mission plan is loaded from the ground station, and the UAV proceeds to takeoff. During flight, two processes run in parallel: the drone continuously captures images and videos with GPS geotags for later processing, while simultaneously monitoring its environment for obstacles and adjusting its path when necessary. The system then checks whether the mission plan has been completed. If it is complete, the UAV proceeds to land; if not, it continues executing the remaining tasks until completion. Only after landing are the stored image and location data transmitted to the ground station for processing. The operation then concludes with system power down.
 	
 	\begin{figure}[H]
 		\raggedright
-		\textbf{Figure 6} \\ % Figure number left-aligned
+		\textbf{Figure 5} \\ % Figure number left-aligned
 		\textit{Software Flowchart} % Title left-aligned
 		
 		\vspace{0.5em}
@@ -327,13 +291,44 @@
 		\label{fig:SoftFlow}
 	\end{figure}
 	
-	Figure 6 shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals. This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
+	Figure 5 shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals. This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
+	
+	\subsection{Ground Station Architecture}
+	
+	\begin{figure}[H]
+		\raggedright
+		\textbf{Figure 6} \\ % Figure number left-aligned
+		\textit{Ground Station System Design and Workflow} % Title left-aligned
+		
+		\vspace{0.5em}
+		\centering
+		\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf} % image 
+		
+		\vspace{0.5em}
+		\raggedright
+		
+		\label{fig:GroundStation}
+	\end{figure}
+	
+	Figure 6 presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
+	
+	The web application, developed in Vue.js, serves as the main interface for users. It provides modules for user authentication, drone mission control, and the visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time. Through this interface, farmers are able to easily monitor the health of their crops and make informed decisions.
+	
+	The server side of the Ground Station integrates several core technologies. Nginx acts as the web server and reverse proxy, handling HTTPS traffic and routing requests. Django functions as the application server, implementing the system’s logic, managing authentication, and exposing a REST API for the web application. The detection process is carried out by the YOLO module, which receives aerial images and returns bounding boxes, labels, and confidence scores. Finally, PostgreSQL, extended with geospatial capabilities, stores the detection results along with their associated GPS coordinates. This allows the system to perform spatial queries and display disease distribution on a map.
+	
+	The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display.
+	
+	\subsection{Data Collection}
+	A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes further enhances the dataset’s comprehensiveness and reliability. To ensure the model performs well in diverse real-world conditions, the dataset will include a broad range of images representing both healthy and diseased cacao pods. Data will be gathered under varying lighting conditions, weather scenarios, and backgrounds to promote generalizability and robustness in the detection process. Special attention will be given to capturing stages of infection, and degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for supervised training of the YOLO model. The quality and accuracy of these annotations directly impact the model’s ability to detect and classify diseases reliably. Image preprocessing techniques such as resizing, normalization, and data augmentation may also be applied to enhance the dataset and prevent overfitting. Once prepared, the dataset will be used to train the YOLO detection model, forming the core component of the disease recognition system.
+	
+	\subsection{Geotagging and Mapping}
+	To support spatial accuracy and enhance the traceability of captured data, geotagging and mapping functionalities are incorporated into the system architecture. A GPS module (NEO-M8N) is integrated with DJI RoboMaster TT open-source controller, enabling the synchronous acquisition of geographic coordinates during drone operations. As images are captured by the drone’s onboard camera, corresponding latitude and longitude values are simultaneously recorded and transmitted to the database. This ensures that each image can be accurately associated with its physical location within the cacao plantation. For spatial data visualization, the system employs the QGIS API, an open-source geographic information system that facilitates the rendering of geospatial information. Through this integration, users are able to interact with an intuitive map interface displaying drone flight paths, image capture points, and disease detection zones.
 	
 	\section{UAV Drone System}
 	
 	\begin{figure}[H]
 		\raggedright
-		\textbf{Figure 3.X} \\ % Auto-incremented figure number
+		\textbf{Figure 7} \\ % Auto-incremented figure number
 		\textit{The DJI RoboMaster TT UAV} % Title left-aligned
 		
 		\vspace{0.5em}
