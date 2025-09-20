@@ -12,7 +12,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/waterfall.pdf} % image
+		\includegraphics[width=0.9\textwidth]{figures/Waterfall.pdf} % image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -31,7 +31,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/cacao_farm.pdf} % replace with actual image
+		\includegraphics[width=0.9\textwidth]{figures/Cacao_Farm.pdf} % replace with actual image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -76,7 +76,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/uav_flight_paths.png} % replace with actual image
+		\includegraphics[width=0.9\textwidth]{figures/Uav_Flight_Paths.png} % replace with actual image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -187,7 +187,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/Context-Level.pdf} % image
+		\includegraphics[width=0.9\textwidth]{figures/Context_Level.pdf} % image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -206,7 +206,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/SysArch.pdf} % image
+		\includegraphics[width=0.9\textwidth]{figures/Sys_Arch.pdf} % image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -216,8 +216,33 @@
 	
 	Figure 3 illustrates the system architecture of the study. The process begins with the cacao trees, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with cameras and sensors that collect input data—primarily images and environmental readings—from the trees as it flies at the same level as them. The data captured by the drone is transmitted to an open-source controller with a camera module, which acts as the drone’s mini computer. This device processes the incoming images and sensor data. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with accurate coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground systems. The telemetry module sends the data wirelessly via RF to the web-based system, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs back to the system using the system. All this information can be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
 	
-	\subsection{Graphical User Interface (GUI)}
-	Figure 4 presents the proposed Dashboard interface for cacao disease detection. The dashboard is designed to summarize critical field data in a user-friendly format, supporting timely decision-making. The top section displays pod health statistics, including the number of black pods, healthy pods, and the total detected. At the center, a satellite image visualizes drone-analyzed areas with markers indicating infected zones. A pie chart provides a comparative view of healthy versus diseased pods across zones, while a detection history log on the right records recent findings with timestamps to enhance traceability and monitoring.
+	\subsection{Ground Station Architecture}
+	
+	\begin{figure}[H]
+		\raggedright
+		\textbf{Figure 4} \\ % Figure number left-aligned
+		\textit{Ground Station System Design and Workflow} % Title left-aligned
+		
+		\vspace{0.5em}
+		\centering
+		\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf} % image
+		
+		\vspace{0.5em}
+		\raggedright
+		
+		\label{fig:GroundStation}
+	\end{figure}
+	
+	Figure 4 presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
+	
+	The web application, developed in Vue.js, serves as the main interface for users. It provides modules for user authentication, drone mission control, and the visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time. Through this interface, farmers are able to easily monitor the health of their crops and make informed decisions.
+	
+	The server side of the Ground Station integrates several core technologies. Nginx acts as the web server and reverse proxy, handling HTTPS traffic and routing requests. Django functions as the application server, implementing the system’s logic, managing authentication, and exposing a REST API for the web application. The detection process is carried out by the YOLO module, which receives aerial images and returns bounding boxes, labels, and confidence scores. Finally, PostgreSQL, extended with geospatial capabilities, stores the detection results along with their associated GPS coordinates. This allows the system to perform spatial queries and display disease distribution on a map.
+	
+	The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display on the dashboard and history pages.
+	
+	By combining the web interface with the server-side services, the Ground Station forms a modular and scalable system. This design not only supports efficient processing of aerial images but also ensures that future improvements, such as new detection models or additional analytic features, can be integrated without major changes to the overall architecture.
+	
 	
 	\subsection{Hardware and Software Requirements}
 	
@@ -277,7 +302,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/HardFlow.pdf} % image
+		\includegraphics[width=0.9\textwidth]{figures/Hard_Flow.pdf} % image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -294,7 +319,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.9\textwidth]{figures/SoftFlow.pdf} % image
+		\includegraphics[width=0.9\textwidth]{figures/Soft_Flow.pdf} % image
 		
 		\vspace{0.5em}
 		\raggedright
@@ -313,7 +338,7 @@
 		
 		\vspace{0.5em}
 		\centering
-		\includegraphics[width=0.6\textwidth]{figures/robomaster_tt.pdf} % replace with actual image
+		\includegraphics[width=0.6\textwidth]{figures/Robomaster_TT.pdf} % replace with actual image
 		
 		\vspace{0.5em}
 		\raggedright
