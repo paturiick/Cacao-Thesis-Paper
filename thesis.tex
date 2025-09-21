@@ -26,6 +26,15 @@
 \usepackage{longtable, booktabs}
 \usepackage{topiclongtable}
 
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+
+\DeclareCaptionFormat{apa7}{#1\par\vspace{0.5em}#3} 
+\usepackage{caption} % put in preamble
+\captionsetup[figure]{labelfont=bf,textfont=it,labelsep=newline,justification=raggedright, singlelinecheck=false,position=above,format=apa7}
+
+
+
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % Document Starts Here
 \begin{document}
