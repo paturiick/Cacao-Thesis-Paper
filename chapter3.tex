@@ -253,12 +253,12 @@ YOLO (You Only Look Once) algorithm, a CNN-based object detection framework that
 
 \begin{figure}[H]
 	\centering
-	\caption{Architecture of YOLO11, showing backbone with new C3K2 blocks, attention modules (C2PSA), Spatial Pyramid Pooling Fast (SPFF), and multi-scale detection heads (adapted from Khanam and Hussain, 2024)}
+	\caption{Architecture of YOLOv11, showing backbone with new C3K2 blocks, attention modules (C2PSA), Spatial Pyramid Pooling Fast (SPFF), and multi-scale detection heads (adapted from Khanam and Hussain, 2024)}
 	\label{fig:yolov11_architecture}
 	\includegraphics[width=0.9\textwidth]{figures/yolov11.pdf}
 \end{figure}
 
-YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLO11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured. Figure~\ref{fig:yolov11_architecture}shows the  backbone for feature extraction, the neck for aggregating multi-scale feature maps, and the detection head outputs used for classifying and locating objects at various scales.
+YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLOv11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured. Figure~\ref{fig:yolov11_architecture} shows the  backbone for feature extraction, the neck for aggregating multi-scale feature maps, and the detection head outputs used for classifying and locating objects at various scales.
 
 \subsection{Dataset Collection Method}
 The dataset for this study will consist of both a custom dataset and external sources to ensure diversity and robustness. A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes will enhance the comprehensiveness and reliability of the dataset. In addition, publicly available image datasets such as those from Kaggle will be incorporated to supplement the collected data and increase variability. To ensure the model performs well in diverse real-world conditions, the combined dataset will include images of both healthy and diseased cacao pods under different lighting conditions, weather scenarios, and backgrounds. Special attention will be given to capturing multiple stages of infection and varying degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for the supervised training of the YOLO model.
@@ -285,7 +285,7 @@ To estimate the ground location of each detected cacao tree, the relative positi
 	\centering
 	\caption{Tree Geo-localization}
 	\label{fig:tree}
-	\includegraphics[width=0.5\textwidth]{figures/tree.png}
+	\includegraphics[width=0.9\textwidth]{figures/Tree Geolocalization.pdf}
 \end{figure}
 
 In Figure-\ref{fig:treex}, the size of the bounding box provides an indication of the distance between the drone and the trees: larger bounding boxes imply closer proximity, while smaller bounding boxes indicate greater distance.
@@ -294,10 +294,8 @@ In Figure-\ref{fig:treex}, the size of the bounding box provides an indication o
 	\centering
 	\caption{Bounding box as Proximity indicator}
 	\label{fig:treex}
-	\includegraphics[width=0.5\textwidth]{figures/treex.png}
+	\includegraphics[width=0.9\textwidth]{figures/Bounding box as a Proximity Indicator.pdf}
 \end{figure}
-
-
 
 Following the approach of Liqun Ma et al., landmarks (objects with known real-world heights) are detected and tracked, and geometric similarity relations are used. The normalized bounding box size is defined as:
 \begin{equation}
