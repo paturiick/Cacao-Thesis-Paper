@@ -260,22 +260,22 @@ YOLO (You Only Look Once) algorithm, a CNN-based object detection framework that
 
 YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLOv11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured. Figure~\ref{fig:yolov11_architecture} shows the  backbone for feature extraction, the neck for aggregating multi-scale feature maps, and the detection head outputs used for classifying and locating objects at various scales.
 
-\subsection{Dataset Collection Method}
+\subsubsection{Dataset Collection Method}
 The dataset for this study will consist of both a custom dataset and external sources to ensure diversity and robustness. A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes will enhance the comprehensiveness and reliability of the dataset. In addition, publicly available image datasets such as those from Kaggle will be incorporated to supplement the collected data and increase variability. To ensure the model performs well in diverse real-world conditions, the combined dataset will include images of both healthy and diseased cacao pods under different lighting conditions, weather scenarios, and backgrounds. Special attention will be given to capturing multiple stages of infection and varying degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for the supervised training of the YOLO model.
 
-\subsection{Data Preprocessing}
+\subsubsection{Data Preprocessing}
 
 Before training and detection, the collected dataset will undergo a series of preprocessing steps to ensure consistency, quality, and suitability for the YOLOv11 model. First, UAV-captured videos are converted into individual frames at fixed intervals, with blurry or otherwise low-quality frames removed to reduce noise. Images, including those from external sources such as Kaggle, will be resized in accordance with YOLOv11's \texttt{imgsz} parameter to maintain a consistent input dimension while preserving the aspect ratio. Pixel values will be normalized (e.g., scaled to a [0,1] range or adjusted using mean and standard deviation) to aid convergence during training.
 
 The dataset will be divided into training, validation, and testing subsets (commonly 70\% / 20\% / 10\%), ensuring that class distributions (healthy vs. diseased) are preserved and preventing data leakage. Data augmentation will be applied to the training portion only, using transformations such as random flips, rotations, brightness/contrast adjustments, and possibly random crops, to enhance the model’s robustness to real-world variability. Annotation files will be standardized to a YOLO-compatible format so that both custom and external images follow the same label scheme.
 
-\subsection{Cacao and Disease Detection}
+\subsubsection{Cacao and Disease Detection}
 
 The UAV-captured images were processed by YOLOv11, which divided each image into a grid structure where every grid cell predicted bounding boxes, confidence scores, and class probabilities. This allowed the system to detect multiple cacao pods within a single frame and to determine their positions in the aerial imagery. Each detected pod was outlined with a bounding box, ensuring that the system marked its exact location even when the pods were partially obscured by foliage or affected by varying lighting conditions.
 
 After the pods were detected, the system classified each one as either healthy or infected with black pod disease. The classification was based on visual features learned during training, including surface discoloration, dark lesions, and irregular textures characteristic of infected pods. YOLOv11 annotated the results directly on the processed images, producing outputs where healthy pods were labeled separately from diseased pods.
 
-\subsection{Visual and Object Geo-localization}
+\subsubsection{Visual and Object Geo-localization}
 
 The UAV is equipped with a GPS module and a downward-facing camera that captures images of the cacao trees during flight. Each image is associated with the DJI RoboMaster TT’s geospatial position $(\text{L}at_d, \text{L}on_d, \text{A}lt_d)$ at the moment of capture. The images are then processed using an object detection model (YOLOv11), which generates bounding boxes around identified cacao trees. A bounding box is defined by its pixel coordinates $(x, y, w, h)$, where $(x, y)$ is the top-left corner, and $w$ and $h$ are the width and height in pixels.
 
@@ -355,7 +355,7 @@ cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flig
 of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing
 UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
-\subsection{Command-based Mission Control with RoboMaster TT SDK}
+\subsubsection{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the
 DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as
 \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land},
@@ -369,7 +369,7 @@ to identify and visualize areas affected by \textit{Phytophthora palmivora}. Thi
 synchronizes drone navigation, image acquisition, and geotagging while accounting for the
 hardware limitations of the RoboMaster TT.
 
-\subsection{GPS Integration and Data Handling}
+\subsubsection{GPS Integration and Data Handling}
 A NEO-M8N GPS module was connected to the open-source controller via UART for geolocation.
 The NEO-M8N is a high-performance GNSS receiver capable of tracking multiple satellite systems
 (GPS, GLONASS, Galileo, and BeiDou). It provides accurate position, velocity, and time data,
