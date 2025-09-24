@@ -20,34 +20,36 @@ The methodology has been adopted from the Modified Waterfall Model of the System
 	\includegraphics[width=0.9\textwidth]{figures/Cacao_Farm.pdf}
 \end{figure}
 
+Figure~\ref{fig:cacao_farm} shows the cacao farm in Claveria, Misamis Oriental, which serves as the research setting. 
+The site is chosen because of its active cacao production and its relevance to the Philippine cacao industry, which continues to face significant challenges from black pod disease. 
+The farm provides an appropriate real-world environment for implementing and testing the UAV-based detection system, as it is representative of typical small to medium-scale plantations in the region.
 
-Figure~\ref{fig:cacao_farm} shows the cacao farm in Claveria, Misamis Oriental, which served as the research setting for this study.
-The site was chosen because of its active cacao production and its relevance to the Philippine cacao industry, which continues to face significant challenges from black pod disease. The farm provided an appropriate real-world environment for implementing and testing the UAV-based detection system, as it is representative of typical small to medium-scale plantations in the region.
+The farm environment contains multiple cacao trees arranged in rows, creating a suitable layout for structured UAV flights. 
+This arrangement allows systematic data collection from varying altitudes and angles, ensuring that the captured images reflect diverse pod conditions, from healthy to infected. 
+The natural farm setting also exposes the system to real challenges such as fluctuating light, weather, and terrain conditions, which are essential for validating the practicality and robustness of the system.
 
-The farm environment contains multiple cacao trees arranged in rows, creating a suitable layout for structured UAV flights.
-This arrangement allowed systematic data collection from varying altitudes and angles, ensuring that the captured images reflected diverse pod conditions, from healthy to infected.
-The natural farm setting also exposed the system to real challenges such as fluctuating light, weather, and terrain conditions, which were essential for validating the practicality and robustness of the system.
+Aside from the physical layout, the farm’s active cultivation and regular cacao pod growth cycles ensure a consistent availability of pods at different stages of maturity. 
+This is crucial for generating a dataset that includes healthy pods, pods in early infection stages, and pods with advanced symptoms of black pod disease. 
+Farmers working in the area also serve as both observers and end-users, providing feedback on the practicality of UAV operations and the usability of the detection system.
 
-Aside from the physical layout, the farm’s active cultivation and regular cacao pod growth cycles ensured a consistent availability of pods at different stages of maturity.
-This was crucial for generating a dataset that included healthy pods, pods in early infection stages, and pods with advanced symptoms of black pod disease.
-Farmers working in the area served as both observers and end-users, providing feedback on the practicality of UAV operations and the usability of the detection system.
+The location in Claveria is also chosen because of its accessibility to researchers while still representing rural farming conditions where advanced monitoring systems are rarely deployed. 
+This balance makes the site ideal for testing the feasibility of precision agriculture tools in smallholder farm contexts. 
+Ultimately, these factors make the cacao farm a practical and effective research setting for implementing and evaluating the proposed UAV-based cacao pod disease detection system.
 
-The location in Claveria was also chosen because of its accessibility to researchers while still representing rural farming conditions where advanced monitoring systems are rarely deployed.
-This balance made the site ideal for testing the feasibility of precision agriculture tools in smallholder farm contexts.
-Ultimately, these factors made the cacao farm a practical and effective research setting for implementing and evaluating the proposed UAV-based cacao pod disease detection system.
 
 \section{Research Setup}
 
-The research setup utilized a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Claveria, Misamis Oriental.
-The UAV was flown at eye level, allowing it to capture detailed images of cacao pods directly from the side view of the trees.
-This altitude ensured that the pods were recorded clearly, making it possible to identify early signs of black pod disease without the need for high-altitude aerial passes.
+The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Claveria, Misamis Oriental. 
+The UAV flies at eye level, allowing it to capture detailed images of cacao pods directly from the side view of the trees. 
+This altitude ensures that the pods are recorded clearly, making it possible to identify early signs of black pod disease without the need for high-altitude aerial passes.
 
-The UAV followed predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation.
-Images were taken at regular intervals while moving at a steady pace, ensuring consistent data collection.
-Each image was automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module.
-This process allowed the researchers to later map infected pods within the farm using QGIS for visualization.
+The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation. 
+Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection. 
+Each image is automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module. 
+This process allows the researchers to later map infected pods within the farm using QGIS for visualization.
 
-Since the UAV already came with a built-in imaging system, minimal hardware modifications were required. The programmable flight commands ensured repeatability in data collection, making the dataset reliable for training and validating the YOLO-based detection model.
+Since the UAV comes with a built-in imaging system, minimal hardware modifications are required. 
+The programmable flight commands ensure repeatability in data collection, making the dataset reliable for training and validating the YOLO-based detection model.
 
 \begin{figure}[H]
 	\centering
@@ -56,11 +58,11 @@ Since the UAV already came with a built-in imaging system, minimal hardware modi
 	\includegraphics[width=0.9\textwidth]{figures/Uav_Flight_Paths.png}
 \end{figure}
 
+Figure~\ref{fig:uav_flight_paths} presents the UAV’s selected flight paths at eye level across the cacao farm. 
+The drone moves parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots. 
+Flying at eye level provides close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}. 
+This low-altitude approach minimizes issues related to lighting, wind, and stability, while ensuring that the captured data is both clear and consistent for system evaluation.
 
-Figure~\ref{fig:uav_flight_paths} presents the UAV’s selected flight paths at eye level across the cacao farm.
-The drone moved parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots.
-Flying at eye level provided close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}.
-This low-altitude approach minimized issues related to lighting, wind, and stability, while ensuring that the captured data was both clear and consistent for system evaluation.
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
