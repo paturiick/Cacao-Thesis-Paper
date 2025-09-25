@@ -21,35 +21,35 @@ The methodology has been adopted from the Modified Waterfall Model of the System
 	\includegraphics[width=0.9\textwidth]{figures/Cacao_Farm.pdf}
 \end{figure}
 
-Figure~\ref{fig:cacao_farm} shows the cacao farm in Claveria, Misamis Oriental, which serves as the research setting. 
-The site is chosen because of its active cacao production and its relevance to the Philippine cacao industry, which continues to face significant challenges from black pod disease. 
+Figure~\ref{fig:cacao_farm} shows the cacao farm in Claveria, Misamis Oriental, which serves as the research setting.
+The site is chosen because of its active cacao production and its relevance to the Philippine cacao industry, which continues to face significant challenges from black pod disease.
 The farm provides an appropriate real-world environment for implementing and testing the UAV-based detection system, as it is representative of typical small to medium-scale plantations in the region.
 
-The farm environment contains multiple cacao trees arranged in rows, creating a suitable layout for structured UAV flights. 
-This arrangement allows systematic data collection from varying altitudes and angles, ensuring that the captured images reflect diverse pod conditions, from healthy to infected. 
+The farm environment contains multiple cacao trees arranged in rows, creating a suitable layout for structured UAV flights.
+This arrangement allows systematic data collection from varying altitudes and angles, ensuring that the captured images reflect diverse pod conditions, from healthy to infected.
 The natural farm setting also exposes the system to real challenges such as fluctuating light, weather, and terrain conditions, which are essential for validating the practicality and robustness of the system.
 
-Aside from the physical layout, the farm’s active cultivation and regular cacao pod growth cycles ensure a consistent availability of pods at different stages of maturity. 
-This is crucial for generating a dataset that includes healthy pods, pods in early infection stages, and pods with advanced symptoms of black pod disease. 
+Aside from the physical layout, the farm’s active cultivation and regular cacao pod growth cycles ensure a consistent availability of pods at different stages of maturity.
+This is crucial for generating a dataset that includes healthy pods, pods in early infection stages, and pods with advanced symptoms of black pod disease.
 Farmers working in the area also serve as both observers and end-users, providing feedback on the practicality of UAV operations and the usability of the detection system.
 
-The location in Claveria is also chosen because of its accessibility to researchers while still representing rural farming conditions where advanced monitoring systems are rarely deployed. 
-This balance makes the site ideal for testing the feasibility of precision agriculture tools in smallholder farm contexts. 
+The location in Claveria is also chosen because of its accessibility to researchers while still representing rural farming conditions where advanced monitoring systems are rarely deployed.
+This balance makes the site ideal for testing the feasibility of precision agriculture tools in smallholder farm contexts.
 Ultimately, these factors make the cacao farm a practical and effective research setting for implementing and evaluating the proposed UAV-based cacao pod disease detection system.
 
 
 \section{Research Setup}
 
-The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Claveria, Misamis Oriental. 
-The UAV flies at eye level, allowing it to capture detailed images of cacao pods directly from the side view of the trees. 
+The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Claveria, Misamis Oriental.
+The UAV flies at eye level, allowing it to capture detailed images of cacao pods directly from the side view of the trees.
 This altitude ensures that the pods are recorded clearly, making it possible to identify early signs of black pod disease without the need for high-altitude aerial passes.
 
-The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation. 
-Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection. 
-Each image is automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module. 
+The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation.
+Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection.
+Each image is automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module.
 This process allows the researchers to later map infected pods within the farm using QGIS for visualization.
 
-Since the UAV comes with a built-in imaging system, minimal hardware modifications are required. 
+Since the UAV comes with a built-in imaging system, minimal hardware modifications are required.
 The programmable flight commands ensure repeatability in data collection, making the dataset reliable for training and validating the YOLO-based detection model.
 
 \begin{figure}[H]
@@ -59,9 +59,9 @@ The programmable flight commands ensure repeatability in data collection, making
 	\includegraphics[width=0.9\textwidth]{figures/Uav_Flight_Paths.png}
 \end{figure}
 
-Figure~\ref{fig:uav_flight_paths} presents the UAV’s selected flight paths at eye level across the cacao farm. 
-The drone moves parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots. 
-Flying at eye level provides close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}. 
+Figure~\ref{fig:uav_flight_paths} presents the UAV’s selected flight paths at eye level across the cacao farm.
+The drone moves parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots.
+Flying at eye level provides close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}.
 This low-altitude approach minimizes issues related to lighting, wind, and stability, while ensuring that the captured data is both clear and consistent for system evaluation.
 
 
@@ -222,10 +222,11 @@ YOLO (You Only Look Once) algorithm, a CNN-based object detection framework that
 
 YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLOv11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured. Figure~\ref{fig:yolov11_architecture} shows the  backbone for feature extraction, the neck for aggregating multi-scale feature maps, and the detection head outputs used for classifying and locating objects at various scales.
 
-\subsection{Dataset Collection Method}
+\noindent \textbf{Dataset Collection Method}
+
 The dataset for this study will consist of both a custom dataset and external sources to ensure diversity and robustness. A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes will enhance the comprehensiveness and reliability of the dataset. In addition, publicly available image datasets such as those from Kaggle will be incorporated to supplement the collected data and increase variability. To ensure the model performs well in diverse real-world conditions, the combined dataset will include images of both healthy and diseased cacao pods under different lighting conditions, weather scenarios, and backgrounds. Special attention will be given to capturing multiple stages of infection and varying degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for the supervised training of the YOLO model.
 
-\subsection{Data Preprocessing}
+\textbf{Data Preprocessing}
 
 Before training and detection, the collected dataset will undergo a series of preprocessing steps to ensure consistency, quality, and suitability for the YOLOv11 model. First, UAV-captured videos are converted into individual frames at fixed intervals, with blurry or otherwise low-quality frames removed to reduce noise. Images, including those from external sources such as Kaggle, will be resized in accordance with YOLOv11's \texttt{imgsz} parameter to maintain a consistent input dimension while preserving the aspect ratio. Pixel values will be normalized (e.g., scaled to a [0,1] range or adjusted using mean and standard deviation) to aid convergence during training.
 
@@ -351,35 +352,97 @@ and analysis. This workflow ensured that raw images and geospatial metadata were
 stored and easily accessible for the YOLO-based detection system and subsequent
 spatial visualization in QGIS.
 
+\subsection{Telemetry Overlay}
+
+During flight, the UAV continuously records telemetry data consisting of timestamp, latitude, longitude, altitude, and orientation parameters (yaw, pitch, and roll). These telemetry values are synchronized with the video stream and image frames, ensuring that every recorded frame has an associated spatiotemporal context.
+
+\begin{figure}[H]
+	\centering
+	\caption{Telemetry Overlay}
+	\label{fig:telemetry_overlay}
+	\includegraphics[width=0.9\textwidth]{figures/Telemetry.pdf}
+\end{figure}
+
+Telemetry overlay, as shown in Fig.~\ref{fig:telemetry_overlay}, refers to the process of superimposing flight data directly onto the visual feed or processed image output. This provides operators with real-time situational awareness and enables more precise post-flight analysis. Telemetry overlay displays the UAV’s recording time, positional coordinates, altitude, and orientation alongside the YOLOv11 bounding boxes of detected cacao trees. This integration ensures that detections are not only localized within an image but also connected to the UAV’s position and state during capture.
+
+The inclusion of telemetry information serves multiple functions.
+(1) The timestamp allows for chronological indexing of detections, supporting analysis of cacao disease monitoring.
+(2) The geographic coordinates (latitude, longitude, altitude) provide a direct spatial reference to the UAV’s position during detection.
+(3) The IMU-derived orientation (yaw, pitch, roll) supplies critical context on the UAV’s attitude, which can affect the angle and scale of captured images.
+
+Together, these parameters create a transparent record of the flight path and its associated detections, enabling accurate mapping, post-flight analysis, and data validation.
 
 \subsection{Materials and Cost}
 
-\begin{table}[H]
-	\centering
-	\caption{Components and Cost}
-	\label{tab:components}
-	\begin{tabular}{ll}
-		\toprule
-		Component                 & Price      \\
-		\midrule
-		Drone (DJI RoboMaster TT) & ₱20,000.00 \\
-		\midrule
-		NEO-M8N GPS module        & ₱300.00    \\
-		\midrule
-		Total Cost                & ₱20,300.00 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+\begin{longtable}{p{8cm} r}
+	\caption{\textit{Components and Cost}} \label{tab:components} \\
+
+	\toprule
+	\textbf{Component}        & \textbf{Price (₱)}                \\
+	\midrule
+	\endfirsthead
+
+	\toprule
+	\textbf{Component}        & \textbf{Price (₱)}                \\
+	\midrule
+	\endhead
+
+	\bottomrule
+	\endfoot
+
+	Drone (DJI RoboMaster TT) & 20,000.00                         \\
+	NEO-M8N GPS module        & 300.00                            \\
+	\midrule
+	\textbf{Total Cost}       & \textbf{20,300.00}                \\
+\end{longtable}
+
 
 \section{Test and Evaluation}
-Testing was conducted to ensure that the system operates accurately, efficiently, and is suitable for real-world use in cacao farm management. The process involved functional testing, usability testing, and performance testing. Functional testing verified whether key features—such as UAV image capture, detection of Phytophthora palmivora-infected cacao pods using the YOLO, and geotagging of infected trees—performed as intended, with each function tested through defined inputs and expected outputs. Usability testing assessed how easily end users, particularly cacao farmers, could navigate and interact with the system by performing essential tasks such as logging in, accessing detection results, and interpreting geotagged maps. Feedback was collected using the System Usability Scale (SUS) to evaluate the overall user experience. Performance testing measured the system’s responsiveness and accuracy, focusing on the time taken from image capture to the display of results, as well as the efficiency in processing high-resolution images and managing data. Together, these tests validated the system’s reliability, user-friendliness, and effectiveness in supporting early disease detection and timely intervention.
+
+Testing will be conducted to ensure that the system will operate accurately, efficiently, and be suitable for real-world use in cacao farm management. The process will involve functional testing, usability testing, and performance testing. Functional testing will verify whether key features such as UAV image capture, detection of Phytophthora palmivora-infected cacao pods using YOLO, and geotagging of infected trees perform as intended, with each function tested through defined inputs and expected outputs. Usability testing will assess how easily end users, particularly cacao farmers, can navigate and interact with the system by performing essential tasks such as logging in, accessing detection results, and interpreting geotagged maps. Feedback will be collected using the System Usability Scale (SUS) to evaluate the overall user experience. Performance testing will measure the system’s responsiveness and accuracy, focusing on the time taken from image capture to the display of results, as well as the efficiency in processing high-resolution images and managing data. Together, these tests will validate the system’s reliability, user-friendliness, and effectiveness in supporting early disease detection and timely intervention.
 
 \subsection{Functional Testing}
-Functional testing will be carried out to ensure that every part of the system works as intended. This testing will begin once the prototype is complete. It will focus on verifying key features, such as capturing images through the drone, detecting healthy and infected cacao pods using the YOLO, tagging infected trees’ locations with GPS, and displaying results clearly on the dashboard. Each function will be tested by giving specific inputs and checking if the outputs match what is expected. For example, the drone should respond correctly to manual and automatic commands, and the system should accurately identify pods and show their locations on the map. This testing helps find and fix any errors or missing functions, making sure the system is reliable and ready for real-world use.
+
+Functional testing will be carried out to ensure that every part of the system will work as intended. This testing will begin once the prototype is complete. It will focus on verifying key features such as capturing images through the drone, detecting healthy and infected cacao pods using the YOLO, tagging infected trees’ locations with GPS, and displaying results clearly on the dashboard. Each function will be tested by providing specific inputs and checking if the outputs match the expected results.
 
 \subsection{Usability Testing}
+
 Usability testing will be conducted to make sure the system is easy and practical for cacao farmers to use. After the prototype is ready, farmers will be invited to try important features such as logging in, flying the drone, viewing pod detection results, and checking the map showing infected trees. After using the system, they will fill out a short survey called the System Usability Scale (SUS), which measures how user-friendly the system feels. The survey uses a rating scale from 1 to 5 and asks about how easy the system is to learn, how confident they feel using it, and whether the features work well together. Scores are converted to a total out of 100, with scores above 68 generally meaning the system is easy to use. This process will help the team understand what works well and what needs improvement before the system is fully deployed.
 
 \subsection{Performance Testing}
 
-Performance testing is conducted to evaluate the system’s responsiveness, accuracy, and overall reliability based on its core functionalities. This includes measuring the accuracy of detecting Phytophthora palmivora-infected cacao pods using the YOLO, assessing the precision of geolocation through GPS module and QGIS, and recording the system’s response time from image capture to the display of results on the dashboard. The test is carried out under standard operating conditions to determine whether the system can process high-resolution images efficiently and deliver real-time outputs. The results of this evaluation are essential in verifying that the system meets its intended performance criteria and is capable of supporting timely and informed decision-making in cacao disease management.
+Performance testing will be conducted to evaluate the system’s responsiveness, accuracy, and overall reliability based on its core functionalities. This will include measuring the accuracy of detecting Phytophthora palmivora infected cacao pods using the YOLO, assessing the precision of geolocation through the GPS module and QGIS, and recording the system’s response time from image capture to the display of results on the dashboard. The testing will also evaluate the system using standard performance metrics such as Accuracy, Precision, Recall, F1-Score, and Error Rate to determine the effectiveness of the detection model. These evaluations will verify whether the system will meet its intended performance criteria and will be capable of supporting timely and informed decision-making in cacao disease management.
+
+\begin{longtable}{p{4cm} >{\centering\arraybackslash}p{7cm}}
+	\caption{\textit{Performance Metrics for Cacao Pod Detection}} \label{tab:metrics}                    \\
+
+	\toprule
+	\textbf{Metric} & \textbf{Equation}                                                                   \\
+	\midrule
+	\endfirsthead
+
+	\toprule
+	\textbf{Metric} & \textbf{Equation}                                                                   \\
+	\midrule
+	\endhead
+
+	\bottomrule
+	\endfoot
+
+	Accuracy        &
+	$\displaystyle \frac{TP + TN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
+
+	Precision       &
+	$\displaystyle \frac{TP}{TP + FP}$                                                                    \\ \addlinespace \addlinespace
+
+	Recall          &
+	$\displaystyle \frac{TP}{TP + FN}$                                                                    \\ \addlinespace \addlinespace
+
+	F1-Score        &
+	$\displaystyle \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$ \\ \addlinespace \addlinespace
+
+	Error Rate      &
+	$\displaystyle \frac{FP + FN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
+\end{longtable}
+
+Table~\ref{tab:metrics} presents the performance metrics used to evaluate the cacao pod detection system. Accuracy measures the overall correctness of the system by calculating the proportion of correctly classified instances, including both infected and healthy pods, out of the total number of samples. Precision indicates the proportion of pods identified as infected that are actually infected, which is important to minimize false positives. Recall measures the proportion of actual infected pods that the system correctly identifies, ensuring that most infected pods are detected. The F1-Score provides a balance between precision and recall by calculating their harmonic mean, which is particularly useful when both false positives and false negatives need to be minimized. 
