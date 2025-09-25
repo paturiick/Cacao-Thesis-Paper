@@ -173,47 +173,6 @@ Figure~\ref{fig:contex-level} illustrates the context-level diagram of the cacao
 
 Figure~\ref{fig:SysArch} illustrates the system architecture of the study. The process begins with the cacao trees, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with cameras and sensors that collect input data—primarily images and environmental readings—from the trees as it flies at the same level as them. The data captured by the drone is transmitted to an open-source controller with a camera module, which acts as the drone’s mini computer. This device processes the incoming images and sensor data. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with accurate coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground systems. The telemetry module sends the data wirelessly via RF to the web-based system, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs back to the system using the system. All this information can be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
 
-
-\subsection{Hardware and Software Requirements}
-
-\begin{table}[H]
-	\centering
-	\caption{Hardware Requirements}
-	\label{tab:hardreq}
-	\begin{tabular}{ll}
-		\toprule
-		Drone      & DJI Robomaster TT (Tello Talent) \\
-		\midrule
-		GPS Module & NEO-M8N                          \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-The hardware setup, summarized in Table 2, is composed of essential components that enable efficient data acquisition and geospatial referencing. The DJI RoboMaster TT (Tello Talent) drone is employed to capture aerial images of cacao pods, providing a stable and programmable platform for image collection. To ensure accurate geolocation tagging of each captured image, a NEO-M8N GPS module is integrated into the system. This GPS module delivers high-precision positional data, which enhances the reliability of spatial mapping and supports the alignment of imagery with corresponding field coordinates.
-
-\begin{table}[H]
-	\centering
-	\caption{Software Requirements}
-	\label{tab:softreq}
-	\begin{tabular}{ll}
-		\toprule
-		Front-end               & Vue.js     \\
-		\midrule
-		Back-end                & Django     \\
-		\midrule
-		Database                & PostgreSQL \\
-		\midrule
-		API                     & QGIS       \\
-		\midrule
-		Web Server              & Nginx      \\
-		\midrule
-		Deep Learning Framework & YOLO       \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-The software requirements, summarized in Table 3, specify the technologies utilized for interface development, system management, data storage, and disease detection. The front-end interface is built with Vue.js to enable user interaction and data visualization, while the back-end is powered by the Django framework, which manages system logic, workflows, and API integration. PostgreSQL functions as the primary database, storing user information, detection outputs, and geospatial metadata. Geospatial analysis and visualization of infected areas are facilitated through QGIS integration. The application is deployed using the Nginx web server to ensure efficient and reliable performance. For image-based disease detection, YOLO is implemented to process aerial imagery and identify signs of infection in cacao pods.
-
 \subsection{Flowchart of Hardware and Software}
 
 \begin{figure}[H]
