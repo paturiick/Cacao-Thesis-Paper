@@ -428,7 +428,40 @@ Functional testing will be carried out to ensure that every part of the system w
 
 \subsection*{Usability Testing}
 Usability testing will be conducted to make sure the system is easy and practical for cacao farmers to use. After the prototype is ready, farmers will be invited to try important features such as logging in, flying the drone, viewing pod detection results, and checking the map showing infected trees. After using the system, they will fill out a short survey called the System Usability Scale (SUS), which measures how user-friendly the system feels. The survey uses a rating scale from 1 to 5 and asks about how easy the system is to learn, how confident they feel using it, and whether the features work well together. Scores are converted to a total out of 100, with scores above 68 generally meaning the system is easy to use. This process will help the team understand what works well and what needs improvement before the system is fully deployed.
+\pagebreak
 
 \subsection*{Performance Testing}
 
-Performance testing is conducted to evaluate the system’s responsiveness, accuracy, and overall reliability based on its core functionalities. This includes measuring the accuracy of detecting Phytophthora palmivora-infected cacao pods using the YOLO, assessing the precision of geolocation through GPS module and QGIS, and recording the system’s response time from image capture to the display of results on the dashboard. The test is carried out under standard operating conditions to determine whether the system can process high-resolution images efficiently and deliver real-time outputs. The results of this evaluation are essential in verifying that the system meets its intended performance criteria and is capable of supporting timely and informed decision-making in cacao disease management.
+\begin{longtable}{p{4cm} >{\centering\arraybackslash}p{7cm}}
+	\caption{\textit{Performance Metrics for Cacao Pod Detection}} \label{tab:metrics}                    \\
+	
+	\toprule
+	\textbf{Metric} & \textbf{Equation}                                                                   \\
+	\midrule
+	\endfirsthead
+	
+	\toprule
+	\textbf{Metric} & \textbf{Equation}                                                                   \\
+	\midrule
+	\endhead
+	
+	\bottomrule
+	\endfoot
+	
+	Accuracy        &
+	$\displaystyle \frac{TP + TN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
+	
+	Precision       &
+	$\displaystyle \frac{TP}{TP + FP}$                                                                    \\ \addlinespace \addlinespace
+	
+	Recall          &
+	$\displaystyle \frac{TP}{TP + FN}$                                                                    \\ \addlinespace \addlinespace
+	
+	F1-Score        &
+	$\displaystyle \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$ \\ \addlinespace \addlinespace
+	
+	Error Rate      &
+	$\displaystyle \frac{FP + FN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
+\end{longtable}
+
+Table~\ref{tab:metrics} presents the performance metrics used to evaluate the cacao pod detection system. Accuracy measures the overall correctness of the system by calculating the proportion of correctly classified instances, including both infected and healthy pods, out of the total number of samples. Precision indicates the proportion of pods identified as infected that are actually infected, which is important to minimize false positives. Recall measures the proportion of actual infected pods that the system correctly identifies, ensuring that most infected pods are detected. The F1-Score provides a balance between precision and recall by calculating their harmonic mean, which is particularly useful when both false positives and false negatives need to be minimized.
