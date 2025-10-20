@@ -67,14 +67,15 @@ This low-altitude approach minimizes issues related to lighting, wind, and stabi
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
-\subsection{Sources of Data}
+
+\subsection*{Sources of Data}
 \textbf{Cacao Farmers and Field Personnel}. Surveys and interviews will be conducted with cacao growers and farm workers to gather insights on existing practices for disease detection, common issues encountered in the field, and expectations for a UAV-based detection system. Agricultural Specialists. Input agricultural professionals will be obtained to identify key disease symptoms, validate detection criteria, and provide guidance on effective monitoring strategies for cacao pod health.
 
 \textbf{Existing Literature and Research Studies}. A comprehensive review of academic and technical literature, such as studies by Baculio \& Barbosa (2022), Vera et al. (2024), and Solpot (2020), will support the design of the detection system by offering benchmarks on accuracy, image processing, and the use of machine learning in agriculture.
 
 \textbf{Technology Experts}. Consultations with UAV technicians, AI developers, and computer vision experts will be sought to ensure the system’s technological components such as image acquisition and model training are both feasible and optimized for agricultural environments.
 
-\subsection{Data Gathering Procedure}
+\subsection*{Data Gathering Procedure}
 
 To gather relevant data that will inform the design and development of the cacao pod disease detection system, this study will utilize both questionnaires and interviews.
 
@@ -84,7 +85,7 @@ To gather relevant data that will inform the design and development of the cacao
 
 \textbf{Existing Literature}. A review of relevant literature will be conducted to understand the current state of disease detection systems in agriculture, particularly focusing on cacao pod diseases. This will include studies on the use of UAVs, AI-driven disease detection models (such as YOLO), and the challenges associated with deploying such technologies in farming environments and provide a foundation for comparing the proposed system with existing solutions.
 
-\subsection{Data Finding Analysis}
+\subsection*{Data Finding Analysis}
 
 To gather relevant data, this study will employ multiple data collection methods.
 
@@ -99,7 +100,7 @@ To gather relevant data, this study will employ multiple data collection methods
 
 \section{Requirement Gathering}
 
-\subsection{User Definition}
+\subsection*{User Definition}
 
 Following the requirements gathering process, the primary user of the system has been identified.
 
@@ -149,7 +150,7 @@ Following the requirements gathering process, the primary user of the system has
 	                         & - The system shall maintain uptime and availability to ensure uninterrupted use during farming operations.                                                 \\
 \end{longtable}
 
-\section{Design and Implementation}
+\section*{Design and Implementation}
 
 \subsection{Context Level Diagram}
 
@@ -162,7 +163,7 @@ Following the requirements gathering process, the primary user of the system has
 
 Figure~\ref{fig:contex-level} illustrates the context-level diagram of the cacao disease detection system. This diagram provides a high-level overview of the interactions. As a context-level diagram, it abstracts away internal processing to focus solely on how external entities interact with the system as a whole. The system integrates an Unmanned Aerial Vehicle (UAV), which is responsible for capturing and transmitting aerial imagery of cacao pods. These images serve as critical input for the system’s disease detection processes. The Web Application functions as the user interface, facilitating communication between the system and its users. Through this platform, cacao farmers can input relevant field data and observations, while also receiving timely detection results. Cacao farmers contribute to the system by using the web app, submitting field data, and providing feedback for continuous improvement.
 
-\subsection{System Architecture}
+\subsection*{System Architecture}
 
 \begin{figure}[H]
 	\centering
@@ -173,7 +174,7 @@ Figure~\ref{fig:contex-level} illustrates the context-level diagram of the cacao
 
 Figure~\ref{fig:SysArch} illustrates the system architecture of the study. The process begins with the cacao trees, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with cameras and sensors that collect input data—primarily images and environmental readings—from the trees as it flies at the same level as them. The data captured by the drone is transmitted to an open-source controller with a camera module, which acts as the drone’s mini computer. This device processes the incoming images and sensor data. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with accurate coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground systems. The telemetry module sends the data wirelessly via RF to the web-based system, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs back to the system using the system. All this information can be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
 
-\subsection{Flowchart of Hardware and Software}
+\subsection*{Flowchart of Hardware and Software}
 
 \begin{figure}[H]
 	\centering
@@ -193,7 +194,7 @@ Figure~\ref{fig:HardFlow} illustrates the operational workflow of the UAV system
 
 Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals. This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
 
-\subsection{Ground Station Architecture}
+\subsection*{Ground Station Architecture}
 
 \begin{figure}[H]
 	\centering
@@ -210,7 +211,55 @@ The server side of the Ground Station integrates several core technologies. Ngin
 
 The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display.
 
-\subsection{YOLO-Based Detection Implementation}
+\subsection*{Graphical User Interface Design}
+
+The Graphical User Interface (GUI) of the Ground Station was developed to provide farmers and system operators with an accessible and practical platform for cacao disease monitoring. It is organized into four core modules—Login, Dashboard, Drone Control, and History—each wireframed to emphasize usability, efficient workflows, and direct support for the study’s objectives.
+
+\subsubsection*{Login Page}
+
+\begin{figure}[H]
+	\centering
+	\caption{Wireframe of Login Page}
+	\label{fig:LoginGUI}
+	\includegraphics[width=0.7\textwidth]{figures/Login.pdf}
+\end{figure}
+
+Figure~\ref{fig:LoginGUI} shows the login page, which functions as the secure entry point to the system. It requires valid user credentials and integrates validation mechanisms to protect detection data. This security feature is essential for safeguarding sensitive agricultural information and ensuring that only authorized individuals can access UAV mission results.
+
+\subsubsection*{Dashboard Page}
+
+\begin{figure}[H]
+	\centering
+	\caption{Wireframe of Dashboard}
+	\label{fig:DashboardGUI}
+	\includegraphics[width=0.9\textwidth]{figures/Dashboard.pdf}
+\end{figure}
+
+The dashboard, shown in Figure~\ref{fig:DashboardGUI}, serves as the central monitoring hub of the system. It provides real-time visualization of UAV detection outputs, including the number of healthy and infected cacao pods as identified by the YOLO model. This module directly supports the study’s aim of enabling farmers to quickly interpret crop conditions and make informed management decisions.
+
+\subsubsection*{Drone Control Page}
+
+\begin{figure}[H]
+	\centering
+	\caption{Wireframe of Drone Control}
+	\label{fig:DroneControlGUI}
+	\includegraphics[width=0.9\textwidth]{figures/Drone Control.pdf}
+\end{figure}
+
+Figure~\ref{fig:DroneControlGUI} illustrates the drone control module, which enables operators to configure flight missions, issue commands, and monitor UAV status. By integrating UAV operations into the GUI, this page ensures that image acquisition for disease detection is efficient, systematic, and directly connected to the research workflow.
+
+\subsubsection*{History Page}
+
+\begin{figure}[H]
+	\centering
+	\caption{Wireframe of History Module}
+	\label{fig:HistoryGUI}
+	\includegraphics[width=0.9\textwidth]{figures/History.pdf}
+\end{figure}
+
+The history module, depicted in Figure~\ref{fig:HistoryGUI}, provides an archive of past detection missions and results. Users can browse, filter, and review earlier UAV detections, which supports long-term disease monitoring and analysis of crop health trends. This functionality reinforces the study’s goal of offering farmers a reliable tool for tracking disease progression and assessing the effectiveness of interventions.
+
+\subsection*{YOLO-Based Detection Implementation}
 YOLO (You Only Look Once) algorithm, a CNN-based object detection framework that employs Convolutional Neural Networks to simultaneously determine the location of objects within an image and classify them. Unlike traditional image classification models, which merely indicate the presence of an object, YOLO predicts both what the object is and where it is situated by drawing bounding boxes around it in a single processing step.
 
 \begin{figure}[H]
@@ -232,13 +281,13 @@ Before training and detection, the collected dataset will undergo a series of pr
 
 The dataset will be divided into training, validation, and testing subsets (commonly 70\% / 20\% / 10\%), ensuring that class distributions (healthy vs. diseased) are preserved and preventing data leakage. Data augmentation will be applied to the training portion only, using transformations such as random flips, rotations, brightness/contrast adjustments, and possibly random crops, to enhance the model’s robustness to real-world variability. Annotation files will be standardized to a YOLO-compatible format so that both custom and external images follow the same label scheme.
 
-\subsection{Cacao and Disease Detection}
+\subsection*{Cacao and Disease Detection}
 
 The UAV-captured images were processed by YOLOv11, which divided each image into a grid structure where every grid cell predicted bounding boxes, confidence scores, and class probabilities. This allowed the system to detect multiple cacao pods within a single frame and to determine their positions in the aerial imagery. Each detected pod was outlined with a bounding box, ensuring that the system marked its exact location even when the pods were partially obscured by foliage or affected by varying lighting conditions.
 
 After the pods were detected, the system classified each one as either healthy or infected with black pod disease. The classification was based on visual features learned during training, including surface discoloration, dark lesions, and irregular textures characteristic of infected pods. YOLOv11 annotated the results directly on the processed images, producing outputs where healthy pods were labeled separately from diseased pods.
 
-\subsection{Visual and Object Geo-localization}
+\subsection*{Visual and Object Geo-localization}
 
 The UAV is equipped with a GPS module and a downward-facing camera that captures images of the cacao trees during flight. Each image is associated with the DJI RoboMaster TT’s geospatial position $(\text{L}at_d, \text{L}on_d, \text{A}lt_d)$ at the moment of capture. The images are then processed using an object detection model (YOLOv11), which generates bounding boxes around identified cacao trees. A bounding box is defined by its pixel coordinates $(x, y, w, h)$, where $(x, y)$ is the top-left corner, and $w$ and $h$ are the width and height in pixels.
 
@@ -293,7 +342,7 @@ where $FOV_x$ and $FOV_y$ are the horizontal and vertical fields of view of the 
 Through this process, each detected bounding box is translated from an image coordinate system into an approximate geospatial coordinate system. Larger bounding boxes correspond to smaller offsets and closer estimated tree positions, while smaller bounding boxes indicate greater distances from the UAV. This integration of bounding box detection and geo-referencing enables the creation of a plantation map, where cacao trees are marked along with their health status.
 
 
-\subsection{UAV Drone System}
+\subsection*{UAV Drone System}
 
 \begin{figure}[H]
 	\centering
@@ -318,7 +367,7 @@ cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flig
 of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing
 UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
-\subsection{Command-based Mission Control with RoboMaster TT SDK}
+\subsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the
 DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as
 \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land},
@@ -332,7 +381,7 @@ to identify and visualize areas affected by \textit{Phytophthora palmivora}. Thi
 synchronizes drone navigation, image acquisition, and geotagging while accounting for the
 hardware limitations of the RoboMaster TT.
 
-\subsection{GPS Integration and Data Handling}
+\subsection*{GPS Integration and Data Handling}
 A NEO-M8N GPS module was connected to the open-source controller via UART for geolocation.
 The NEO-M8N is a high-performance GNSS receiver capable of tracking multiple satellite systems
 (GPS, GLONASS, Galileo, and BeiDou). It provides accurate position, velocity, and time data,
@@ -408,8 +457,41 @@ Functional testing will be carried out to ensure that every part of the system w
 \subsection{Usability Testing}
 
 Usability testing will be conducted to make sure the system is easy and practical for cacao farmers to use. After the prototype is ready, farmers will be invited to try important features such as logging in, flying the drone, viewing pod detection results, and checking the map showing infected trees. After using the system, they will fill out a short survey called the System Usability Scale (SUS), which measures how user-friendly the system feels. The survey uses a rating scale from 1 to 5 and asks about how easy the system is to learn, how confident they feel using it, and whether the features work well together. Scores are converted to a total out of 100, with scores above 68 generally meaning the system is easy to use. This process will help the team understand what works well and what needs improvement before the system is fully deployed.
+\pagebreak
 
-\subsection{Performance Testing}
+\subsection*{Performance Testing}
+
+\begin{longtable}{p{4cm} >{\centering\arraybackslash}p{7cm}}
+	\caption{\textit{Performance Metrics for Cacao Pod Detection}} \label{tab:metrics}                    \\
+	
+	\toprule
+	\textbf{Metric} & \textbf{Equation}                                                                   \\
+	\midrule
+	\endfirsthead
+	
+	\toprule
+	\textbf{Metric} & \textbf{Equation}                                                                   \\
+	\midrule
+	\endhead
+	
+	\bottomrule
+	\endfoot
+	
+	Accuracy        &
+	$\displaystyle \frac{TP + TN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
+	
+	Precision       &
+	$\displaystyle \frac{TP}{TP + FP}$                                                                    \\ \addlinespace \addlinespace
+	
+	Recall          &
+	$\displaystyle \frac{TP}{TP + FN}$                                                                    \\ \addlinespace \addlinespace
+	
+	F1-Score        &
+	$\displaystyle \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$ \\ \addlinespace \addlinespace
+	
+	Error Rate      &
+	$\displaystyle \frac{FP + FN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
+\end{longtable}
 
 Performance testing will be conducted to evaluate the system’s responsiveness, accuracy, and overall reliability based on its core functionalities. This will include measuring the accuracy of detecting Phytophthora palmivora infected cacao pods using the YOLO, assessing the precision of geolocation through the GPS module and QGIS, and recording the system’s response time from image capture to the display of results on the dashboard. The testing will also evaluate the system using standard performance metrics such as Accuracy, Precision, Recall, F1-Score, and Error Rate to determine the effectiveness of the detection model. These evaluations will verify whether the system will meet its intended performance criteria and will be capable of supporting timely and informed decision-making in cacao disease management.
 
