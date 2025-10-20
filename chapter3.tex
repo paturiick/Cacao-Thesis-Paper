@@ -10,7 +10,7 @@ This chapter will present the methodology of the study. It will describe the res
 	\includegraphics[width=0.9\textwidth]{figures/Waterfall.pdf}
 \end{figure}
 
-The methodology has been adopted from the Modified Waterfall Model of the Systems Development Life Cycle (SDLC). The methodology is selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This is particularly important in agricultural technology development, where both technical precision and field validation are critical. For this study, it enables the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase is thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure~\ref{fig:waterfall}  shows the stages necessary for development.
+The methodology will be adopted from the Modified Waterfall Model of the Systems Development Life Cycle (SDLC). The methodology will be selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This will be particularly important in agricultural technology development, where both technical precision and field validation will be critical. For this study, it will enable the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase will be thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure~\ref{fig:waterfall} shows the stages necessary for development.
 
 \section{Research Setting}
 
@@ -39,8 +39,9 @@ Ultimately, these factors make the cacao farm a practical and effective research
 
 \section{Research Setup}
 
-The research setup utilizes a UAV equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Initao, Misamis Oriental. 
-Flying at a low altitude allows the UAV to capture detailed side-view images of cacao pods, ensuring that early signs of black pod disease can be identified without requiring high-altitude aerial passes.
+The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Initao, Misamis Oriental.
+The UAV flies at eye level, allowing it to capture detailed images of cacao pods directly from the side view of the trees.
+This altitude ensures that the pods are recorded clearly, making it possible to identify early signs of black pod disease without the need for high-altitude aerial passes.
 
 The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation. 
 Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection. 
@@ -54,7 +55,7 @@ The programmable flight commands ensure repeatability in data collection, making
 	\centering
 	\caption{UAV Flight Paths in the Cacao Farm}
 	\label{fig:uav_flight_paths}
-	\includegraphics[width=1\textwidth]{figures/Uav_Flight_Paths.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
 Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm. 
@@ -188,16 +189,16 @@ Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user lo
 	\centering
 	\caption{Ground Station System Design and Workflow}
 	\label{fig:GroundStation}
-	\includegraphics[width=0.9\textwidth]{figures/Ground_Station.pdf}
+	\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf}
 \end{figure}
 
 Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
 
 The web application, developed in Vue.js, serves as the main interface for users. It provides modules for user authentication, drone mission control, and the visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time. Through this interface, farmers are able to easily monitor the health of their crops and make informed decisions.
 
-The server side of the Ground Station integrates several core technologies. Nginx acts as the web server and reverse proxy, handling HTTPS traffic and routing requests. Django functions as the application server, implementing the system’s logic, managing authentication, and exposing a REST API for the web application. The detection process is carried out by the YOLO module, which receives aerial images and returns bounding boxes, labels, and confidence scores. Finally, PostgreSQL, extended with geospatial capabilities, stores the detection results along with their associated GPS coordinates. This allows the system to perform spatial queries and display disease distribution on a map.
+The server side of the Ground Station integrates several core technologies. Nginx acts as the web server and reverse proxy, handling HTTPS traffic and routing requests. Django functions as the application server, implementing the system’s logic, managing authentication, and exposing a REST API for the web application. The detection process is carried out by the YOLO module, which receives aerial images and returns bounding boxes, labels, and confidence scores. Finally, PostgreSQL, extended with geospatial capabilities, stores the detection results along with their associated GPS coordinates. This allows the system to perform spatial queries and display disease distribution on a map. QGIS connects to the PostgreSQL/PostGIS database to visualize and analyze these spatial results, providing an advanced geospatial analysis platform for validating detections and generating detailed maps.
 
-The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display.
+The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display. QGIS also retrieves this geospatial data directly from PostgreSQL to produce interactive maps and conduct further spatial assessments of the detected crop conditions.
 
 \subsection*{Graphical User Interface Design}
 
