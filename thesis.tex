@@ -29,13 +29,16 @@
 
 \usepackage{chngcntr}
 \counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
 
 \DeclareCaptionFormat{apa7}{#1\par\vspace{0.5em}#3} 
-\usepackage{caption} % put in preamble
+\usepackage{caption}
 \captionsetup[figure]{labelfont=bf,textfont=it,labelsep=newline,justification=raggedright, singlelinecheck=false,position=above,format=apa7}
 
+\captionsetup[table]{labelfont=bf,textfont=it,labelsep=newline,justification=raggedright,singlelinecheck=false,position=above,format=apa7}
 
-
+\usepackage{array} 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % Document Starts Here
 \begin{document}
