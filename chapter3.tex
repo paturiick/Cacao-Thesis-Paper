@@ -275,8 +275,7 @@ YOLOv11 is employed since it introduces architectural improvements in feature ex
 
 The dataset for this study will consist of both a custom dataset and external sources to ensure diversity and robustness. A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes will enhance the comprehensiveness and reliability of the dataset. In addition, publicly available image datasets such as those from Kaggle will be incorporated to supplement the collected data and increase variability. To ensure the model performs well in diverse real-world conditions, the combined dataset will include images of both healthy and diseased cacao pods under different lighting conditions, weather scenarios, and backgrounds. Special attention will be given to capturing multiple stages of infection and varying degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for the supervised training of the YOLO model.
 
-\noindent \textbf{Data Preprocessing}
-\subsection*{Data Preprocessing}
+\subsubsection*{Data Preprocessing}
 
 
 \begin{figure}[H]
@@ -291,10 +290,9 @@ The process begins with raw imagery collected through Unmanned Aerial Vehicles (
 The curated dataset is then divided into training, validation, and testing subsets, often following a 70–20–10 ratio. This split ensures balanced class representation and prevents overfitting by maintaining a consistent ratio of healthy and diseased pods across subsets. Data augmentation is applied exclusively to the training set to simulate real-world variability and improve the model’s generalization. Transformations such as random horizontal and vertical flips, rotations, brightness and contrast adjustments, and cropping expose the model to different illumination, orientation, and scale conditions. All annotations are standardized into the YOLO label format, which specifies object class IDs and bounding box coordinates in normalized values. This standardized structure ensures seamless integration with YOLOv11’s training and detection pipeline, enabling the model to correctly interpret positional and categorical information during learning.
 
 
-\subsection*{Cacao and Disease Detection}
+\subsubsection*{Cacao and Disease Detection}
 
 The UAV-captured cacao images are fed into the YOLOv11 model for automated object detection and disease classification. YOLOv11 divides each image into a predefined grid structure, where each grid cell predicts multiple bounding boxes, corresponding confidence scores, and class probabilities. This design allows the model to simultaneously identify multiple cacao pods within a single frame, accurately localizing each pod even under challenging conditions such as dense foliage, overlapping objects, or inconsistent lighting. Detected pods are enclosed within bounding boxes that represent the system’s prediction of their exact position within the image.
-
 
 Once localization is complete, YOLOv11 proceeds with the classification of each detected pod as either healthy or infected with black pod disease. This classification is based on visual patterns learned during model training, including texture irregularities, surface discoloration, dark lesions, and other symptoms characteristic of infection. The model leverages deep feature extraction through its backbone network, multiscale feature fusion in the neck, and final detection through its head architecture. The output consists of annotated images displaying bounding boxes and class labels, where healthy pods are distinctly marked from diseased ones. This end-to-end workflow enables precise, efficient, and scalable cacao pod monitoring, facilitating early detection and management of black pod disease in agricultural environments.
 
@@ -305,7 +303,7 @@ The UAV is equipped with a GPS module and a forward-facing camera that captures 
 
 To estimate whether the drone's GPS can be used as an approximate location for a cacao pod, we use the size of the pod's bounding box in the image together with the camera's field of view and image resolution. This idea comes from the pinhole camera model, which relates an object's real-world width, its distance from the camera, and its size in pixels. First, the researchers computed the camera's focal length in pixels using the formula
 \[
-f = \frac{\text{image width in pixels}}{2 \tan(\text{HFOV}/2)},
+f = \frac{\text{image width in pixels}}{2\tan(\text{HFOV}/2)},
 \]
 where $HFOV$ is the horizontal field of view in radians. The DJI RoboMaster TT has a 5 MP image (2592 pixels wide) with a horizontal FoV of 82.6$^\circ$. This gives a focal length of approximately 2620.45 pixels. The calculated pixel-width threshold for the cacao pod is
 \[
@@ -344,24 +342,11 @@ The onboard 5 MP camera enables the capture of still images and 720p HD video, s
 
 \subsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land}, allowing it to follow predefined flight paths across cacao rows. During these missions, the drone captures images of cacao pods at specific intervals, paired with location data provided by the integrated NEO-M8N GPS module.
-\subsubsection*{Command-based Mission Control with RoboMaster TT SDK}
-The Software Development Kit (SDK) enables command-based mission planning with the
-DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as
-\texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land},
-allowing it to follow predefined flight paths across cacao rows. During these missions, the drone
-captures images of cacao pods at specific intervals, paired with location data provided by the
-integrated NEO-M8N GPS module.
 
 An offline detection approach was adopted: the collected images and GPS coordinates are stored and later processed using the YOLO algorithm. The results of detection are then mapped in QGIS to identify and visualize areas affected by \textit{Phytophthora palmivora}. This workflow synchronizes drone navigation, image acquisition, and geotagging while accounting for the hardware limitations of the RoboMaster TT.
 
 \subsection*{GPS Integration and Data Handling}
 A NEO-M8N GPS module was connected to the open-source controller via UART for geolocation. The NEO-M8N is a high-performance GNSS receiver capable of tracking multiple satellite systems (GPS, GLONASS, Galileo, and BeiDou). It provides accurate position, velocity, and time data, which were synchronized with each captured image to create geotagged datasets. This integration enabled the precise mapping of cacao pods and potential disease symptoms in QGIS.
-\subsubsection*{GPS Integration and Data Handling}
-A NEO-M8N GPS module was connected to the open-source controller via UART for geolocation.
-The NEO-M8N is a high-performance GNSS receiver capable of tracking multiple satellite systems
-(GPS, GLONASS, Galileo, and BeiDou). It provides accurate position, velocity, and time data,
-which were synchronized with each captured image to create geotagged datasets. This integration
-enabled the precise mapping of cacao pods and potential disease symptoms in QGIS.
 
 All communications between the UAV and the ground station were established through a Wi-Fi connection. The SDK relies on UDP packets transmitted over Wi-Fi to send flight commands and receive status updates. For structured telemetry such as GPS coordinates
 and mission logs, the MQTT protocol was integrated as a lightweight messaging layer, ensuring reliable delivery of small data packets. Image files, due to their larger size, were transferred directly via the Wi-Fi link to the ground station.
