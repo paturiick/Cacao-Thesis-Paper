@@ -278,16 +278,12 @@ The dataset for this study will consist of both a custom dataset and external so
 
 \subsection*{Data Preprocessing}
 
-Before training and detection, the collected dataset will undergo a series of preprocessing steps to ensure consistency, quality, and suitability for the YOLOv11 model. First, UAV-captured videos are converted into individual frames at fixed intervals, with blurry or otherwise low-quality frames removed to reduce noise. Images, including those from external sources such as Kaggle, will be resized in accordance with YOLOv11's \texttt{imgsz} parameter to maintain a consistent input dimension while preserving the aspect ratio. Pixel values will be normalized (e.g., scaled to a [0,1] range or adjusted using mean and standard deviation) to aid convergence during training.
-
-The dataset will be divided into training, validation, and testing subsets (commonly 70\% / 20\% / 10\%), ensuring that class distributions (healthy vs. diseased) are preserved and preventing data leakage. Data augmentation will be applied to the training portion only, using transformations such as random flips, rotations, brightness/contrast adjustments, and possibly random crops, to enhance the model’s robustness to real-world variability. Annotation files will be standardized to a YOLO-compatible format so that both custom and external images follow the same label scheme.
-
 
 \begin{figure}[H]
 	\centering
 	\caption{Workflow of the YOLOv11-based cacao disease detection system, showing data preparation, model input, and classification outputs.}
 	\label{fig:Data Preprocessing Workflow}
-	\includegraphics[width=0.9\textwidth]{figures/data processing.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/Data Processing.pdf}
 \end{figure}
 
 The process begins with raw imagery collected through Unmanned Aerial Vehicles (UAVs) and external datasets. The UAV-captured videos are converted into individual frames at fixed intervals, ensuring that every pod instance is represented across varying viewpoints. Blurry, redundant, or low-quality frames are systematically removed to eliminate noise and improve dataset consistency. The selected images are resized and normalized according to YOLOv11’s input dimensions (e.g., 640×640 pixels), preserving the aspect ratio to prevent geometric distortion. Normalization scales pixel values into a uniform range (typically 0–1) to enhance computational efficiency and model stability.
