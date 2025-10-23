@@ -181,7 +181,7 @@ Figure~\ref{fig:SysArch} illustrates the system architecture of the study. The p
 	\centering
 	\caption{Hardware Flowchart}
 	\label{fig:HardFlow}
-	\includegraphics[width=0.9\textwidth]{figures/Hard_Flow.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/hardware_flowchart.pdf}
 \end{figure}
 Figure~\ref{fig:HardFlow} illustrates the operational workflow of the UAV system; it begins with powering on the UAV, followed by the initialization of its key sensors, including the camera, GPS module, and obstacle detection system. Once the sensors are active, the system checks for telemetry connectivity with the ground station; if the connection fails, the drone retries until successful. After establishing a link, the mission plan is loaded from the ground station, and the UAV proceeds to takeoff. During flight, two processes run in parallel: the drone continuously captures images and videos with GPS geotags for later processing, while simultaneously monitoring its environment for obstacles and adjusting its path when necessary. The system then checks whether the mission plan has been completed. If it is complete, the UAV proceeds to land; if not, it continues executing the remaining tasks until completion. Only after landing are the stored image and location data transmitted to the ground station for processing. The operation then concludes with system power down.
 
@@ -189,7 +189,7 @@ Figure~\ref{fig:HardFlow} illustrates the operational workflow of the UAV system
 	\centering
 	\caption{Software Flowchart}
 	\label{fig:SoftFlow}
-	\includegraphics[width=0.9\textwidth]{figures/Soft_Flow.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/software_flowchart.pdf}
 \end{figure}
 
 Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals. This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
