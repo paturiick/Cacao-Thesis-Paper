@@ -16,62 +16,67 @@ The methodology will be adopted from the Modified Waterfall Model of the Systems
 
 \begin{figure}[H]
 	\centering
-	\caption{The Cacao Farm in Claveria, Misamis Oriental}
+	\caption{The Cacao Farm in Initao, Misamis Oriental}
 	\label{fig:cacao_farm}
 	\includegraphics[width=0.9\textwidth]{figures/Cacao_Farm.pdf}
 \end{figure}
 
-Figure~\ref{fig:cacao_farm} shows the cacao farm in Initao, Misamis Oriental, which serves as the research setting.
-The site is chosen because of its active cacao production and its relevance to the Philippine cacao industry, which continues to face significant challenges from black pod disease.
-The farm provides an appropriate real-world environment for implementing and testing the UAV-based detection system, as it is representative of typical small to medium-scale plantations in the region.
+Figure~\ref{fig:cacao_farm} shows the cacao farm in Initao, Misamis Oriental, which will serve as the research setting. 
+The site is identified for its active cacao production and its relevance to the Philippine cacao industry, which continues to face significant challenges from black pod disease. 
+The farm provides an appropriate environment for implementing and testing the UAV-based detection system, as it represents typical small to medium-scale plantations in the region.
 
-The farm environment contains multiple cacao trees arranged in rows, creating a suitable layout for structured UAV flights.
-This arrangement allows systematic data collection from varying altitudes and angles, ensuring that the captured images reflect diverse pod conditions, from healthy to infected.
-The natural farm setting also exposes the system to real challenges such as fluctuating light, weather, and terrain conditions, which are essential for validating the practicality and robustness of the system.
+The farm environment contains multiple cacao trees arranged in rows, creating a suitable layout for structured UAV flights. 
+This arrangement allows systematic data collection from varying altitudes and angles, ensuring that the captured images reflect diverse pod conditions, from healthy to infected. 
+The site layout also allows the researchers to plan consistent flight paths and data capture routines under controlled conditions, ensuring repeatability and uniform image quality.
 
-Aside from the physical layout, the farm’s active cultivation and regular cacao pod growth cycles ensure a consistent availability of pods at different stages of maturity.
-This is crucial for generating a dataset that includes healthy pods, pods in early infection stages, and pods with advanced symptoms of black pod disease.
+Aside from the physical layout, the farm’s active cultivation and regular cacao pod growth cycles ensure a consistent availability of pods at different stages of maturity. 
+This is crucial for generating a dataset that includes healthy pods, pods in early infection stages, and pods with advanced symptoms of black pod disease. 
 Farmers working in the area also serve as both observers and end-users, providing feedback on the practicality of UAV operations and the usability of the detection system.
 
-The location in Initao is also chosen because of its accessibility to researchers while still representing rural farming conditions where advanced monitoring systems are rarely deployed.
-This balance makes the site ideal for testing the feasibility of precision agriculture tools in smallholder farm contexts.
+The location in Initao is also identified for its accessibility to researchers while still representing rural farming conditions where advanced monitoring systems are rarely deployed. 
+This balance makes the site ideal for testing the feasibility of precision agriculture tools in smallholder farm contexts. 
 Ultimately, these factors make the cacao farm a practical and effective research setting for implementing and evaluating the proposed UAV-based cacao pod disease detection system.
+
 
 
 \section{Research Setup}
 
-The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Initao, Misamis Oriental.
-The UAV flies at eye level, allowing it to capture detailed images of cacao pods directly from the side view of the trees.
-This altitude ensures that the pods are recorded clearly, making it possible to identify early signs of black pod disease without the need for high-altitude aerial passes.
+The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Initao, Misamis Oriental. 
+Flying at a low altitude allows the UAV to capture detailed side-view images of cacao pods, ensuring that early signs of black pod disease can be identified without requiring high-altitude aerial passes.
 
-The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation.
-Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection.
-Each image is automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module.
+The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation. 
+Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection. 
+Each image is automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module. 
 This process allows the researchers to later map infected pods within the farm using QGIS for visualization.
 
-Since the UAV comes with a built-in imaging system, minimal hardware modifications are required.
+Since the UAV comes with a built-in imaging system, minimal hardware modifications are required. 
 The programmable flight commands ensure repeatability in data collection, making the dataset reliable for training and validating the YOLO-based detection model.
 
 \begin{figure}[H]
 	\centering
-	\caption{Chosen UAV Flight Paths at Eye Level in the Cacao Farm}
+	\caption{UAV Flight Paths in the Cacao Farm}
 	\label{fig:uav_flight_paths}
-	\includegraphics[width=0.9\textwidth]{figures/Uav_Flight_Paths.pdf}
+	\includegraphics[width=1\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-Figure~\ref{fig:uav_flight_paths} presents the UAV’s selected flight paths at eye level across the cacao farm.
-The drone moves parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots.
-Flying at eye level provides close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}.
-This low-altitude approach minimizes issues related to lighting, wind, and stability, while ensuring that the captured data is both clear and consistent for system evaluation.
+Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm. 
+The drone moves parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots. 
+Flying at a low altitude provides close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}. 
+This approach minimizes issues related to lighting, wind, and stability while ensuring that the captured data is clear and consistent for system evaluation.
 
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
 
 \subsection*{Sources of Data}
-\textbf{Cacao Farmers and Field Personnel}. Surveys and interviews will be conducted with cacao growers and farm workers to gather insights on existing practices for disease detection, common issues encountered in the field, and expectations for a UAV-based detection system. Agricultural Specialists. Input agricultural professionals will be obtained to identify key disease symptoms, validate detection criteria, and provide guidance on effective monitoring strategies for cacao pod health.
+\textbf{Cacao Farmers and Field Personnel}. Surveys and interviews will be conducted with cacao growers and farm workers to gather insights on existing practices for disease detection, issues encountered in the field, and expectations for a UAV-based system. 
 
-\textbf{Existing Literature and Research Studies}. A comprehensive review of academic and technical literature, such as studies by Baculio \& Barbosa (2022), Vera et al. (2024), and Solpot (2020), will support the design of the detection system by offering benchmarks on accuracy, image processing, and the use of machine learning in agriculture.
+\textbf{Agricultural Specialists}. Input from agricultural professionals will be obtained to identify key disease symptoms, validate detection criteria, and provide guidance on monitoring strategies for cacao pod health.
+
+\textbf{Existing Literature and Research Studies}. A review of literature, including studies by Baculio \& Barbosa (2022), Vera et al. (2024), and Solpot (2020), will support system design by providing benchmarks on accuracy, image processing, and machine learning in agriculture.
+
+
+
 
 \textbf{Technology Experts}. Consultations with UAV technicians, AI developers, and computer vision experts will be sought to ensure the system’s technological components such as image acquisition and model training are both feasible and optimized for agricultural environments.
 
@@ -151,19 +156,6 @@ Following the requirements gathering process, the primary user of the system has
 \end{longtable}
 
 \section{Design and Implementation}
-
-\subsection{Context Level Diagram}
-
-\begin{figure}[H]
-	\centering
-	\caption{Context Level Diagram of the Study}
-	\label{fig:contex-level}
-	\includegraphics[width=0.9\textwidth]{figures/Context_Level.pdf}
-\end{figure}
-
-Figure~\ref{fig:contex-level} illustrates the context-level diagram of the cacao disease detection system. This diagram provides a high-level overview of the interactions. As a context-level diagram, it abstracts away internal processing to focus solely on how external entities interact with the system as a whole. The system integrates an Unmanned Aerial Vehicle (UAV), which is responsible for capturing and transmitting aerial imagery of cacao pods. These images serve as critical input for the system’s disease detection processes. The Web Application functions as the user interface, facilitating communication between the system and its users. Through this platform, cacao farmers can input relevant field data and observations, while also receiving timely detection results. Cacao farmers contribute to the system by using the web app, submitting field data, and providing feedback for continuous improvement.
-
-\subsection*{System Architecture}
 \subsection{System Architecture}
 
 \begin{figure}[H]
@@ -205,7 +197,8 @@ Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user lo
 
 Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
 
-The web application, developed in Vue.js, serves as the main interface for users. It provides modules for user authentication, drone mission control, and the visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time. Through this interface, farmers are able to easily monitor the health of their crops and make informed decisions.
+The web application, developed in Vue.js, serves as the main user interface, providing modules for authentication, drone mission control, and visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time, enabling farmers to monitor crop health and make informed decisions.
+
 
 The server side of the Ground Station integrates several core technologies. Nginx acts as the web server and reverse proxy, handling HTTPS traffic and routing requests. Django functions as the application server, implementing the system’s logic, managing authentication, and exposing a REST API for the web application. The detection process is carried out by the YOLO module, which receives aerial images and returns bounding boxes, labels, and confidence scores. Finally, PostgreSQL, extended with geospatial capabilities, stores the detection results along with their associated GPS coordinates. This allows the system to perform spatial queries and display disease distribution on a map. QGIS connects to the PostgreSQL/PostGIS database to visualize and analyze these spatial results, providing an advanced geospatial analysis platform for validating detections and generating detailed maps.
 
@@ -356,7 +349,7 @@ spatial visualization in QGIS.
 
 \subsubsection*{Telemetry Overlay}
 
-During flight, the UAV continuously records telemetry data consisting of timestamp, latitude, longitude, altitude, and orientation parameters (yaw, pitch, and roll). These telemetry values are synchronized with the video stream and image frames, ensuring that every recorded frame has an associated spatiotemporal context.
+During flight, the UAV continuously records telemetry data consisting of timestamp, latitude, longitude, altitude, and orientation parameters (yaw, pitch, and roll). These telemetry values are synchronized with the video stream and image frames, ensuring that every recorded frame has an associated spatiotemporal context for accurate tracking.
 
 \begin{figure}[H]
 	\centering
@@ -365,7 +358,9 @@ During flight, the UAV continuously records telemetry data consisting of timesta
 	\includegraphics[width=0.9\textwidth]{figures/Telemetry.pdf}
 \end{figure}
 
-Telemetry overlay, as shown in Fig.~\ref{fig:telemetry_overlay}, refers to the process of superimposing flight data directly onto the visual feed or processed image output. This provides operators with real-time situational awareness and enables more precise post-flight analysis. Telemetry overlay displays the UAV’s recording time, positional coordinates, altitude, and orientation alongside the YOLOv11 bounding boxes of detected cacao trees. This integration ensures that detections are not only localized within an image but also connected to the UAV’s position and state during capture.
+Telemetry overlay, as shown in Fig.~\ref{fig:telemetry_overlay}, refers to the process of superimposing flight data directly onto the visual feed or processed image output. This provides operators with real-time situational awareness and enables more precise post-flight analysis. Telemetry overlay displays the UAV’s recording time, positional coordinates, altitude, and orientation alongside the YOLOv11 bounding boxes of detected cacao trees. It helps users quickly interpret both detection and flight information together. This integration ensures that detections are not only localized within an image but also connected to the UAV’s position and state during capture.
+
+
 
 The inclusion of telemetry information serves multiple functions.
 (1) The timestamp allows for chronological indexing of detections, supporting analysis of cacao disease monitoring.
