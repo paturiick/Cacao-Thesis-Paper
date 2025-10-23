@@ -276,17 +276,32 @@ YOLOv11 is employed since it introduces architectural improvements in feature ex
 
 The dataset for this study will consist of both a custom dataset and external sources to ensure diversity and robustness. A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes will enhance the comprehensiveness and reliability of the dataset. In addition, publicly available image datasets such as those from Kaggle will be incorporated to supplement the collected data and increase variability. To ensure the model performs well in diverse real-world conditions, the combined dataset will include images of both healthy and diseased cacao pods under different lighting conditions, weather scenarios, and backgrounds. Special attention will be given to capturing multiple stages of infection and varying degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for the supervised training of the YOLO model.
 
-\textbf{Data Preprocessing}
+\subsection*{Data Preprocessing}
 
 Before training and detection, the collected dataset will undergo a series of preprocessing steps to ensure consistency, quality, and suitability for the YOLOv11 model. First, UAV-captured videos are converted into individual frames at fixed intervals, with blurry or otherwise low-quality frames removed to reduce noise. Images, including those from external sources such as Kaggle, will be resized in accordance with YOLOv11's \texttt{imgsz} parameter to maintain a consistent input dimension while preserving the aspect ratio. Pixel values will be normalized (e.g., scaled to a [0,1] range or adjusted using mean and standard deviation) to aid convergence during training.
 
 The dataset will be divided into training, validation, and testing subsets (commonly 70\% / 20\% / 10\%), ensuring that class distributions (healthy vs. diseased) are preserved and preventing data leakage. Data augmentation will be applied to the training portion only, using transformations such as random flips, rotations, brightness/contrast adjustments, and possibly random crops, to enhance the model’s robustness to real-world variability. Annotation files will be standardized to a YOLO-compatible format so that both custom and external images follow the same label scheme.
 
+
+\begin{figure}[H]
+	\centering
+	\caption{Workflow of the YOLOv11-based cacao disease detection system, showing data preparation, model input, and classification outputs.}
+	\label{fig:Data Preprocessing Workflow}
+	\includegraphics[width=0.9\textwidth]{figures/data processing.pdf}
+\end{figure}
+
+The process begins with raw imagery collected through Unmanned Aerial Vehicles (UAVs) and external datasets. The UAV-captured videos are converted into individual frames at fixed intervals, ensuring that every pod instance is represented across varying viewpoints. Blurry, redundant, or low-quality frames are systematically removed to eliminate noise and improve dataset consistency. The selected images are resized and normalized according to YOLOv11’s input dimensions (e.g., 640×640 pixels), preserving the aspect ratio to prevent geometric distortion. Normalization scales pixel values into a uniform range (typically 0–1) to enhance computational efficiency and model stability.
+
+The curated dataset is then divided into training, validation, and testing subsets, often following a 70–20–10 ratio. This split ensures balanced class representation and prevents overfitting by maintaining a consistent ratio of healthy and diseased pods across subsets. Data augmentation is applied exclusively to the training set to simulate real-world variability and improve the model’s generalization. Transformations such as random horizontal and vertical flips, rotations, brightness and contrast adjustments, and cropping expose the model to different illumination, orientation, and scale conditions. All annotations are standardized into the YOLO label format, which specifies object class IDs and bounding box coordinates in normalized values. This standardized structure ensures seamless integration with YOLOv11’s training and detection pipeline, enabling the model to correctly interpret positional and categorical information during learning.
+
+
 \subsection*{Cacao and Disease Detection}
 
-The UAV-captured images were processed by YOLOv11, which divided each image into a grid structure where every grid cell predicted bounding boxes, confidence scores, and class probabilities. This allowed the system to detect multiple cacao pods within a single frame and to determine their positions in the aerial imagery. Each detected pod was outlined with a bounding box, ensuring that the system marked its exact location even when the pods were partially obscured by foliage or affected by varying lighting conditions.
+The UAV-captured cacao images are fed into the YOLOv11 model for automated object detection and disease classification. YOLOv11 divides each image into a predefined grid structure, where each grid cell predicts multiple bounding boxes, corresponding confidence scores, and class probabilities. This design allows the model to simultaneously identify multiple cacao pods within a single frame, accurately localizing each pod even under challenging conditions such as dense foliage, overlapping objects, or inconsistent lighting. Detected pods are enclosed within bounding boxes that represent the system’s prediction of their exact position within the image.
 
-After the pods were detected, the system classified each one as either healthy or infected with black pod disease. The classification was based on visual features learned during training, including surface discoloration, dark lesions, and irregular textures characteristic of infected pods. YOLOv11 annotated the results directly on the processed images, producing outputs where healthy pods were labeled separately from diseased pods.
+
+Once localization is complete, YOLOv11 proceeds with the classification of each detected pod as either healthy or infected with black pod disease. This classification is based on visual patterns learned during model training, including texture irregularities, surface discoloration, dark lesions, and other symptoms characteristic of infection. The model leverages deep feature extraction through its backbone network, multiscale feature fusion in the neck, and final detection through its head architecture. The output consists of annotated images displaying bounding boxes and class labels, where healthy pods are distinctly marked from diseased ones. This end-to-end workflow enables precise, efficient, and scalable cacao pod monitoring, facilitating early detection and management of black pod disease in agricultural environments.
+
 
 \subsection*{Visual and Object Geo-localization}
 
