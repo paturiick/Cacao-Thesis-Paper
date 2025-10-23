@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 89875271d5a8011dfef2e07b15b8e8d795d4446a
  # LaTeX intermediate & build files
   2 *.aux
   3 *.log
@@ -15,6 +18,8 @@
  14 *.pdf
  15 *.exp
 ~
+<<<<<<< HEAD
+=======
 =======
 # LaTeX intermediate & build files
 *.aux
@@ -32,3 +37,4 @@
 *.pdf
 *.exp
 >>>>>>> main
+>>>>>>> 89875271d5a8011dfef2e07b15b8e8d795d4446a
