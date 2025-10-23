@@ -275,8 +275,7 @@ YOLOv11 is employed since it introduces architectural improvements in feature ex
 
 The dataset for this study will consist of both a custom dataset and external sources to ensure diversity and robustness. A custom dataset will be generated using images captured by a DJI RoboMaster TT’s built-in camera during scheduled flights over cacao plantations. Capturing images from multiple angles and altitudes will enhance the comprehensiveness and reliability of the dataset. In addition, publicly available image datasets such as those from Kaggle will be incorporated to supplement the collected data and increase variability. To ensure the model performs well in diverse real-world conditions, the combined dataset will include images of both healthy and diseased cacao pods under different lighting conditions, weather scenarios, and backgrounds. Special attention will be given to capturing multiple stages of infection and varying degrees of pod visibility. All images will be manually annotated to label regions of interest, which is essential for the supervised training of the YOLO model.
 
-\noindent \textbf{Data Preprocessing}
-\subsection*{Data Preprocessing}
+\subsubsection*{Data Preprocessing}
 
 
 \begin{figure}[H]
@@ -291,7 +290,7 @@ The process begins with raw imagery collected through Unmanned Aerial Vehicles (
 The curated dataset is then divided into training, validation, and testing subsets, often following a 70–20–10 ratio. This split ensures balanced class representation and prevents overfitting by maintaining a consistent ratio of healthy and diseased pods across subsets. Data augmentation is applied exclusively to the training set to simulate real-world variability and improve the model’s generalization. Transformations such as random horizontal and vertical flips, rotations, brightness and contrast adjustments, and cropping expose the model to different illumination, orientation, and scale conditions. All annotations are standardized into the YOLO label format, which specifies object class IDs and bounding box coordinates in normalized values. This standardized structure ensures seamless integration with YOLOv11’s training and detection pipeline, enabling the model to correctly interpret positional and categorical information during learning.
 
 
-\subsection*{Cacao and Disease Detection}
+\subsubsection*{Cacao and Disease Detection}
 
 The UAV-captured cacao images are fed into the YOLOv11 model for automated object detection and disease classification. YOLOv11 divides each image into a predefined grid structure, where each grid cell predicts multiple bounding boxes, corresponding confidence scores, and class probabilities. This design allows the model to simultaneously identify multiple cacao pods within a single frame, accurately localizing each pod even under challenging conditions such as dense foliage, overlapping objects, or inconsistent lighting. Detected pods are enclosed within bounding boxes that represent the system’s prediction of their exact position within the image.
 
@@ -342,8 +341,6 @@ The RoboMaster TT integrates several important functions. Its flight system comb
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to
 13 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
-\subsection*{Command-based Mission Control with RoboMaster TT SDK}
-The Software Development Kit (SDK) enables command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land}, allowing it to follow predefined flight paths across cacao rows. During these missions, the drone captures images of cacao pods at specific intervals, paired with location data provided by the integrated NEO-M8N GPS module.
 \subsubsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the
 DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as
@@ -356,6 +353,7 @@ An offline detection approach was adopted: the collected images and GPS coordina
 
 \subsection*{GPS Integration and Data Handling}
 A NEO-M8N GPS module was connected to the open-source controller via UART for geolocation. The NEO-M8N is a high-performance GNSS receiver capable of tracking multiple satellite systems (GPS, GLONASS, Galileo, and BeiDou). It provides accurate position, velocity, and time data, which were synchronized with each captured image to create geotagged datasets. This integration enabled the precise mapping of cacao pods and potential disease symptoms in QGIS.
+
 \subsubsection*{GPS Integration and Data Handling}
 A NEO-M8N GPS module was connected to the open-source controller via UART for geolocation.
 The NEO-M8N is a high-performance GNSS receiver capable of tracking multiple satellite systems
