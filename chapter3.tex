@@ -287,7 +287,7 @@ The dataset will be divided into training, validation, and testing subsets (comm
 	\centering
 	\caption{Workflow of the YOLOv11-based cacao disease detection system, showing data preparation, model input, and classification outputs.}
 	\label{fig:Data Preprocessing Workflow}
-	\includegraphics[width=0.9\textwidth]{figures/data processing.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/Data Processing.pdf}
 \end{figure}
 
 The process begins with raw imagery collected through Unmanned Aerial Vehicles (UAVs) and external datasets. The UAV-captured videos are converted into individual frames at fixed intervals, ensuring that every pod instance is represented across varying viewpoints. Blurry, redundant, or low-quality frames are systematically removed to eliminate noise and improve dataset consistency. The selected images are resized and normalized according to YOLOv11’s input dimensions (e.g., 640×640 pixels), preserving the aspect ratio to prevent geometric distortion. Normalization scales pixel values into a uniform range (typically 0–1) to enhance computational efficiency and model stability.
