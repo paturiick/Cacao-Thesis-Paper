@@ -1,22 +1,37 @@
 \chapter*{APPENDICES}
 \addcontentsline{toc}{chapter}{APPENDICES}
-{\baselineskip=1\baselineskip
 
-	\includepdf[
-		pages=1,
-		scale=0.9,
-		pagecommand={
-				\chapter*{APPENDIX A \\ \normalfont LETTER OF CONSENT}
-				\addcontentsline{toc}{chapter}{APPENDIX B}
-				\vspace{1cm}
-			},
-		offset=0 -3cm
-	]{appendix_pdf/appendix_b.pdf}
+\begin{center}
+	\bfseries APPENDIX A \\[4pt]
+	\normalfont LETTER OF CONSENT
+\end{center}
 
-	\includepdf[pages=2-, pagecommand={}, scale=0.9]{appendix_pdf/appendix_b.pdf}
+\vspace{1cm}
 
-	\chapter*{APPENDIX B \\ \normalfont INTERVIEW CONDUCTED}
-	\addcontentsline{toc}{chapter}{APPENDIX B}
+% --- FIRST IMAGE (same page) ---
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.77\textwidth]{appendix_pdf/appendix_a1.pdf}
+\end{figure}
+
+\clearpage % move next image to the next page
+
+% --- SECOND IMAGE (next page) ---
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{appendix_pdf/appendix_a2.pdf}
+\end{figure}
+
+% Add to TOC once
+\addcontentsline{toc}{chapter}{APPENDIX A}
+
+% --- NEXT APPENDIX ---
+\clearpage
+\chapter*{APPENDIX B \\ \normalfont INTERVIEW CONDUCTED}
+\addcontentsline{toc}{chapter}{APPENDIX B}
+
+
+
 
 	\begin{longtable}{|p{4cm}|p{10cm}|}
 		\hline
