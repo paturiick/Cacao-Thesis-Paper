@@ -30,7 +30,7 @@ Farmers in the area also serve as observers and end-users, providing feedback on
 
 \section{Research Setup}
 
-The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Initao, Misamis Oriental. 
+The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Janog Cacao Plantation in Initao, Misamis Oriental. 
 Flying at 1-meter height the UAV to capture detailed side-view images of cacao pods, ensuring that early signs of black pod disease can be identified without requiring high-altitude aerial passes.
 
 The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation. 
@@ -251,7 +251,7 @@ YOLO (You Only Look Once) algorithm, a CNN-based object detection framework that
 	\includegraphics[width=0.9\textwidth]{figures/yolov11.pdf}
 \end{figure}
 
-YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLOv11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured. Figure~\ref{fig:yolov11_architecture} shows the  backbone for feature extraction, the neck for aggregating multi-scale feature maps, and the detection head outputs used for classifying and locating objects at various scales.
+YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLOv11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured. Figure~\ref{fig:yolov11_architecture} shows the  backbone for feature extraction, the neck for aggregating multi-scale feature maps, and the detection head outputs used for classifying and locating objects at various scales. The Intersection over Union (IoU) metric will be used to evaluate the model’s ability to detect diseased cacao pods by measuring the overlap between predicted and ground-truth bounding boxes. It was chosen because IoU is known to be widely accepted standard for assessing YOLO-based object detection tasks. While it measures the overlap, combining it with precision, recall, and mean Average Precision (mAP) will provide a better testing metrics for the model performance.
 
 \subsubsection*{Dataset Collection Method}
 
@@ -283,7 +283,7 @@ Once localization is complete, YOLOv11 proceeds with the classification of each 
 
 The UAV is equipped with a GPS module and a forward-facing camera that captures images of the cacao pods during flight. Each image is associated with the DJI RoboMaster TT’s GPS at the moment of capture. The images are then processed using an object detection model (YOLOv11), which generates bounding boxes around identified cacao pods. A bounding box is defined by its pixel coordinates $(x, y, w, h)$, where $(x, y)$ is the top-left corner, and $w$ and $h$ are the width and height in pixels.
 
-To estimate whether the drone's GPS can be used as an approximate location for a cacao pod, we use the size of the pod's bounding box in the image together with the camera's field of view and image resolution. This idea comes from the pinhole camera model, which relates an object's real-world width, its distance from the camera, and its size in pixels. First, the researchers computed the camera's focal length in pixels using the formula
+To estimate whether the drone's GPS can be used as an approximate location for a cacao pod, we use the size of the pod's bounding box in the image together with the camera's field of view and image resolution. This idea comes from \cite{leorna2022estimating}, which uses the pinhole camera model, that relates an object's real-world width, its distance from the camera, and its size in pixels. First, the researchers computed the camera's focal length in pixels using the formula
 \[
 f = \frac{\text{image width in pixels}}{2\tan(\text{HFOV}/2)},
 \]
