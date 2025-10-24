@@ -290,7 +290,7 @@ Once localization is complete, YOLOv11 proceeds with the classification of each 
 
 The UAV is equipped with a GPS module and a forward-facing camera that captures images of the cacao pods during flight. Each image is associated with the DJI RoboMaster TT’s GPS at the moment of capture. The images are then processed using an object detection model (YOLOv11), which generates bounding boxes around identified cacao pods. A bounding box is defined by its pixel coordinates $(x, y, w, h)$, where $(x, y)$ is the top-left corner, and $w$ and $h$ are the width and height in pixels.
 
-To estimate whether the drone's GPS can be used as an approximate location for a cacao pod, we use the size of the pod's bounding box in the image together with the camera's field of view and image resolution. This idea comes from the pinhole camera model, which relates an object's real-world width, its distance from the camera, and its size in pixels. First, the researchers computed the camera's focal length in pixels using the formula
+To estimate whether the drone's GPS can be used as an approximate location for a cacao pod, we use the size of the pod's bounding box in the image together with the camera's field of view and image resolution. This idea comes from \cite{leorna2022estimating}, which uses the pinhole camera model, that relates an object's real-world width, its distance from the camera, and its size in pixels. First, the researchers computed the camera's focal length in pixels using the formula
 \[
 f = \frac{\text{image width in pixels}}{2\tan(\text{HFOV}/2)},
 \]
