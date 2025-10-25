@@ -48,6 +48,41 @@ In a related study, \cite{Vardhan2023} introduced a deep learning-based approach
 
 \section{You Only Look Once versions (YOLO) for Object Detection}
 
+The You Only Look Once (YOLO) framework has become one of the most influential deep learning models for real-time object detection. Its successive versions have continuously evolved to address limitations in accuracy, speed, and computational efficiency. According to Ultralytics \cite{Terven2023}, the YOLO family progressed from YOLOv1 to the most recent YOLO11, each version integrating new architectural strategies and optimization methods to improve detection across diverse applications.
+
+YOLOv8, released in January 2023, introduced an anchor-free decoupled head design, separating classification from bounding box regression. This design enhanced optimization, particularly for small-object detection, and allowed flexible deployment through multiple model sizes (Nano to X), enabling a tradeoff between speed and accuracy \cite{Wang2023}. YOLOv8 also extended its capabilities beyond detection to include classification and segmentation, making it versatile in agricultural monitoring and disease diagnosis tasks \cite{Vyas2023}.
+
+YOLOv9, launched in February 2024, improved feature aggregation by incorporating \textit{Programmable Gradient Information (PGI)} and the \textit{Generalized Efficient Layer Aggregation Network (GELAN)}. These innovations enhanced the retention of gradient information across layers, thereby boosting detection accuracy while maintaining efficiency for edge devices and mobile platforms, according to \cite{UltralyticsBlog2025}. Furthermore, YOLOv10, released in May 2024, further optimized object detection by introducing a \textit{Non-Maximum Suppression (NMS)-free} design through consistent dual-label assignment. This improvement allowed more stable predictions across multiple objects, eliminating redundant bounding boxes and enhancing both training efficiency and precision in dense detection environments, as reported by \cite{UltralyticsBlog2025}.
+
+The latest version, YOLOv11, released in September 2024, emphasized efficiency and scalability. With approximately 22\% fewer parameters than YOLOv8m while achieving higher mean Average Precision (mAP), YOLOv11 demonstrated superior accuracy-to-complexity performance. Benchmark evaluations confirmed its ability to outperform YOLOv8, YOLOv9, and YOLOv10 in both detection accuracy and inference speed, making it well-suited for large-scale and resource-constrained agricultural applications, as described by \cite{UltralyticsBlog2025}.
+
+\begin{longtable}{p{8cm} r}
+	\caption{\textit{Comparison of YOLO Versions}} \label{tab:yolo_comparison} \\
+	
+	\toprule
+	\textbf{YOLO Version and Key Features} & \textbf{Release Year} \\
+	\midrule
+	\endfirsthead
+	
+	\toprule
+	\textbf{YOLO Version and Key Features} & \textbf{Release Year} \\
+	\midrule
+	\endhead
+	
+	\bottomrule
+	\endfoot
+	
+	YOLOv8 — Introduced an anchor-free and decoupled head architecture; enhanced small-object detection and supported multi-task learning (detection, classification, segmentation). & 2023 \\
+	\midrule
+	YOLOv9 — Integrated Programmable Gradient Information (PGI) and GELAN for improved gradient preservation, feature aggregation, and detection accuracy on edge devices. & 2024 (February) \\
+	\midrule
+	YOLOv10 — Adopted a Non-Maximum Suppression (NMS)-free framework with consistent dual-label assignment; improved stability and precision in dense detection scenarios. & 2024 (May) \\
+	\midrule
+	YOLOv11 — Achieved 22\% parameter reduction compared to YOLOv8m while attaining higher mean Average Precision (mAP); optimized for scalability, efficiency, and inference speed. & 2024 (September) \\
+\end{longtable}
+
+Across the YOLO series, continuous improvements will be made in terms of accuracy and efficiency. Earlier versions such as YOLOv3 and YOLOv4 will establish the foundation for reliable object detection, while YOLOv8 will introduce a more efficient, anchor-free design. According to \cite{UltralyticsBlog2025}, YOLOv11 will offer the best balance of speed, accuracy, and adaptability, making it suitable for detecting small and complex objects. For this study, which will focus on identifying subtle cacao pod lesions under varying environmental conditions, YOLOv11 will be considered the most appropriate version since it will provide faster processing and higher detection precision, both of which are essential for real-time UAV operations.
+
 \section{Geotagging using QGIS in Agriculture}
 Geotagging plays a vital role in precision agriculture by connecting crop-related data with specific locations in the field. This spatial connection helps farmers make smarter, more targeted decisions about managing their crops. For example, \cite{Mohidem2021} showed that combining geotagged aerial images with vegetation indices significantly improves how accurately crop conditions can be monitored. This makes it easier to spot and address issues in particular areas of the field. Likewise, \cite{Rahman2021} used QGIS software to geotag individual durian trees in Malaysia’s Kluang Valley. By linking each tree’s location with detailed ground data—such as tree height, canopy size, soil pH, and leaf dimensions—the study created a more precise and efficient way to monitor the health and growth of each tree. This method allowed for a more organized and data-driven approach to plantation monitoring by enabling the spatial joining of field measurements with geographic coordinates. \cite{Rahman2021} highlights the effectiveness of QGIS in supporting precise andefficient geotagging workflows, underscoring its relevance as a valuable tool in agricultural decision-making and crop health assessment.
 
