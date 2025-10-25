@@ -10,7 +10,7 @@ This chapter will present the methodology of the study. It will describe the res
 	\includegraphics[width=0.9\textwidth]{figures/Waterfall.pdf}
 \end{figure}
 
-The methodology will be adopted from the Modified Waterfall Model of the Systems Development Life Cycle (SDLC). The methodology will be selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This will be particularly important in agricultural technology development, where both technical precision and field validation will be critical. For this study, it will enable the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase will be thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure~\ref{fig:waterfall} shows the stages necessary for development.
+This study will adopt the Modified Waterfall Model of the Systems Development Life Cycle (SDLC) as its methodology. The methodology will be selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This will be particularly important in agricultural technology development, where both technical precision and field validation will be critical. For this study, it will enable the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase will be thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure~\ref{fig:waterfall} shows the stages necessary for development.
 
 \section{Research Setting}
 
@@ -23,20 +23,20 @@ The methodology will be adopted from the Modified Waterfall Model of the Systems
 
 The proposed study will be conducted at the Janog Cacao Plantation located in Initao, Misamis Oriental, as shown in Figure~\ref{fig:cacao_farm}. The plantation covers an area of approximately five (5) hectares and contains around 2,500 cacao trees. Each tree has an average height of 2 to 2.5 meters and is planted at 3-meter intervals, forming organized rows that are suitable for structured UAV flights. The site represents a typical small to medium-scale cacao farm in the region and is relevant to the Philippine cacao industry, which continues to face challenges from black pod disease.
 
-Local farmers will serve as observers and potential end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The plantation’s accessibility to the research team, along with its realistic farming conditions where advanced monitoring systems are rarely implemented, makes it an ideal setting for developing and testing the proposed system.
+Local farmers will serve as observers and potential end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The plantation’s accessibility to the research team, along with its realistic farming conditions where advanced monitoring systems are rarely implemented, makes it an ideal setting for developing and testing the proposed 	system.
 
 
 \section{Research Setup}
 
-The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately one meter, the UAV captures detailed side-view images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately one meter, the UAV captures detailed side-view images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
 
-The UAV follows predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images are taken at regular intervals while maintaining a steady pace, and each image is automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
+The UAV will follow predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images will be taken at regular intervals while maintaining a steady pace, and each image is automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
 
 Since the UAV includes a built-in imaging system, minimal hardware modifications are required. The programmable flight commands ensure repeatable and consistent data collection, making the dataset suitable for training and validating the YOLO-based detection model.
 
 \begin{figure}[H]
 	\centering
-	\caption{UAV Flight Paths in the Cacao Farm}
+	\caption{UAV Flight Paths Across the Cacao Farm}
 	\label{fig:uav_flight_paths}
 	\includegraphics[width=1\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
