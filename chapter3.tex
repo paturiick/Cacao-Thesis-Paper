@@ -10,7 +10,7 @@ This chapter will present the methodology of the study. It will describe the res
 	\includegraphics[width=0.9\textwidth]{figures/Waterfall.pdf}
 \end{figure}
 
-The methodology will be adopted from the Modified Waterfall Model of the Systems Development Life Cycle (SDLC). The methodology will be selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This will be particularly important in agricultural technology development, where both technical precision and field validation will be critical. For this study, it will enable the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase will be thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure~\ref{fig:waterfall} shows the stages necessary for development.
+This study will adopt the Modified Waterfall Model of the Systems Development Life Cycle (SDLC) as its methodology. The methodology will be selected due to its structured yet flexible nature, allowing for sequential phases with opportunities for feedback and refinement. This will be particularly important in agricultural technology development, where both technical precision and field validation will be critical. For this study, it will enable the researchers to systematically design, implement, and evaluate the integration of UAV-collected imagery with YOLO for early disease detection in cacao pods, ensuring that each phase will be thoroughly reviewed before progressing to the next, while still accommodating necessary adjustments. Figure~\ref{fig:waterfall} shows the stages necessary for development.
 
 \section{Research Setting}
 
@@ -21,37 +21,27 @@ The methodology will be adopted from the Modified Waterfall Model of the Systems
 	\includegraphics[width=0.9\textwidth]{figures/Cacao_Farm.pdf}
 \end{figure}
 
-Figure~\ref{fig:cacao_farm} shows the location of the Janog Cacao Plantation in Initao, Misamis Oriental, which serves as the research setting of this study. The plantation covers an area of approximately five (5) hectares and contains around 2,500 cacao trees. Each tree has an average height of 2 to 2.5 meters and is planted at 3-meter intervals, forming organized rows that are suitable for structured UAV flights. The site represents typical small to medium-scale cacao farms in the region and is relevant to the Philippine cacao industry, which continues to face challenges from black pod disease.
+The proposed study will be conducted at the Janog Cacao Plantation located in Initao, Misamis Oriental, as shown in Figure~\ref{fig:cacao_farm}. The plantation covers an area of approximately five (5) hectares and contains around 2,500 cacao trees. Each tree has an average height of 2 to 2.5 meters and is planted at 3-meter intervals, forming organized rows that are suitable for structured UAV flights. The site represents a typical small to medium-scale cacao farm in the region and is relevant to the Philippine cacao industry, which continues to face challenges from black pod disease.
 
-The UAV used in the study flies at 1-meter height, slightly below the canopy height, to capture side-view images of the cacao pods along the tree trunks and branches. This flight position allows clearer observation of the pods and provides detailed visual data for disease detection. The structured layout of the farm enables systematic flight paths and consistent data collection across different areas of the plantation.
-
-Farmers in the area also serve as observers and end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The cacao plantation’s accessibility to researchers, combined with its representation of real farming conditions where advanced monitoring systems are rarely applied, makes it an ideal site for testing the feasibility and effectiveness of the proposed UAV-based cacao pod disease detection system.
+Local farmers will serve as observers and potential end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The plantation’s accessibility to the research team, along with its realistic farming conditions where advanced monitoring systems are rarely implemented, makes it an ideal setting for developing and testing the proposed 	system.
 
 
 \section{Research Setup}
 
-The research setup utilizes a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and a GPS module to conduct low-altitude monitoring of the cacao farm in Janog Cacao Plantation in Initao, Misamis Oriental. 
-Flying at 1-meter height the UAV to capture detailed side-view images of cacao pods, ensuring that early signs of black pod disease can be identified without requiring high-altitude aerial passes.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately one meter, the UAV captures detailed side-view images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
 
-The UAV follows predefined paths along the rows of cacao trees to maintain systematic coverage of the plantation. 
-Images are taken at regular intervals while moving at a steady pace, ensuring consistent data collection. 
-Each image is automatically geotagged with precise coordinates provided by the integrated NEO-M8N GPS module. 
-This process allows the researchers to later map infected pods within the farm using QGIS for visualization.
+The UAV will follow predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images will be taken at regular intervals while maintaining a steady pace, and each image is automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
 
-Since the UAV comes with a built-in imaging system, minimal hardware modifications are required. 
-The programmable flight commands ensure repeatability in data collection, making the dataset reliable for training and validating the YOLO-based detection model.
+Since the UAV includes a built-in imaging system, minimal hardware modifications are required. The programmable flight commands ensure repeatable and consistent data collection, making the dataset suitable for training and validating the YOLO-based detection model.
 
 \begin{figure}[H]
 	\centering
-	\caption{UAV Flight Paths in the Cacao Farm}
+	\caption{UAV Flight Paths Across the Cacao Farm}
 	\label{fig:uav_flight_paths}
 	\includegraphics[width=1\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm. 
-The drone moves parallel to the rows of cacao trees, ensuring overlapping coverage of pods and reducing blind spots. 
-Flying at a low altitude provides close-range, high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora}. 
-This approach minimizes issues related to lighting, wind, and stability while ensuring that the captured data is clear and consistent for system evaluation.
+Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm. The drone moves parallel to the rows of cacao trees, providing overlapping coverage of pods and minimizing blind spots. Flying at a low altitude ensures high-resolution imagery of cacao pods, enabling accurate detection of visible symptoms of \textit{Phytophthora palmivora} while minimizing lighting, wind, and stability issues for consistent data capture and system evaluation.
 
 
 \section{Data Gathering}
@@ -93,6 +83,20 @@ To gather relevant data, this study will employ multiple data collection methods
 \textbf{Spatial Analysis}. Given that the UAV system captures geo-tagged images, spatial analysis will be conducted to examine the geographical distribution of detected disease cases. This analysis will help visualize infection hotspots across the farm and support precision intervention strategies. Tools such as heatmaps or geospatial clustering may be used to map and interpret disease spread over time and space.
 
 \section{Requirement Gathering}
+
+This section presents the requirements gathering conducted by the researchers. The data were collected through an interview with a local cacao farmer who has extensive experience in cacao production and management. The purpose of this interview was to understand the existing farming practices, challenges in disease detection and management, and collect essential information for system development. 
+
+Before the engagement, the researchers prepared a set of open- and closed-ended questions to guide the discussion. A consent letter outlining the ethical use of the collected information was also presented to the respondent, ensuring that all gathered data would be used solely for academic and research purposes in compliance with data privacy regulations. (Refer to Appendix A) 
+
+The respondent has been cultivating cacao for nine (9) years and manages a farm covering approximately five (5) hectares with more than 2,500 cacao trees planted at a spacing of three (3) meters per tree. The farm contains various elements, including tall coconut trees that provide shade, nearby power lines, and a river, none of which significantly affect the farm’s operations. The farmer personally inspects the cacao pods on foot, as this is currently the only available method to monitor the trees for pest infestations and diseases.
+
+According to the respondent, major challenges in cacao farming include high costs and labor-intensive practices, particularly in spraying, pruning, and pest control. However, the most critical issue arises during the rainy season, as it contributes to the spread of Phytophthora, the fungus responsible for black pod rot, locally referred to as butikol. During these periods, only about one (1) out of every ten (10) trees remains healthy, and the number of harvestable pods varies significantly depending on weather conditions.
+
+The farmer identifies diseased cacao pods primarily through their appearance, observing signs such as discoloration and the presence of small dark dots, which are associated with Phytophthora infection. Once symptoms appear, even at an early stage, the affected pods are immediately removed to prevent further contamination of nearby fruits. Although spraying is conducted as a preventive measure, some infected pods remain unnoticed due to the vast area of the farm and the intensity of labor required.
+
+Farm inspection is done daily, taking approximately three (3) weeks to complete a full cycle across all areas of the farm. The farmer increases inspection frequency during the rainy season, as losses are significantly higher compared to the dry season. Fertilizers are also applied for quality control, with an estimated expenditure of thirty thousand pesos (₱30,000) per cycle.
+
+During the peak harvest season, typically from November to December, the farm produces around 300 to 500 kilograms of cacao beans, which are sold to vendors from Davao at a price of ₱300 per kilogram. However, yields lower than 200 kilograms are considered a deficit. Based on the respondent’s estimate, approximately twenty (20) pods are required to produce one (1) kilogram of beans. The pods vary in color red to orange, and green to yellow with yellow pods indicating ripeness. Harvesting and pruning are performed manually using pruners or saws, with extra care taken to avoid damaging the fruit-bearing branches. (see Appendix B)
 
 \subsection*{User Definition}
 
@@ -184,7 +188,7 @@ Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user lo
 	\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf}
 \end{figure}
 
-Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
+Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. The Ground Station serves as the central control and processing hub of the proposed system, responsible for handling all backend operations, data management, and user interaction. It functions as the bridge between the UAV and the end user by receiving aerial images, processing them through the detection pipeline, and displaying the analyzed results through an accessible interface. Essentially, the Ground Station ensures that raw UAV data is transformed into actionable information, facilitating efficient monitoring, analysis, and decision-making for cacao pod disease detection in real time. It is composed of two closely connected parts: the web application and the server components.
 
 The web application, developed in Vue.js, serves as the main user interface, providing modules for authentication, drone mission control, and visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time, enabling farmers to monitor crop health and make informed decisions.
 
