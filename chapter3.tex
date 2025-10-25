@@ -84,6 +84,20 @@ To gather relevant data, this study will employ multiple data collection methods
 
 \section{Requirement Gathering}
 
+This section presents the requirements gathering conducted by the researchers. The data were collected through an interview with a local cacao farmer who has extensive experience in cacao production and management. The purpose of this interview was to understand the existing farming practices, challenges in disease detection and management, and collect essential information for system development. 
+
+Before the engagement, the researchers prepared a set of open- and closed-ended questions to guide the discussion. A consent letter outlining the ethical use of the collected information was also presented to the respondent, ensuring that all gathered data would be used solely for academic and research purposes in compliance with data privacy regulations. (Refer to Appendix A) 
+
+The respondent has been cultivating cacao for nine (9) years and manages a farm covering approximately five (5) hectares with more than 2,500 cacao trees planted at a spacing of three (3) meters per tree. The farm contains various elements, including tall coconut trees that provide shade, nearby power lines, and a river, none of which significantly affect the farm’s operations. The farmer personally inspects the cacao pods on foot, as this is currently the only available method to monitor the trees for pest infestations and diseases.
+
+According to the respondent, major challenges in cacao farming include high costs and labor-intensive practices, particularly in spraying, pruning, and pest control. However, the most critical issue arises during the rainy season, as it contributes to the spread of Phytophthora, the fungus responsible for black pod rot, locally referred to as butikol. During these periods, only about one (1) out of every ten (10) trees remains healthy, and the number of harvestable pods varies significantly depending on weather conditions.
+
+The farmer identifies diseased cacao pods primarily through their appearance, observing signs such as discoloration and the presence of small dark dots, which are associated with Phytophthora infection. Once symptoms appear, even at an early stage, the affected pods are immediately removed to prevent further contamination of nearby fruits. Although spraying is conducted as a preventive measure, some infected pods remain unnoticed due to the vast area of the farm and the intensity of labor required.
+
+Farm inspection is done daily, taking approximately three (3) weeks to complete a full cycle across all areas of the farm. The farmer increases inspection frequency during the rainy season, as losses are significantly higher compared to the dry season. Fertilizers are also applied for quality control, with an estimated expenditure of thirty thousand pesos (₱30,000) per cycle.
+
+During the peak harvest season, typically from November to December, the farm produces around 300 to 500 kilograms of cacao beans, which are sold to vendors from Davao at a price of ₱300 per kilogram. However, yields lower than 200 kilograms are considered a deficit. Based on the respondent’s estimate, approximately twenty (20) pods are required to produce one (1) kilogram of beans. The pods vary in color red to orange, and green to yellow with yellow pods indicating ripeness. Harvesting and pruning are performed manually using pruners or saws, with extra care taken to avoid damaging the fruit-bearing branches. (see Appendix B)
+
 \subsection*{User Definition}
 
 Following the requirements gathering process, the primary user of the system has been identified.
@@ -174,7 +188,7 @@ Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user lo
 	\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf}
 \end{figure}
 
-Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. It is composed of two closely connected parts: the web application and the server components.
+Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. The Ground Station serves as the central control and processing hub of the proposed system, responsible for handling all backend operations, data management, and user interaction. It functions as the bridge between the UAV and the end user by receiving aerial images, processing them through the detection pipeline, and displaying the analyzed results through an accessible interface. Essentially, the Ground Station ensures that raw UAV data is transformed into actionable information, facilitating efficient monitoring, analysis, and decision-making for cacao pod disease detection in real time. It is composed of two closely connected parts: the web application and the server components.
 
 The web application, developed in Vue.js, serves as the main user interface, providing modules for authentication, drone mission control, and visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time, enabling farmers to monitor crop health and make informed decisions.
 
