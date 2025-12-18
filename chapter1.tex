@@ -3,17 +3,15 @@
 {\baselineskip=2\baselineskip
 
 	\section{Background of the Study}
-\textit{Theobroma cacao}, widely known as cacao, is one of the most economically influential crops in the world. It serves as the primary raw material for the multibillion-dollar chocolate industry, supporting the livelihoods of approximately six million small-scale farmers globally. Once harvested, cacao seeds are processed to produce cocoa powder and cocoa butter—essential ingredients in a wide range of products, from confections and beverages to cosmetics and pharmaceuticals.
+\textit{Theobroma cacao}, widely known as cacao, is one of the most economically influential crops in the world. It serves as the primary raw material for the multibillion-dollar chocolate industry, supporting the livelihoods of approximately six million small-scale farmers globally \citep{wickramasuriya2018cacao}. Once harvested, cacao seeds are processed to produce cocoa powder and cocoa butter—essential ingredients in a wide range of products, from confections and beverages to cosmetics and pharmaceuticals.
 
-The global chocolate market is projected to grow significantly from 129.1 billion dollars in 2025, and up to 178.7 billion dollars by 2035 \citep{FutureMarketInsights2025ChocolateForecast}. However, \cite{Exquisito2025CocoaShortage} reported that West Africa, which supplies over 70\% of the world’s cocoa, have drastic declines in yield due to increasingly humid climatic conditions. 
+The global chocolate market is projected to grow significantly from 129.1 billion dollars in 2025, and up to 178.7 billion dollars by 2035 \citep{FutureMarketInsights2025ChocolateForecast}. However, \cite{Exquisito2025CocoaShortage} reported that West Africa, which supplies over 70\% of the world’s cocoa, have experienced a 13.1\% year-on-year decrease in cocoa output in 2024 (from 5.044 to 4.382 million tons), which constitutes a drastic decline in yield. This is largely driven by black pod disease caused by Phytophthora species, with Phytophthora megakarya recognized as the dominant and most destructive pathogen in the region \citep{OpokuMegakaryaThreat, BlackPodReview2024}.
 
-In the Philippines, the Davao Region is the major producer of cacao which has been recognized as the “Chocolate Capital of the Philippines” \citep{PCAF2021}. Despite having favorable climate condition being a tropical region, it imports more than it produces which struggled to keep pace with the rising domestic demand. Nearby provinces such as Janog Cacao Plantation in Initao, Misamis Oriental, reports yield fluctuations between 100–500 kilograms of cacao beans, with 300 kilograms considered satisfactory and anything below 200 kilograms representing a deficit.
+A comparable situation is observed in the Philippines. While P. megakarya dominates West Africa, black pod disease in the Philippines is primarily caused by Phytophthora palmivora (\textit{P. palmivora}). The Davao Region, the country’s major cacao-producing area and officially recognized as the “Chocolate Capital of the Philippines” \citep{PCAF2021}, has experienced production declines associated with this pathogen. Locally referred to as \textit{butikol}, black pod rot caused by P. palmivora has been documented to induce substantial annual yield losses, posing a persistent threat to the sustainability of the Philippine cacao industry \citep{Avila2023}.
 
-Notably, most yield losses occur during the rainy season, when excessive moisture promotes the spread of \textit{Phytophthora palmivora} (P.\textit{Palmivora}), the fungal pathogen responsible for black pod rot disease-locally known as \textit{butikol}. This disease has been documented to cause significant annual yield losses, posing a major challenge to cacao industry \citep{Avila2023}.
+The Davao Region, the country’s major cacao-producing area and officially recognized as the “Chocolate Capital of the Philippines” \citep{PCAF2021}, has experienced production declines associated with this pathogen. Although cacao is affected by multiple diseases, black pod rot, locally referred to as \textit{butikol}, caused by \textit{P. palmivora} has been documented to induce substantial annual yield losses, posing a persistent threat to the sustainability of the Philippine cacao industry \citep{Avila2023}. These losses were further corroborated through a field interview with the owner of the Janog Cacao Plantation.
 
-Currently, farmers rely primarily on visual inspection to detect early symptoms, such as small dark spots or discoloration, and remove affected pods immediately to prevent further contamination, since curative treatments are rarely used. However, due to the large size of farms and the labor-intensive nature of manual inspection, some infected pods go unnoticed.
-
-The \cite{PhilCacaoRoadmap2021} reported that this method is labor intensive and error prone, often failing to detect infections in their early stages. These challenges were reaffirmed during a field interview with the owner of Janog Cacao Plantation in Initao, Misamis Oriental, a 5-hectare farm with over 2,500 cacao trees planted. According to the owner, routine inspection of cacao pods requires walking across the entire plantation, which takes up to three weeks to complete for one full cycle. This process becomes even more demanding during the rainy season. On average, only about 9 in 10 cacao trees are unhealthy, as the disease can quickly spread to nearby pods if infected ones are not pruned or removed promptly. 
+The Janog Cacao Plantation is a 5-hectare cacao farm with over 2,500 cacao trees planted located in Initaon, Misamis Oriental. The owner report yield fluctuations between 100–500 kg of cacao beans, with 300 kg considered satisfactory and anything below 200 kg representing a deficit. If some infected pods are left unnoticed, they can become active infection reservoirs that accelerate outbreak progression. On average, the Janog farm recorded only about 9 in 10 cacao trees are unhealthy, as the disease can quickly spread to nearby pods if infected ones are not pruned or removed promptly. However, completing a full manual inspection cycle requires walking the entire plantation and can take up to three weeks. This on-foot, tree-by-tree monitoring reflects the current dependence on visual scouting, an approach widely described as labor-intensive and error-prone, especially for catching infections at their earliest stages \citep{PhilCacaoRoadmap2021}.
 
 To address these persistent threats, modern agriculture has increasingly turned to advanced technological solutions for early disease detection and intervention. Unmanned Aerial Vehicles (UAVs) and deep learning algorithms have emerged as powerful tools in precision agriculture, offering efficient and scalable monitoring of cacao plantations. UAVs, equipped with high-resolution cameras and multispectral sensors, can rapidly survey wide areas, while cutting-edge models such as You Only Look Once (YOLO) provide high-accuracy plant disease identification \citep{Vyas2023}. Early detection during the pre-harvest phase, as supported by \cite{Upadhyay2025,Yadav2024}, enables timely interventions to mitigate crop losses and ensure quality harvests.
 
@@ -31,11 +29,11 @@ Traditional detection methods rely on manual inspection, which is labor intensiv
 
 \section{Objectives of the Study}
 
-This study aims to design and develop a UAV-based system that predicts P.\textit{Palmivora} disease in cacao pods using deep learning model (object detection and disease detection) and GPS geotagging for precise location mapping. Specifically, it seeks to:
+This study aims to design and develop a UAV-based system that detects P.\textit{Palmivora} disease in cacao pods using deep learning model (object detection and disease detection) and GPS geotagging for precise location mapping. Specifically, it seeks to:
 
 \begin{enumerate}
-	\item Design and configure a UAV capable of autonomous navigation over cacao farms.
-	\item Implement an object detection model for cacao pod detection and a classification model for identifying black pod rot disease, or P.\textit{Palmivora} infection.
+	\item Configure a UAV capable of autonomous navigation over cacao farms.
+	\item Integrate an object detection model for cacao pod detection and a classification model for identifying black pod rot disease, or \textit{P. palmivora} infection.
 	\item Develop and implement a monitoring system that tracks the UAV’s flight status and detection for cacao pod disease.
 	\item Test the system’s detection accuracy, classification performance, geotagging precision, and overall operational efficiency.
 \end{enumerate}
@@ -66,6 +64,8 @@ These limitations define the operational boundaries of the proposed system and p
 
 \section{Conceptual Framework}
 
+The study's conceptual framework is presented through an Input-Output-Process Model in Figure \ref{fig:ipo}.
+
 \begin{figure}[H]
 	\centering
   \caption{IPO Model}
@@ -73,7 +73,7 @@ These limitations define the operational boundaries of the proposed system and p
 	\includegraphics[width=1\textwidth]{figures/IPO.pdf}
 \end{figure}
 
-The study's conceptual framework is presented through an Input-Output-Process Model. The process begins with the input stage, where drones are used to capture images of cacao pods in the farm. These images serve as the primary source of information and are compared with sets of sample images showing both healthy and diseased pods. Along with the images, location data is recorded so that each detection can be linked to its exact place in the farm. 
+The process begins with the input stage, where drones are used to capture images of cacao pods in the farm. These images serve as the primary source of information and are compared with sets of sample images showing both healthy and diseased pods. Along with the images, location data is recorded so that each detection can be linked to its exact place in the farm. 
 
 The information collected then moves to the process stage. Here, the pod images are first checked to make them clear and consistent for analysis. After this, the system studies the images to identify whether pods are healthy or show signs of disease. The location data gathered during drone flights is combined with the results, allowing the system to create maps that show the areas where diseases may be present. This stage transforms raw images into useful information that can guide farmers in managing their crops.
 
