@@ -30,9 +30,17 @@ The plantation covers an area of approximately five (5) hectares and contains ar
 Local farmers will serve as potential end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The plantation’s accessibility to the research team, along with its realistic farming conditions where advanced monitoring systems are rarely implemented, makes it an ideal setting for developing and testing the proposed system.
 
 
-\subsection{Research Setup}
+\section{Research Setup}
 
-The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm. The UAV will operate at approximately 1 meter above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes. The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation, utilizing the existing farm layout to define the traversal trajectory.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately 1 meter, the UAV will capture detailed images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
+
+To ensure repeatable data collection and safe UAV operation, all field tests will be conducted only within a strictly defined controlled area inside the Janog Cacao Plantation. The exact block to be used (e.g., Block A: Rows R1–Rk) and the final parameters will be confirmed during the next site visit, since the plantation layout, obstacle locations, and link reliability conditions will be verified on-site; however, once selected, the same block and boundary limits will be fixed and used consistently for all succeeding missions.
+
+The UAV will follow predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images will be taken at regular intervals while maintaining a steady pace, and each image will be automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
+
+Since the UAV includes a built-in imaging system, minimal hardware modifications are required. The programmable flight commands ensure repeatable and consistent data collection, making the dataset suitable for training and validating the YOLO-based detection model.
+
+Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm.
 
 \begin{figure}[H]
 	\centering
@@ -41,7 +49,9 @@ The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a 
 	\includegraphics[width=0.8\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm, illustrating the specific orientation strategies used to minimize blind spots. While the UAV moves parallel to each cacao row, it maintains a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints. To address pod occlusion caused by leaves and branches, the UAV implements multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass). Smooth turns at row ends (U-turns) are performed to transition to the next row segment, ensuring stable real-time YOLO inference for detecting visible symptoms of \textit{Phytophthora palmivora}.
+The drone moves parallel to the rows of cacao trees, providing overlapping coverage of pods and minimizing blind spots. Flying at a low altitude ensures high-resolution imagery of cacao pods, enabling efficient detection of visible symptoms of \textit{Phytophthora palmivora} while minimizing lighting, wind, and stability issues for consistent data capture and system evaluation.
+
+
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
@@ -102,47 +112,49 @@ Following the requirements gathering process, the primary user of the system has
 
 \begin{longtable}{p{4cm} p{8cm}}
 	\caption{System Requirements} \label{tab:sysreq}                                                                                                                                      \\
-
+	
 	\toprule
 	\textbf{Category}        & \textbf{System Requirements}                                                                                                                               \\
 	\midrule
 	\endfirsthead
-
+	
 	\toprule
 	\textbf{Category}        & \textbf{System Requirements}                                                                                                                               \\
 	\midrule
 	\endhead
-
+	
 	\bottomrule
 	\endfoot
-
+	
 	Input Requirements       & - The system shall collect images of cacao pods captured by UAVs for disease detection.                                                                    \\
-	                         & - The system shall allow users to initiate UAV image capture and review sessions through a simple interface.                                               \\
-	                         & - The system shall utilize annotated image datasets for training the AI model, specifically focusing on black pod disease.                                 \\
-	                         & - The system shall use GPS metadata from UAVs as input to geo-tag disease detection results.                                                               \\
+	& - The system shall allow users to initiate UAV image capture and review sessions through a simple interface.                                               \\
+	& - The system shall utilize annotated image datasets for training the AI model, specifically focusing on black pod disease.                                 \\
+	& - The system shall use GPS metadata from UAVs as input to geo-tag disease detection results.                                                               \\
 	\midrule
-
+	
 	Process Requirements     & - The system shall process captured images using the YOLO model to identify and classify diseased cacao pods.                                              \\
-	                         & - The system shall preprocess input images for consistency.                                                                                                \\
-	                         & - The system shall utilize a labeled image dataset of cacao pods.                                                                                          \\
-	                         & - The system shall include a manual annotation process where images are labeled with infection presence and location.                                      \\
+	& - The system shall preprocess input images for consistency.                                                                                                \\
+	& - The system shall utilize a labeled image dataset of cacao pods.                                                                                          \\
+	& - The system shall include a manual annotation process where images are labeled with infection presence and location.                                      \\
 	\midrule
-
+	
 	Output Requirements      & - The system shall display detection results, highlighting infected areas on cacao pods in real-time or after processing.                                  \\
-	                         & - The system shall classify each detected pod as either healthy or infected.                                                                               \\
-	                         & - The system shall provide GPS coordinates alongside detection results for mapping infected areas.                                                         \\
-	                         & - The system shall generate summary reports including: total number of pods detected, number and percentage of infected pods, detection time and location. \\
+	& - The system shall classify each detected pod as either healthy or infected.                                                                               \\
+	& - The system shall provide GPS coordinates alongside detection results for mapping infected areas.                                                         \\
+	& - The system shall generate summary reports including: total number of pods detected, number and percentage of infected pods, detection time and location. \\
 	\midrule
-
+	
 	Control Requirements     & - The system shall implement secure access with user authentication to ensure that only authorized users (farmers) can access the system.                  \\
-	                         & - The system shall maintain logs of image captures, analysis sessions, and user feedback for audit and traceability.                                       \\
-	                         & - The system shall validate all image inputs and user entries to ensure efficient and usable data is processed.                                             \\
+	& - The system shall maintain logs of image captures, analysis sessions, and user feedback for audit and traceability.                                       \\
+	& - The system shall validate all image inputs and user entries to ensure efficient and usable data is processed.                                             \\
 	\midrule
-
+	
 	Performance Requirements & - The system shall be capable of processing high resolution images in real-time or near real-time with minimal latency.                                    \\
-	                         & - The system shall efficiently manage and store large datasets of images and detection results, supporting scalable usage over time.                       \\
-	                         & - The system shall maintain uptime and availability to ensure uninterrupted use during farming operations.                                                 \\
+	& - The system shall efficiently manage and store large datasets of images and detection results, supporting scalable usage over time.                       \\
+	& - The system shall maintain uptime and availability to ensure uninterrupted use during farming operations.                                                 \\
 \end{longtable}
+
+\pagebreak
 
 \section{Design and Implementation}
 \subsection{System Architecture}
@@ -156,7 +168,9 @@ Figure~\ref{fig:SysArch} illustrates the system architecture of the study.
 	\includegraphics[width=0.9\textwidth]{figures/Sys_Arch.pdf}
 \end{figure}
 
-The process begins with the cacao pods, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with built-in camera that collect input data—primarily images from the trees as it flies at approximately 1 meter level. The data captured is transmitted to the open-source microcontroller of the drone, which acts as the drone’s mini computer. This device processes the incoming images. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with its coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground station. The telemetry module sends the data wirelessly via radio frequency to the ground station, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs to the ground station. All this information will be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
+The process begins with the cacao pods, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with built-in camera that collect input data—primarily images from the trees as it flies at 2-2.5-meter level. The data captured is transmitted to the open-source microcontroller of the drone, which acts as the drone’s mini computer. This device processes the incoming images. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with its coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground station. The telemetry module sends the data wirelessly via radio frequency to the ground station, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs to the ground station. All this information will be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
+
+\pagebreak
 
 \subsection{Flowchart of Hardware and Software}
 
@@ -200,6 +214,8 @@ The server side of the Ground Station integrates several core technologies. Ngin
 
 The operational workflow begins when images captured by the UAV are transmitted to the Ground Station. Django submits the images to the YOLO detection module and then attaches geospatial information derived from the UAV’s GPS data. These enriched results are stored in PostgreSQL and subsequently retrieved by the web application for display. QGIS also retrieves this geospatial data directly from PostgreSQL to produce interactive maps and conduct further spatial assessments of the detected crop conditions.
 
+\pagebreak
+
 \subsection{Graphical User Interface Design}
 
 The Graphical User Interface (GUI) of the Ground Station was developed to provide farmers and system operators with an accessible and practical platform for cacao disease monitoring. It is organized into four core modules—Login, Dashboard, Drone Control, and History—each wireframed to emphasize usability, efficient workflows, and direct support for the study’s objectives.
@@ -232,7 +248,7 @@ The dashboard, shown in Figure~\ref{fig:DashboardGUI}, serves as the central mon
 	\centering
 	\caption{Wireframe of Drone Control}
 	\label{fig:DroneControlGUI}
-	\includegraphics[width=0.9\textwidth]{figures/Drone Control.pdf}
+	\includegraphics[width=0.9\textwidth]{figures/Drone_Control.pdf}
 \end{figure}
 
 Figure~\ref{fig:DroneControlGUI} illustrates the drone control module, which enables operators to configure flight missions, issue commands, and monitor UAV status. By integrating UAV operations into the GUI, this page ensures that image acquisition for disease detection is efficient, systematic, and directly connected to the research workflow.
@@ -288,6 +304,9 @@ The UAV-captured cacao images are fed into the YOLOv11 model for automated objec
 
 Once localization is complete, YOLOv11 proceeds with the classification of each detected pod as either healthy or infected with black pod disease. This classification is based on visual patterns learned during model training, including texture irregularities, surface discoloration, dark lesions, and other symptoms characteristic of infection. The model leverages deep feature extraction through its backbone network, multiscale feature fusion in the neck, and final detection through its head architecture. The output consists of annotated images displaying bounding boxes and class labels, where healthy pods are distinctly marked from diseased ones. This end-to-end workflow enables precise, efficient, and scalable cacao pod monitoring, facilitating early detection and management of black pod disease in agricultural environments.
 
+\subsubsection*{Real-Time Processing, Detection, and Result Output}
+Real-time processing and real-time detection will be performed during UAV flight by executing the detection pipeline on the ground station immediately as frames are received from the live video stream. Each incoming frame will undergo lightweight, per-frame standardization before inference, including color format conversion, letterbox resizing to the model input size, and pixel normalization. The standardized frame will then be forwarded to YOLOv11 to generate detections consisting of bounding boxes, class labels, and confidence scores. Detection results will be displayed immediately through on-screen overlays on the ground station for monitoring and verification, and detection logs will be written concurrently with timestamps and available location metadata to support live reporting. Under this workflow, continuous video will not be archived; instead, only detection outputs and selected evidence frames will be retained to minimize storage requirements while preserving traceability of reported detections.
+
 
 \subsubsection*{Visual and Object Geo-localization}
 
@@ -303,7 +322,7 @@ To estimate whether the drone's GPS can be used as an approximate location for a
 where $HFOV$ is the horizontal field of view in radians. The DJI RoboMaster TT has a 5 MP image (2592 pixels wide) with a horizontal FoV of 82.6$^\circ$. This gives a focal length of approximately 2620.45 pixels. The calculated pixel-width threshold for the cacao pod is
 
 \begin{equation}
-\label{eq:pixel_width_threshold_cacao_pod}
+	\label{eq:pixel_width_threshold_cacao_pod}
 	P_{\text{th}} = \frac{W \cdot f}{D_{\max}},
 \end{equation}
 \myequation{Pixel-width threshold for cacao pod}
@@ -378,20 +397,20 @@ Together, these parameters create a transparent record of the flight path and it
 
 \begin{longtable}{p{8cm} r}
 	\caption{\textit{Components and Cost}} \label{tab:components} \\
-
+	
 	\toprule
 	\textbf{Component}        & \textbf{Price (₱)}                \\
 	\midrule
 	\endfirsthead
-
+	
 	\toprule
 	\textbf{Component}        & \textbf{Price (₱)}                \\
 	\midrule
 	\endhead
-
+	
 	\bottomrule
 	\endfoot
-
+	
 	Drone (DJI RoboMaster TT) & 20,000.00                         \\
 	NEO-M8N GPS module        & 300.00                            \\
 	\midrule
@@ -418,32 +437,32 @@ Performance testing will be conducted to evaluate the system’s responsiveness,
 
 \begin{longtable}{p{4cm} >{\centering\arraybackslash}p{7cm}}
 	\caption{\textit{Performance Metrics for Cacao Pod Detection}} \label{tab:metrics}                    \\
-
+	
 	\toprule
 	\textbf{Metric} & \textbf{Equation}                                                                   \\
 	\midrule
 	\endfirsthead
-
+	
 	\toprule
 	\textbf{Metric} & \textbf{Equation}                                                                   \\
 	\midrule
 	\endhead
-
+	
 	\bottomrule
 	\endfoot
-
+	
 	Accuracy        &
 	$\displaystyle \frac{TP + TN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
-
+	
 	Precision       &
 	$\displaystyle \frac{TP}{TP + FP}$                                                                    \\ \addlinespace \addlinespace
-
+	
 	Recall          &
 	$\displaystyle \frac{TP}{TP + FN}$                                                                    \\ \addlinespace \addlinespace
-
+	
 	F1-Score        &
 	$\displaystyle \frac{2 \cdot \text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}$ \\ \addlinespace \addlinespace
-
+	
 	Error Rate      &
 	$\displaystyle \frac{FP + FN}{TP + TN + FP + FN}$                                                     \\ \addlinespace \addlinespace
 \end{longtable}
