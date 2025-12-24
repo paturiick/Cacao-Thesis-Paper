@@ -30,9 +30,15 @@ The plantation covers an area of approximately five (5) hectares and contains ar
 Local farmers will serve as potential end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The plantation’s accessibility to the research team, along with its realistic farming conditions where advanced monitoring systems are rarely implemented, makes it an ideal setting for developing and testing the proposed system.
 
 
-\subsection{Research Setup}
+\section{Research Setup}
 
-The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm. The UAV will operate at approximately 1 meter above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes. The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation, utilizing the existing farm layout to define the traversal trajectory.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm. The UAV will operate at approximately 1 meter above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes.
+
+The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation. While the UAV moves parallel to each cacao row, it will maintain a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints.
+
+To minimize blind spots and pod occlusion caused by leaves and branches, the UAV will implement multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass), while maintaining a steady speed and controlled distance from the tree line. Smooth turns at row ends (U-turns) will be performed to transition to the next row segment while preserving consistent capture conditions.
+
+Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm.
 
 \begin{figure}[H]
 	\centering
@@ -41,7 +47,7 @@ The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a 
 	\includegraphics[width=0.8\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm, illustrating the specific orientation strategies used to minimize blind spots. While the UAV moves parallel to each cacao row, it maintains a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints. To address pod occlusion caused by leaves and branches, the UAV implements multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass). Smooth turns at row ends (U-turns) are performed to transition to the next row segment, ensuring stable real-time YOLO inference for detecting visible symptoms of \textit{Phytophthora palmivora}.
+By flying parallel to the cacao rows while facing the trees, the UAV achieves overlapping visual coverage of pods, reduces missed detections due to occlusion, and supports stable real-time YOLO inference under actual farm conditions for detecting visible symptoms of \textit{Phytophthora palmivora}.
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
@@ -335,6 +341,15 @@ The RoboMaster TT integrates several important functions. Its flight system comb
 
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to
 13 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
+
+\begin{figure}[H]
+	\centering
+	\caption{System Block Diagram of the DJI RoboMaster TT}
+	\label{fig:system_block}
+	\includegraphics[width=0.9\textwidth]{figures/Drone_Block_Diagram.pdf}
+\end{figure}
+
+The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to 7 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
 \subsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land}, allowing it to follow predefined flight paths across cacao rows. During these missions, the drone captures images of cacao pods at specific intervals, paired with location data provided by the integrated NEO-M8N GPS module.
