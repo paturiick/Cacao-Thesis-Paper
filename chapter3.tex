@@ -34,6 +34,8 @@ Local farmers will serve as potential end-users, providing feedback on the pract
 
 The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately 1 meter, the UAV will capture detailed images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
 
+To ensure repeatable data collection and safe UAV operation, all field tests will be conducted only within a strictly defined controlled area inside the Janog Cacao Plantation. The exact block to be used (e.g., Block A: Rows R1–Rk) and the final parameters will be confirmed during the next site visit, since the plantation layout, obstacle locations, and link reliability conditions will be verified on-site; however, once selected, the same block and boundary limits will be fixed and used consistently for all succeeding missions.
+
 The UAV will follow predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images will be taken at regular intervals while maintaining a steady pace, and each image will be automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
 
 Since the UAV includes a built-in imaging system, minimal hardware modifications are required. The programmable flight commands ensure repeatable and consistent data collection, making the dataset suitable for training and validating the YOLO-based detection model.
@@ -48,6 +50,7 @@ Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the caca
 \end{figure}
 
 The drone moves parallel to the rows of cacao trees, providing overlapping coverage of pods and minimizing blind spots. Flying at a low altitude ensures high-resolution imagery of cacao pods, enabling efficient detection of visible symptoms of \textit{Phytophthora palmivora} while minimizing lighting, wind, and stability issues for consistent data capture and system evaluation.
+
 
 
 \section{Data Gathering}
@@ -295,6 +298,8 @@ The UAV-captured cacao images are fed into the YOLOv11 model for automated objec
 
 Once localization is complete, YOLOv11 proceeds with the classification of each detected pod as either healthy or infected with black pod disease. This classification is based on visual patterns learned during model training, including texture irregularities, surface discoloration, dark lesions, and other symptoms characteristic of infection. The model leverages deep feature extraction through its backbone network, multiscale feature fusion in the neck, and final detection through its head architecture. The output consists of annotated images displaying bounding boxes and class labels, where healthy pods are distinctly marked from diseased ones. This end-to-end workflow enables precise, efficient, and scalable cacao pod monitoring, facilitating early detection and management of black pod disease in agricultural environments.
 
+\subsubsection*{Real-Time Processing, Detection, and Result Output}
+Real-time processing and real-time detection will be performed during UAV flight by executing the detection pipeline on the ground station immediately as frames are received from the live video stream. Each incoming frame will undergo lightweight, per-frame standardization before inference, including color format conversion, letterbox resizing to the model input size, and pixel normalization. The standardized frame will then be forwarded to YOLOv11 to generate detections consisting of bounding boxes, class labels, and confidence scores. Detection results will be displayed immediately through on-screen overlays on the ground station for monitoring and verification, and detection logs will be written concurrently with timestamps and available location metadata to support live reporting. Under this workflow, continuous video will not be archived; instead, only detection outputs and selected evidence frames will be retained to minimize storage requirements while preserving traceability of reported detections.
 
 
 \subsubsection*{Visual and Object Geo-localization}
