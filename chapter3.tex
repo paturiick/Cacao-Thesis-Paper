@@ -162,20 +162,17 @@ Figure~\ref{fig:SysArch} illustrates the system architecture of the study.
 	\includegraphics[width=0.9\textwidth]{figures/Sys_Arch.pdf}
 \end{figure}
 
-The process begins with the cacao pods, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with built-in camera that collect input data—primarily images from the trees as it flies at approximately 1 meter level. The data captured is transmitted to the open-source microcontroller of the drone, which acts as the drone’s mini computer. This device processes the incoming images. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with its coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground station. The telemetry module sends the data wirelessly via radio frequency to the ground station, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs to the ground station. All this information will be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
+The architecture is designed as a closed-loop system centered around the cacao tree, which serves as the source of input data. The proposed drone (DJI RoboMaster TT) acts as the primary data acquisition unit, capturing visual input from the trees. To ensure spatial accuracy, an external GPS NEO-M8N module is integrated into the drone's expansion board; this module continuously transmits geolocation data to the drone, allowing for the synchronization of images with specific coordinates.
+
+Data transmission is facilitated through a wireless Wi-Fi network. A high-gain Wi-Fi adapter connected to the ground station establishes a bidirectional link, enabling the system to send flight commands to the drone and retrieve telemetry and video data in real-time. The ground station functions as the central controller and processing hub, where the farmer interacts with the system. The farmer inputs mission parameters ("send data") and receives actionable insights ("output data") regarding the health status of the crops. Finally, a database is integrated with the ground station to permanently store mission logs and detection results, allowing for the retrieval of historical data for long-term analysis.
 
 \subsection{Flowchart of Hardware and Software}
 
 Figure~\ref{fig:HardFlow} illustrates the operational workflow of the UAV system.
 
-\begin{figure}[H]
-	\centering
-	\caption{Hardware Flowchart}
-	\label{fig:HardFlow}
-	\includegraphics[width=0.9\textwidth]{figures/hardware_flowchart.pdf}
-\end{figure}
+\begin{figure}[H] \centering \caption{Hardware Flowchart} \label{fig:HardFlow} \includegraphics[width=0.9\textwidth]{figures/hardware_flowchart.pdf} \end{figure}
 
-It begins with powering on the UAV, followed by the initialization of its key sensors, including the camera, GPS module, and obstacle detection system. Once the sensors are active, the system checks for telemetry connectivity with the ground station; if the connection fails, the drone retries until successful. After establishing a link, the mission plan is loaded from the ground station, and the UAV proceeds to takeoff. During flight, two processes run in parallel: the drone continuously captures images and videos with GPS geotags for later processing, while simultaneously monitoring its environment for obstacles and adjusting its path when necessary. The system then checks whether the mission plan has been completed. If it is complete, the UAV proceeds to land; if not, it continues executing the remaining tasks until completion. Only after landing are the stored image and location data transmitted to the ground station for processing. The operation then concludes with system power down.
+The process starts with powering on the ground station (laptop) and the UAV (RoboMaster TT and expansion board). Following startup, the system initializes the drone camera and the GPS NEO-M8N module. A critical check is performed to ensure a stable GPS lock is available; if the lock is not acquired, the system retries until it is confirmed. Once the GPS is locked, the ground station connects to the drone’s Wi-Fi SSID, and the system verifies the connection status. Upon successful connection, the drone takes off and enters the main mission loop. In this loop, the drone captures frames from the camera, reads the GPS coordinates, and immediately starts telemetry data transfer over Wi-Fi. The system then manages the mission plan execution and continuously checks if the mission is complete or if the battery is low. If either condition is met, the drone lands to conclude the operation.
 
 Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals.
 
@@ -342,6 +339,7 @@ The RoboMaster TT integrates several important functions. Its flight system comb
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to
 13 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
+The RoboMaster TT integrates several important functions, as illustrated in the system block diagram in Figure~\ref{fig:system_block}. Its flight system combines a flight controller and propulsion motors with the Vision Positioning System (VPS).
 \begin{figure}[H]
 	\centering
 	\caption{System Block Diagram of the DJI RoboMaster TT}
@@ -350,6 +348,16 @@ The onboard 5 MP camera enables the capture of still images and 720p HD video, s
 \end{figure}
 
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to 7 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
+
+Figure \ref{fig:expansion_circuit} illustrates the hardware interfacing between the RoboMaster TT’s expansion board (ESP32 Controller) and the external NEO-M8N GPS module via the Universal Asynchronous Receiver-Transmitter (UART) protocol.
+\begin{figure}[H]
+	\centering
+	\caption{Expansion Board Circuit Diagram}
+	\label{fig:expansion_circuit}
+	\includegraphics[width=1\textwidth]{figures/Expansion_Board_Circuit_Diagram.pdf}
+\end{figure}
+
+ The GPS module is powered by the 3.3V output from the expansion board, with a common Ground (GND) connection ensuring signal stability. Data communication follows a cross-coupled configuration where the GPS TX (Transmit) pin connects to the ESP32 RX (Receive) pin to stream NMEA data containing geospatial coordinates. Conversely, the GPS RX pin connects to the ESP32 TX pin, allowing the controller to send configuration commands to the module. This direct UART connection enables the ESP32 to parse geospatial data with low latency, which is then synchronized with the video feed for the telemetry overlay.
 
 \subsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land}, allowing it to follow predefined flight paths across cacao rows. During these missions, the drone captures images of cacao pods at specific intervals, paired with location data provided by the integrated NEO-M8N GPS module.
