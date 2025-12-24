@@ -258,7 +258,7 @@ Figure~\ref{fig:DroneControlGUI} illustrates the drone control module, which ena
 
 The history module, depicted in Figure~\ref{fig:HistoryGUI}, provides an archive of past detection missions and results. Users can browse, filter, and review earlier UAV detections, which supports long-term disease monitoring and analysis of crop health trends. This functionality reinforces the study’s goal of offering farmers a reliable tool for tracking disease progression and assessing the effectiveness of interventions.
 
-\subsection{YOLO-Based Detection Implementation}
+\subsection{YOLOv11-Based Detection Implementation}
 YOLO (You Only Look Once) algorithm, a CNN-based object detection framework that employs Convolutional Neural Networks to simultaneously determine the location of objects within an image and classify them. Unlike traditional image classification models, which merely indicate the presence of an object, YOLO predicts both what the object is and where it is situated by drawing bounding boxes around it in a single processing step.
 
 YOLOv11 is employed since it introduces architectural improvements in feature extraction, particularly for small-object detection, and achieves higher accuracy with fewer parameters compared to earlier versions. YOLOv11 also provides scalable model variants that allow researchers to balance accuracy and computational requirements, making it highly suited for UAV-captured aerial imagery where cacao pods may appear small, numerous, and partially obscured.
