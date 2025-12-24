@@ -37,14 +37,14 @@ The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a 
 The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation. While the UAV moves parallel to each cacao row, it will maintain a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints.
 
 To minimize blind spots and pod occlusion caused by leaves and branches, the UAV will implement multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass), while maintaining a steady speed and controlled distance from the tree line. Smooth turns at row ends (U-turns) will be performed to transition to the next row segment while preserving consistent capture conditions.
-
+\newpage
 Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm.
 
 \begin{figure}[H]
 	\centering
 	\caption{UAV Flight Paths Across the Cacao Farm}
 	\label{fig:uav_flight_paths}
-	\includegraphics[width=0.8\textwidth]{figures/Uav_Flight_Paths.pdf}
+	\includegraphics[width=1\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
 By flying parallel to the cacao rows while facing the trees, the UAV achieves overlapping visual coverage of pods, reduces missed detections due to occlusion, and supports stable real-time YOLO inference under actual farm conditions for detecting visible symptoms of \textit{Phytophthora palmivora}.
@@ -149,7 +149,7 @@ Following the requirements gathering process, the primary user of the system has
 	                         & - The system shall efficiently manage and store large datasets of images and detection results, supporting scalable usage over time.                       \\
 	                         & - The system shall maintain uptime and availability to ensure uninterrupted use during farming operations.                                                 \\
 \end{longtable}
-
+\newpage
 \section{Design and Implementation}
 \subsection{System Architecture}
 
@@ -165,14 +165,28 @@ Figure~\ref{fig:SysArch} illustrates the system architecture of the study.
 The architecture is designed as a closed-loop system centered around the cacao tree, which serves as the source of input data. The proposed drone (DJI RoboMaster TT) acts as the primary data acquisition unit, capturing visual input from the trees. To ensure spatial accuracy, an external GPS NEO-M8N module is integrated into the drone's expansion board; this module continuously transmits geolocation data to the drone, allowing for the synchronization of images with specific coordinates.
 
 Data transmission is facilitated through a wireless Wi-Fi network. A high-gain Wi-Fi adapter connected to the ground station establishes a bidirectional link, enabling the system to send flight commands to the drone and retrieve telemetry and video data in real-time. The ground station functions as the central controller and processing hub, where the farmer interacts with the system. The farmer inputs mission parameters ("send data") and receives actionable insights ("output data") regarding the health status of the crops. Finally, a database is integrated with the ground station to permanently store mission logs and detection results, allowing for the retrieval of historical data for long-term analysis.
-
+\newpage
 \subsection{Flowchart of Hardware and Software}
 
 Figure~\ref{fig:HardFlow} illustrates the operational workflow of the UAV system.
 
-\begin{figure}[H] \centering \caption{Hardware Flowchart} \label{fig:HardFlow} \includegraphics[width=0.9\textwidth]{figures/hardware_flowchart.pdf} \end{figure}
+\begin{figure}[H] \centering \caption{Hardware Flowchart} \label{fig:HardFlow} \includegraphics[width=0.83\textwidth]{figures/hardware_flowchart.pdf} \end{figure}
 
 The process starts with powering on the ground station (laptop) and the UAV (RoboMaster TT and expansion board). Following startup, the system initializes the drone camera and the GPS NEO-M8N module. A critical check is performed to ensure a stable GPS lock is available; if the lock is not acquired, the system retries until it is confirmed. Once the GPS is locked, the ground station connects to the drone’s Wi-Fi SSID, and the system verifies the connection status. Upon successful connection, the drone takes off and enters the main mission loop. In this loop, the drone captures frames from the camera, reads the GPS coordinates, and immediately starts telemetry data transfer over Wi-Fi. The system then manages the mission plan execution and continuously checks if the mission is complete or if the battery is low. If either condition is met, the drone lands to conclude the operation.
+
+Figure~\ref{fig:UserFlow} illustrates the user interaction flow within the web-based ground station. 
+
+\begin{figure}[H]
+	\centering
+	\caption{User Flowchart}
+	\label{fig:UserFlow}
+	\includegraphics[width=1\textwidth]{figures/User Flowchart.pdf}
+\end{figure}
+
+
+The process begins when the user opens the ground station website and logs in. The system validates the entered credentials; if invalid, an error message is shown and the user is redirected back to the login step. Once authenticated, the user is taken to the dashboard, where they can navigate to different modules by selecting a page. From the dashboard, the user may open the Mission Planner page (A) to configure mission parameters (e.g., commands) and save the mission, then return to the dashboard. The user may also open the Live Monitor page (B), where a UAV connection wizard is displayed; if the UAV is not connected, an error is shown and the connection attempt repeats, but if connected, the user starts the video stream and views the live video feed. From there, the user can proceed to the Telemetry page (C) to view telemetry data and decide whether to start the mission. If the mission is started, the system runs the mission plan until the user ends the mission, after which the mission is stopped and the flow returns to the dashboard. Alternatively, the user may open the Map and Geotagging page (D) to view the live map and GPS data, or open the Report page (E) to view the summarized results. After completing any module, the flow returns to the dashboard, allowing the user to continue navigating or end the session.
+
+
 
 Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals.
 
