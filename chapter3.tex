@@ -296,6 +296,7 @@ The UAV-captured cacao images are fed into the YOLOv11 model for automated objec
 Once localization is complete, YOLOv11 proceeds with the classification of each detected pod as either healthy or infected with black pod disease. This classification is based on visual patterns learned during model training, including texture irregularities, surface discoloration, dark lesions, and other symptoms characteristic of infection. The model leverages deep feature extraction through its backbone network, multiscale feature fusion in the neck, and final detection through its head architecture. The output consists of annotated images displaying bounding boxes and class labels, where healthy pods are distinctly marked from diseased ones. This end-to-end workflow enables precise, efficient, and scalable cacao pod monitoring, facilitating early detection and management of black pod disease in agricultural environments.
 
 
+
 \subsubsection*{Visual and Object Geo-localization}
 
 The UAV is equipped with a GPS module and a forward-facing camera that captures images of the cacao pods during flight. Each image is associated with the DJI RoboMaster TT’s GPS at the moment of capture. The images are then processed using an object detection model (YOLOv11), which generates bounding boxes around identified cacao pods. A bounding box is defined by its pixel coordinates $(x, y, w, h)$, where $(x, y)$ is the top-left corner, and $w$ and $h$ are the width and height in pixels.
