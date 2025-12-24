@@ -30,29 +30,9 @@ The plantation covers an area of approximately five (5) hectares and contains ar
 Local farmers will serve as potential end-users, providing feedback on the practicality of UAV operations and the usability of the detection system. The plantation’s accessibility to the research team, along with its realistic farming conditions where advanced monitoring systems are rarely implemented, makes it an ideal setting for developing and testing the proposed system.
 
 
-\section{Research Setup}
+\subsection{Research Setup}
 
-The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in xxxxxxxxx. The UAV will operate at approximately 1\,m above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes.
-
-The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation (Figure~\ref{fig:uav_flight_paths}). While the UAV moves parallel to each cacao row, it will maintain a yaw (heading) orientation such that the camera \textbf{faces the cacao trees} during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints.
-
-To minimize blind spots and pod occlusion caused by leaves and branches, the UAV will implement multi-view coverage by alternating its facing direction across passes (e.g., left-facing on one pass and right-facing on the return pass), while maintaining a steady speed and controlled distance from the tree line. Smooth turns at row ends (U-turns) will be performed to transition to the next row segment while preserving consistent capture conditions.
-
-Unlike post-flight processing only, the system will perform \textbf{real-time detection} using a YOLO-based model while the UAV is capturing video. The live video stream will be processed frame-by-frame to detect cacao pods and classify potential black pod rot symptoms. Real-time inference enables immediate identification of suspected infected pods during the flight, supporting faster field decisions and reducing the need to wait for full offline analysis.
-
-During flight, the detection module will process the live video stream by running YOLO inference on incoming frames in real time, overlaying bounding boxes and class labels to support monitoring and verification, logging each detection with its timestamp and GPS coordinates (latitude, longitude, and optionally altitude), and saving selected evidence frames such as those with detections above a confidence threshold for dataset expansion and audit purposes.
-
-To improve capture quality for detected targets, the UAV may apply a brief response behavior when a detection occurs (e.g., slow down or hover momentarily) while keeping the camera facing the trees. This increases the chance of collecting clearer frames of the same pod from near-identical viewpoints, improving reliability in both real-time decisions and later evaluation.
-
-\subsection*{Geotagging and Mapping Workflow}
-
-Each detection event will be associated with GPS coordinates and a timestamp, producing a structured detection log (e.g., CSV/GeoJSON) that can be imported into QGIS for visualization. This enables spatial mapping of suspected infections across the plantation, allowing infected areas to be highlighted per row segment for monitoring and intervention planning.
-
-\subsection*{Repeatability and Consistency}
-
-Because the UAV flight path, camera-facing orientation, and detection logging procedure are predefined and programmable, the data collection is repeatable across multiple sessions. This consistency improves the comparability of results over time (e.g., repeated monitoring of the same rows) and supports reliable training/validation and field evaluation of the YOLO-based detection system.
-
-Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm. The UAV will operate at approximately 1 meter above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes. The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation, utilizing the existing farm layout to define the traversal trajectory.
 
 \begin{figure}[H]
 	\centering
@@ -61,10 +41,7 @@ Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the caca
 	\includegraphics[width=0.8\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-By flying parallel to the cacao rows while facing the trees, the UAV achieves overlapping visual coverage of pods, reduces missed detections due to occlusion, and supports stable real-time YOLO inference under actual farm conditions for detecting visible symptoms of \textit{Phytophthora palmivora}.
-
-
-
+Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm, illustrating the specific orientation strategies used to minimize blind spots. While the UAV moves parallel to each cacao row, it maintains a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints. To address pod occlusion caused by leaves and branches, the UAV implements multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass). Smooth turns at row ends (U-turns) are performed to transition to the next row segment, ensuring stable real-time YOLO inference for detecting visible symptoms of \textit{Phytophthora palmivora}.
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
