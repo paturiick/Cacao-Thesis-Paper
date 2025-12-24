@@ -32,29 +32,16 @@ Local farmers will serve as potential end-users, providing feedback on the pract
 
 \section{Research Setup}
 
-The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately 1 meter, the UAV will capture detailed images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
-
-To ensure repeatable data collection and safe UAV operation, all field tests will be conducted only within a strictly defined controlled area inside the Janog Cacao Plantation. The exact block to be used (e.g., Block A: Rows R1–Rk) and the final parameters will be confirmed during the next site visit, since the plantation layout, obstacle locations, and link reliability conditions will be verified on-site; however, once selected, the same block and boundary limits will be fixed and used consistently for all succeeding missions.
-
-<<<<<<< HEAD
-To minimize blind spots and pod occlusion caused by leaves and branches, the UAV will implement multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass), while maintaining a steady speed and controlled distance from the tree line. Smooth turns at row ends (U-turns) will be performed to transition to the next row segment while preserving consistent capture conditions.
-\newpage
-=======
-The UAV will follow predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images will be taken at regular intervals while maintaining a steady pace, and each image will be automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
-
-Since the UAV includes a built-in imaging system, minimal hardware modifications are required. The programmable flight commands ensure repeatable and consistent data collection, making the dataset suitable for training and validating the YOLO-based detection model.
-
->>>>>>> 9677dc52c1bd3fc61b156ad124b4be918ac44435
-Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm. The UAV will operate at approximately 1 meter above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes. The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation, utilizing the existing farm layout to define the traversal trajectory.
 
 \begin{figure}[H]
 	\centering
 	\caption{UAV Flight Paths Across the Cacao Farm}
 	\label{fig:uav_flight_paths}
-	\includegraphics[width=1\textwidth]{figures/Uav_Flight_Paths.pdf}
+	\includegraphics[width=0.8\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-The drone moves parallel to the rows of cacao trees, providing overlapping coverage of pods and minimizing blind spots. Flying at a low altitude ensures high-resolution imagery of cacao pods, enabling efficient detection of visible symptoms of \textit{Phytophthora palmivora} while minimizing lighting, wind, and stability issues for consistent data capture and system evaluation.
+Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm, illustrating the specific orientation strategies used to minimize blind spots. While the UAV moves parallel to each cacao row, it maintains a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints. To address pod occlusion caused by leaves and branches, the UAV implements multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass). Smooth turns at row ends (U-turns) are performed to transition to the next row segment, ensuring stable real-time YOLO inference for detecting visible symptoms of \textit{Phytophthora palmivora}.
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
