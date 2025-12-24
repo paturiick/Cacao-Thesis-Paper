@@ -51,8 +51,6 @@ Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the caca
 
 The drone moves parallel to the rows of cacao trees, providing overlapping coverage of pods and minimizing blind spots. Flying at a low altitude ensures high-resolution imagery of cacao pods, enabling efficient detection of visible symptoms of \textit{Phytophthora palmivora} while minimizing lighting, wind, and stability issues for consistent data capture and system evaluation.
 
-
-
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
 
@@ -354,6 +352,15 @@ The RoboMaster TT integrates several important functions. Its flight system comb
 
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to
 13 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
+
+\begin{figure}[H]
+	\centering
+	\caption{System Block Diagram of the DJI RoboMaster TT}
+	\label{fig:system_block}
+	\includegraphics[width=0.9\textwidth]{figures/Drone_Block_Diagram.pdf}
+\end{figure}
+
+The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to 7 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
 \subsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land}, allowing it to follow predefined flight paths across cacao rows. During these missions, the drone captures images of cacao pods at specific intervals, paired with location data provided by the integrated NEO-M8N GPS module.
