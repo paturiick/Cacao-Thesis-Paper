@@ -32,15 +32,7 @@ Local farmers will serve as potential end-users, providing feedback on the pract
 
 \section{Research Setup}
 
-The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm at the Janog Cacao Plantation in Initao, Misamis Oriental. Flying at a height of approximately 1 meter, the UAV will capture detailed images of cacao pods, allowing early signs of black pod disease to be detected without the need for high-altitude passes.
-
-To ensure repeatable data collection and safe UAV operation, all field tests will be conducted only within a strictly defined controlled area inside the Janog Cacao Plantation. The exact block to be used (e.g., Block A: Rows R1–Rk) and the final parameters will be confirmed during the next site visit, since the plantation layout, obstacle locations, and link reliability conditions will be verified on-site; however, once selected, the same block and boundary limits will be fixed and used consistently for all succeeding missions.
-
-The UAV will follow predefined flight paths along the rows of cacao trees to ensure systematic coverage of the plantation. Images will be taken at regular intervals while maintaining a steady pace, and each image will be automatically geotagged with precise coordinates from the integrated NEO-M8N GPS module. This process enables researchers to map infected pods within the farm using QGIS for visualization.
-
-Since the UAV includes a built-in imaging system, minimal hardware modifications are required. The programmable flight commands ensure repeatable and consistent data collection, making the dataset suitable for training and validating the YOLO-based detection model.
-
-Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the cacao farm.
+The research setup will utilize a UAV (Unmanned Aerial Vehicle) equipped with a built-in high-definition camera and GPS module to conduct low-altitude monitoring of the cacao farm. The UAV will operate at approximately 1 meter above ground level to capture detailed visual information of cacao pods under the canopy, where early symptoms of black pod rot are more visible than in high-altitude passes. The UAV will follow predefined flight paths along the corridors between cacao rows to ensure systematic coverage of the plantation, utilizing the existing farm layout to define the traversal trajectory.
 
 \begin{figure}[H]
 	\centering
@@ -49,7 +41,7 @@ Figure~\ref{fig:uav_flight_paths} shows the UAV’s flight paths across the caca
 	\includegraphics[width=0.8\textwidth]{figures/Uav_Flight_Paths.pdf}
 \end{figure}
 
-The drone moves parallel to the rows of cacao trees, providing overlapping coverage of pods and minimizing blind spots. Flying at a low altitude ensures high-resolution imagery of cacao pods, enabling efficient detection of visible symptoms of \textit{Phytophthora palmivora} while minimizing lighting, wind, and stability issues for consistent data capture and system evaluation.
+Figure~\ref{fig:uav_flight_paths} presents the UAV’s flight paths across the cacao farm, illustrating the specific orientation strategies used to minimize blind spots. While the UAV moves parallel to each cacao row, it maintains a yaw (heading) orientation such that the camera faces the cacao trees during recording. This side-facing strategy keeps pods consistently inside the camera field of view and reduces missed captures caused by limited viewpoints. To address pod occlusion caused by leaves and branches, the UAV implements multi-view coverage by alternating its facing direction across passes (e.g., right-facing on one pass and left-facing on the return pass). Smooth turns at row ends (U-turns) are performed to transition to the next row segment, ensuring stable real-time YOLO inference for detecting visible symptoms of \textit{Phytophthora palmivora}.
 
 \section{Data Gathering}
 To ensure a well-rounded and effective system design, data for this study will be collected from various relevant sources:
@@ -152,8 +144,8 @@ Following the requirements gathering process, the primary user of the system has
 	& - The system shall maintain uptime and availability to ensure uninterrupted use during farming operations.                                                 \\
 \end{longtable}
 
+\newpage
 \pagebreak
-
 \section{Design and Implementation}
 \subsection{System Architecture}
 
@@ -166,35 +158,49 @@ Figure~\ref{fig:SysArch} illustrates the system architecture of the study.
 	\includegraphics[width=0.9\textwidth]{figures/Sys_Arch.pdf}
 \end{figure}
 
-The process begins with the cacao pods, which are the central focus of the system. To monitor them, a proposed drone is deployed over the farm. This DJI RoboMaster TT is equipped with built-in camera that collect input data—primarily images from the trees as it flies at 2-2.5-meter level. The data captured is transmitted to the open-source microcontroller of the drone, which acts as the drone’s mini computer. This device processes the incoming images. Additionally, a GPS module connected to the system sends precise geolocation data to the processor, tagging the collected images with its coordinates. Once the data is processed, it is temporarily stored in a memory unit. From there, the data is transmitted using a telemetry module, which serves as a bridge between the drone and the ground station. The telemetry module sends the data wirelessly via radio frequency to the ground station, which acts as both a controller and a receiver. It receives the telemetry data and displays it in a user-friendly format, allowing the farmer to monitor the status of the cacao trees. The farmer can also send commands or control inputs to the ground station. All this information will be stored and retrieved from a database for later analysis or reference. The farmer is empowered with clear insights about the farm’s condition without needing to be physically present at each tree.
+The architecture is designed as a closed-loop system centered around the cacao tree, which serves as the source of input data. The proposed drone (DJI RoboMaster TT) acts as the primary data acquisition unit, capturing visual input from the trees. To ensure spatial accuracy, an external GPS NEO-M8N module is integrated into the drone's expansion board; this module continuously transmits geolocation data to the drone, allowing for the synchronization of images with specific coordinates.
 
-\pagebreak
-
+Data transmission is facilitated through a wireless Wi-Fi network. A high-gain Wi-Fi adapter connected to the ground station establishes a bidirectional link, enabling the system to send flight commands to the drone and retrieve telemetry and video data in real-time. The ground station functions as the central controller and processing hub, where the farmer interacts with the system. The farmer inputs mission parameters ("send data") and receives actionable insights ("output data") regarding the health status of the crops. Finally, a database is integrated with the ground station to permanently store mission logs and detection results, allowing for the retrieval of historical data for long-term analysis.
+\newpage
 \subsection{Flowchart of Hardware and Software}
 
 Figure~\ref{fig:HardFlow} illustrates the operational workflow of the UAV system.
 
+\begin{figure}[H] \centering \caption{Hardware Flowchart} \label{fig:HardFlow} \includegraphics[width=0.83\textwidth]{figures/hardware_flowchart.pdf} \end{figure}
+
+The process starts with powering on the ground station (laptop) and the UAV (RoboMaster TT and expansion board). Following startup, the system initializes the drone camera and the GPS NEO-M8N module. A critical check is performed to ensure a stable GPS lock is available; if the lock is not acquired, the system retries until it is confirmed. Once the GPS is locked, the ground station connects to the drone’s Wi-Fi SSID, and the system verifies the connection status. Upon successful connection, the drone takes off and enters the main mission loop. In this loop, the drone captures frames from the camera, reads the GPS coordinates, and immediately starts telemetry data transfer over Wi-Fi. The system then manages the mission plan execution and continuously checks if the mission is complete or if the battery is low. If either condition is met, the drone lands to conclude the operation.
+
+\newpage
+Figure~\ref{fig:UserFlow} illustrates the user interaction flow within the web-based ground station. 
+
 \begin{figure}[H]
 	\centering
-	\caption{Hardware Flowchart}
-	\label{fig:HardFlow}
-	\includegraphics[width=0.9\textwidth]{figures/hardware_flowchart.pdf}
+	\caption{User Flowchart}
+	\label{fig:UserFlow}
+	\includegraphics[width=1\textwidth]{figures/User Flowchart.pdf}
 \end{figure}
 
-It begins with powering on the UAV, followed by the initialization of its key sensors, including the camera, GPS module, and obstacle detection system. Once the sensors are active, the system checks for telemetry connectivity with the ground station; if the connection fails, the drone retries until successful. After establishing a link, the mission plan is loaded from the ground station, and the UAV proceeds to takeoff. During flight, two processes run in parallel: the drone continuously captures images and videos with GPS geotags for later processing, while simultaneously monitoring its environment for obstacles and adjusting its path when necessary. The system then checks whether the mission plan has been completed. If it is complete, the UAV proceeds to land; if not, it continues executing the remaining tasks until completion. Only after landing are the stored image and location data transmitted to the ground station for processing. The operation then concludes with system power down.
 
-Figure~\ref{fig:SoftFlow} shows the software workflow, starting with the user logging into the system and creating a mission plan that defines waypoints, altitude, and capture intervals.
+The process begins when the user opens the ground station website and logs in. The system validates the entered credentials; if invalid, an error message is shown and the user is redirected back to the login step. Once authenticated, the user is taken to the dashboard, where they can navigate to different modules by selecting a page. From the dashboard, the user may open the Mission Planner page (A) to configure mission parameters (e.g., commands) and save the mission, then return to the dashboard. The user may also open the Live Monitor page (B), where a UAV connection wizard is displayed; if the UAV is not connected, an error is shown and the connection attempt repeats, but if connected, the user starts the video stream and views the live video feed. From there, the user can proceed to the Telemetry page (C) to view telemetry data and decide whether to start the mission. If the mission is started, the system runs the mission plan until the user ends the mission, after which the mission is stopped and the flow returns to the dashboard. Alternatively, the user may open the Map and Geotagging page (D) to view the live map and GPS data, or open the Report page (E) to view the summarized results. After completing any module, the flow returns to the dashboard, allowing the user to continue navigating or end the session.
+
+
+\newpage
+Figure~\ref{fig:SoftFlow} illustrates the software workflow, which begins with the initialization of the ground station and the establishment of a connection with the UAV.
 
 \begin{figure}[H]
 	\centering
 	\caption{Software Flowchart}
 	\label{fig:SoftFlow}
-	\includegraphics[width=0.9\textwidth]{figures/software_flowchart.pdf}
+	\includegraphics[width=1\textwidth]{figures/Software Flowchart.pdf}
 \end{figure}
 
-This plan is then sent to the UAV through SDK, after which the system awaits mission status updates. At this stage, a decision point determines whether the mission has been completed. If the mission is successful, the system retrieves the uploaded images with their GPS metadata; otherwise, it continues waiting until completion. Once the data is received, the images undergo preprocessing such as resizing, normalization, and augmentation before being passed through the YOLO algorithm for disease detection and classification. The detection results are then associated with GPS coordinates to ensure spatial accuracy and are mapped in QGIS to generate a clear visualization of affected areas. From this stage, two operations run in parallel: results are displayed on the dashboard for immediate user insight, while the same results are saved into the database for reporting and long-term storage. Finally, the processes converge, and the mission concludes to complete the workflow.
+Once the drone is successfully connected, the system sends SDK commands to specific flight modes and initiates the data streams. The core processing loop involves acquiring video frames and synchronizing them with telemetry data. A multi-stage detection pipeline is then executed: first, a primary YOLO model detects the cacao pods within the frame. These detections are fed into the ByteTrack algorithm to maintain consistent object identities across frames. Subsequently, a secondary YOLO model classifies the disease status of each tracked pod, and a final label is computed using a voting or averaging mechanism.
 
+The results are immediately processed for both storage and visualization. A track log record is created and written to the database. Simultaneously, the system streams overlay frames to a website, updates real-time counters for healthy versus diseased pods, and refreshes map markers. This cycle repeats continuously as long as the mission remains active; once the mission is deactivated, the system executes the end mission sequence.
+\newpage
 \subsection{Ground Station Architecture}
+
+Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user.
 
 \begin{figure}[H]
 	\centering
@@ -203,7 +209,7 @@ This plan is then sent to the UAV through SDK, after which the system awaits mis
 	\includegraphics[width=1\textwidth]{figures/Ground_Station.pdf}
 \end{figure}
 
-Figure~\ref{fig:GroundStation} presents the entire system that manages the processing of UAV data and delivers results to the end user. The Ground Station serves as the central control and processing hub of the proposed system, responsible for handling all backend operations, data management, and user interaction. It functions as the bridge between the UAV and the end user by receiving aerial images, processing them through the detection pipeline, and displaying the analyzed results through an accessible interface. Essentially, the Ground Station ensures that raw UAV data is transformed into actionable information, facilitating efficient monitoring, analysis, and decision-making for cacao pod disease detection in real time. It is composed of two closely connected parts: the web application and the server components.
+ The Ground Station serves as the central control and processing hub of the proposed system, responsible for handling all backend operations, data management, and user interaction. It functions as the bridge between the UAV and the end user by receiving aerial images, processing them through the detection pipeline, and displaying the analyzed results through an accessible interface. Essentially, the Ground Station ensures that raw UAV data is transformed into actionable information, facilitating efficient monitoring, analysis, and decision-making for cacao pod disease detection in real time. It is composed of two closely connected parts: the web application and the server components.
 
 The web application, developed in Vue.js, serves as the main user interface, providing modules for authentication, drone mission control, and visualization of detection outputs. The dashboard summarizes key statistics such as the number of pods identified as healthy or infected, while the history module allows users to review past detections and track trends over time, enabling farmers to monitor crop health and make informed decisions.
 
@@ -218,6 +224,8 @@ The operational workflow begins when images captured by the UAV are transmitted 
 
 The Graphical User Interface (GUI) of the Ground Station was developed to provide farmers and system operators with an accessible and practical platform for cacao disease monitoring. Based on the implemented web interface, the system is organized into four main pages—Dashboard, Mission Planning, Drone Control, and History—designed to support a complete workflow from mission setup, to real-time UAV monitoring, to reporting. The Dashboard presents an overview of detection results and coverage summaries, the Mission Planning page allows operators to configure flight parameters prior to deployment, the Drone Control page supports live streaming and real-time monitoring during flight, and the History page consolidates completed missions into a report for review and record keeping.
 
+\newpage
+Figure~\ref{fig:WebAppGUI} presents the web-based graphical user interface (GUI) of the ground station for cacao disease monitoring.
 \begin{figure}[H]
 	\centering
 	\caption{Web Application GUI}
@@ -225,9 +233,7 @@ The Graphical User Interface (GUI) of the Ground Station was developed to provid
 	\includegraphics[width=1\textwidth]{figures/Web_GUI.pdf}
 \end{figure}
 
-Figure~\ref{fig:WebAppGUI} presents the web-based graphical user interface (GUI) of the ground station for cacao disease monitoring. The interface is organized into multiple pages that support mission configuration, live UAV operation, visualization of detection results, and archival review of past missions.
-
-The Mission Planning page is used to configure flight parameters before deployment. It displays basic UAV status indicators (e.g., battery level, altitude, GPS signal) and provides adjustable mission settings such as flight altitude, yaw mode, flight speed, and capture or flight interval. It also includes mission control actions (e.g., save mission plan, start mission, stop mission) to ensure systematic and repeatable flight execution along cacao rows.
+ The interface is organized into multiple pages that support mission configuration, live UAV operation, visualization of detection results, and archival review of past missions. The Mission Planning page is used to configure flight parameters before deployment. It displays basic UAV status indicators (e.g., battery level, altitude, GPS signal) and provides adjustable mission settings such as flight altitude, yaw mode, flight speed, and capture or flight interval. It also includes mission control actions (e.g., save mission plan, start mission, stop mission) to ensure systematic and repeatable flight execution along cacao rows.
 
 The Drone Control (Live Monitor) page provides real-time operational monitoring during flight. It displays the live video stream together with the detection overlay produced by the model, including bounding boxes, class labels, and confidence scores. This page also presents stream health indicators such as connection status, frames per second (FPS), latency, video quality, and link quality, allowing the operator to assess streaming stability while operating the UAV.
 
@@ -277,10 +283,10 @@ Once localization is complete, YOLOv11 proceeds with the classification of each 
 
 \subsubsection*{Real-Time Processing, Detection, and Result Output}
 Real-time processing and real-time detection will be performed during UAV flight by executing the detection pipeline on the ground station immediately as frames are received from the live video stream. Each incoming frame will undergo lightweight, per-frame standardization before inference, including color format conversion, letterbox resizing to the model input size, and pixel normalization. The standardized frame will then be forwarded to YOLOv11 to generate detections consisting of bounding boxes, class labels, and confidence scores. Detection results will be displayed immediately through on-screen overlays on the ground station for monitoring and verification, and detection logs will be written concurrently with timestamps and available location metadata to support live reporting. Under this workflow, continuous video will not be archived; instead, only detection outputs and selected evidence frames will be retained to minimize storage requirements while preserving traceability of reported detections.
-
+\newpage
 \begin{figure}[H]
 	\centering
-	\caption{Sample real-time detection output from the UAV video stream on the ground station using ByteTrack, showing bounding boxes, class labels, confidence scores, and persistent track IDs during live inference.}
+	\caption{Sample real-time detection output from the UAV video stream on the ground station using ByteTrack.}
 	\label{fig:realtime_detection_output}
 	\includegraphics[width=0.9\textwidth]{figures/Live_Result.pdf}
 \end{figure}
@@ -338,6 +344,7 @@ The RoboMaster TT integrates several important functions. Its flight system comb
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to
 13 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
 
+The RoboMaster TT integrates several important functions, as illustrated in the system block diagram in Figure~\ref{fig:system_block}. Its flight system combines a flight controller and propulsion motors with the Vision Positioning System (VPS).
 \begin{figure}[H]
 	\centering
 	\caption{System Block Diagram of the DJI RoboMaster TT}
@@ -346,6 +353,16 @@ The onboard 5 MP camera enables the capture of still images and 720p HD video, s
 \end{figure}
 
 The onboard 5 MP camera enables the capture of still images and 720p HD video, suitable for documenting cacao pods. Power is supplied by a 3.8 V, 1100 mAh LiPo battery, supporting flight times of up to 7 minutes. Safety features include propeller guards, battery protection, and automatic landing in case of weak signals or low power. The expansion kit includes an ESP32-based open-source controller, providing UART, I2C, GPIO, PWM, and SPI interfaces for integrating additional modules such as the GPS receiver.
+
+Figure \ref{fig:expansion_circuit} illustrates the hardware interfacing between the RoboMaster TT’s expansion board (ESP32 Controller) and the external NEO-M8N GPS module via the Universal Asynchronous Receiver-Transmitter (UART) protocol.
+\begin{figure}[H]
+	\centering
+	\caption{Expansion Board Circuit Diagram}
+	\label{fig:expansion_circuit}
+	\includegraphics[width=1\textwidth]{figures/Expansion_Board_Circuit_Diagram.pdf}
+\end{figure}
+
+ The GPS module is powered by the 3.3V output from the expansion board, with a common Ground (GND) connection ensuring signal stability. Data communication follows a cross-coupled configuration where the GPS TX (Transmit) pin connects to the ESP32 RX (Receive) pin to stream NMEA data containing geospatial coordinates. Conversely, the GPS RX pin connects to the ESP32 TX pin, allowing the controller to send configuration commands to the module. This direct UART connection enables the ESP32 to parse geospatial data with low latency, which is then synchronized with the video feed for the telemetry overlay.
 
 \subsection*{Command-based Mission Control with RoboMaster TT SDK}
 The Software Development Kit (SDK) enables command-based mission planning with the DJI RoboMaster TT. Through the SDK, the drone executes scripted flight commands such as \texttt{takeoff}, \texttt{forward(x)}, \texttt{back(x)}, \texttt{cw(angle)}, and \texttt{land}, allowing it to follow predefined flight paths across cacao rows. During these missions, the drone captures images of cacao pods at specific intervals, paired with location data provided by the integrated NEO-M8N GPS module.
